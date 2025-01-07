@@ -36,8 +36,8 @@ if ($type == "create") {
 
         $courseDAO->createCourse($course);
 
-        $courseDAO->message->setMessage("Curso cadastrado com sucesso!", "success", "back");
+        $courseDAO->message->setMessage("Curso cadastrado com sucesso!", "success", "", "back");
+    } else {
+        $courseDAO->message->setMessage("Cadastro de curso não realizado!", "error", "Você precisa adicionar pelo menos: nome do curso, descrição e quantidade de vagas.", "back");
     }
-} else {
-    $courseDAO->message->setMessage("Você precisa adicionar pelo menos: nome do curso, descrição e quantidade de vagas", "error", "back");
 }

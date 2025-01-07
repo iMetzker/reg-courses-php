@@ -9,11 +9,12 @@ class Message
         $this->url = $url;
     }
 
-    public function setMessage($msg, $type, $redirectPage = "index.php")
+    public function setMessage($msg, $type, $text , $redirectPage = "index.php")
     {
 
         $_SESSION["msg"] = $msg;
         $_SESSION["type"] = $type;
+        $_SESSION["text"] = $text;
 
         if ($redirectPage != "back") {
             header("Location: $this->url" . $redirectPage);
@@ -27,7 +28,8 @@ class Message
         if (!empty($_SESSION["msg"])) {
             return [
                 "msg" => $_SESSION["msg"],
-                "type" => $_SESSION["type"]
+                "type" => $_SESSION["type"],
+                "text" => $_SESSION["text"]
             ];
         } else {
             return false;
@@ -38,5 +40,6 @@ class Message
     {
         $_SESSION["msg"] = "";
         $_SESSION["type"] = "";
+        $_SESSION["text"] = "";
     }
 }
