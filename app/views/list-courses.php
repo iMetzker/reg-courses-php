@@ -20,10 +20,13 @@ $allCourses = $courseDAO->getAllCourses();
 
     <!-- BOOTSTRAP ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../styles/styles.scss">
 </head>
 
 <body>
-    <div class="fluid-container d-flex justify-content-center align-items-center vh-100 flex-column">
+    <div class="fluid-container d-flex justify-content-center align-items-center flex-column  mt-5">
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -33,11 +36,11 @@ $allCourses = $courseDAO->getAllCourses();
         </nav>
 
         <h2>Mini Cursos Cadastrados</h2>
-
-        <div class="col-md-12" id="all-courses">
+        <!--
+         <div class="col-md-12" id="all-courses">
             <table class="table">
                 <thead>
-                    <th scope="col">Cursos Disponíveis</th>
+                    <th scope="col">Cursos</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Vagas</th>
                     <th scope="col">Disponibilidade</th>
@@ -51,8 +54,15 @@ $allCourses = $courseDAO->getAllCourses();
                             <td scope="row"><?= $course->name ?></td>
                             <td scope="row"><?= $course->description ?></td>
                             <td scope="row"><?= $course->vacancies ?></td>
-                            <td scope="row"><?= $course->open ?></td>
-                            <td scope="row"><a href="<?= $BASE_URL ?>add-student.php?id=<?= $course->id ?>"><i class="bi bi-person-add"></i></a></td>
+                            <td scope="row"><?php
+                                            if ($course->open === 1) {
+                                                echo "Aberto";
+                                            } else {
+                                                echo "Fechado";
+                                            }
+                                            ?>
+                            </td>
+                            <td scope="row" class="fs-4 icon-list"><a href="<?= $BASE_URL ?>add-student.php?id=<?= $course->id ?>"><i class="bi bi-person-add"></i></a></td>
                             <td scope="row">
                                 <a href="<?= $BASE_URL ?>updte-courses.php?id=<?= $course->id ?>"><i class="bi bi-pencil-square"></i></a>
                                 <form action="<?= $BASE_URL ?>add-course_process.php" method="POST">
@@ -68,7 +78,47 @@ $allCourses = $courseDAO->getAllCourses();
                 </tbody>
             </table>
         </div>
+        -->
 
+        <div class="container">
+            <div class="d-flex justify-content-center flex-row flex-wrap gap-5 mt-5">
+                <?php foreach ($allCourses as $course): ?>
+                    <div class="card">
+                        <div class="modify d-flex gap-2 align-itens-center p-2">
+                            <a class="fs-4" href="<?= $BASE_URL ?>updte-courses.php?id=<?= $course->id ?>"><i class="bi bi-pencil-square"></i></a>
+                            <form action="<?= $BASE_URL ?>add-course_process.php" method="POST">
+                            <input type="hidden" name="type" value="delete">
+                            <input type="hidden" name="id" value="<?= $course->id ?>">
+                            <button type="submit" class="delete-btn fs-5">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title "><?= $course->name ?></h5>
+                            <div class="card-text"><?= $course->description ?></div>
+                            <p class="card-text">
+                                <b class="fs-3"><?= $course->vacancies ?></b>
+                                Vagas
+                            </p>
+                            <footer class="blockquote-footer">
+                                <?php
+                                    if ($course->open === 1) {
+                                        echo "Inscrições Abertas";
+                                    } else {
+                                        echo "Inscrições Fechadas";
+                                    }
+                                ?>
+                            </footer>
+                                <?php 
+                                if($course->open === 1) {
+                                    echo "<a class=\"card-text card-icon fs-4\" href=\"<?= $BASE_URL ?>add-student.php?id=<?= $course->id ?>\">Inscrever-se <i class=\"bi bi-person-add\"></i></a>";
+                                }
+                                ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
 
     </div>
 
@@ -80,6 +130,7 @@ $allCourses = $courseDAO->getAllCourses();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
+
 </html>
 
 ?>

@@ -1,0 +1,36 @@
+
+/* LISTAGEM DE CURSOS */
+.card {
+    max-width: 600px;
+}
+
+.card-body a,
+.modify a,
+.modify button {
+    color: #fd7e14;
+}
+
+.card-body{
+    a {
+        text-decoration: none;
+    
+        &:hover {
+            text-decoration: underline;
+        }
+
+    }
+
+    h5 {
+        max-width: 400px;
+    }
+}
+
+.modify {
+    position: absolute;
+    right: 0;
+
+    button {
+        border: none;
+        background-color: transparent;
+    }
+}
