@@ -1,6 +1,6 @@
 <?php
-
 require_once("../../db.php");
+require_once("../models/course.php");
 require_once("../models/message.php");
 
 class CourseDAO implements CourseDAOInterface
@@ -15,6 +15,20 @@ class CourseDAO implements CourseDAOInterface
         $this->connect = $connect;
         $this->url = $url;
         $this->message = new Message($url);
+    }
+
+    public function buildCourse($data)
+    {
+        $course = new Course;
+
+        $course->id = $data['id'];
+        $course->name = $data['nome'];
+        $course->description = $data['descricao'];
+        $course->vacancies = $data['vagas'];
+        $course->open = $data['aberto'];
+        $course->created_at = $data['created_at'];
+
+        return $course;
     }
 
     public function createCourse(Course $course)
@@ -36,11 +50,29 @@ class CourseDAO implements CourseDAOInterface
         $con->execute();
     }
 
-    public function deleteViewCourse(Course $course){
+    public function getAllCourses()
+    {
 
+        $courses = [];
+
+        $con = $this->connect->prepare("
+        SELECT * FROM cminicursos
+        ");
+
+        $con->execute();
+
+        if ($con->rowCount() > 0) {
+            $coursesArray = $con->fetchAll();
+
+            foreach ($coursesArray as $course) {
+                $courses[] = $this->buildCourse($course);
+            }
+        }
+
+        return $courses;
     }
 
-    public function updateCourse(Course $course){
+    public function deleteViewCourse(Course $course) {}
 
-    }
+    public function updateCourse(Course $course) {}
 }

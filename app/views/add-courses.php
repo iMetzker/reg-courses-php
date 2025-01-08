@@ -27,7 +27,7 @@ $msg = $message->getMessage();
                 <li class="breadcrumb-item active" aria-current="page">Adicionar Curso</li>
             </ol>
         </nav>
-        
+
         <h2>Cadastrar Mini Curso</h2>
         <form class="mt-5 container" method="POST" action="../controller/add-course_process.php">
             <input type="hidden" name="type" value="create">
@@ -72,6 +72,45 @@ $msg = $message->getMessage();
         $message->clearMessage();
         ?>
     <?php endif; ?>
+
+    <!-- CKEDITOR 5 EDITOR DE TEXTO -->
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#id_course_description'), {
+                toolbar: [
+                    'bold',
+                    'italic',
+                    'link',
+                    'undo',
+                    'redo',
+                    'bulletedList',
+                    'numberedList',
+                ],
+                heading: {
+                    options: [{
+                            model: 'paragraph',
+                            title: 'Normal',
+                            view: 'p'
+                        },
+                        {
+                            model: 'heading1',
+                            title: 'Cabeçalho 1',
+                            view: 'h1'
+                        },
+                        {
+                            model: 'heading2',
+                            title: 'Cabeçalho 2',
+                            view: 'h2'
+                        },
+                    ]
+                },
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
 </body>
 

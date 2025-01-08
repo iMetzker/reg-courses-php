@@ -13,7 +13,9 @@ class Course {
 
 interface CourseDAOInterface {
 
+    public function buildCourse($data);
     public function createCourse(Course $course);
+    public function getAllCourses();
     public function deleteViewCourse(Course $course);
     public function updateCourse(Course $course);
 }

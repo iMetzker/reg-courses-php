@@ -21,8 +21,7 @@ require_once("./db.php");
 
         <div class="container text-center">
         <a href="?page=new-course">Adicionar curso</a>
-        <a href="?page=add-student">Adicionar aluno</a>
-        <a href="?page=list-courses">Listar cursos</a>
+        <a href="?page=list-courses">Listar mini cursos</a>
         </div>
     </div>
 
@@ -30,8 +29,18 @@ require_once("./db.php");
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
 
-        if ($page == 'new-course') {
-             
+        switch ($page) {
+            case "new-course":
+                header("Location: app/views/add-courses.php");
+                break;
+            case "add-student":
+                header("Location: app/views/add-student.php");
+                break;
+            case "list-courses":
+                header("Location: app/views/list-courses.php");
+                break;
+            default:
+            header("Location: index.php");
         }
     }
     ?>
