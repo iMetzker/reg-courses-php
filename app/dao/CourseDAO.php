@@ -26,8 +26,12 @@ class CourseDAO implements CourseDAOInterface
         $course->description = $data['descricao'];
         $course->vacancies = $data['vagas'];
         $course->open = $data['aberto'];
+        $course->date = $data['data'];
+        $course->minister = $data['ministrante'];
+        $course->time = $data['horario'];
+        $course->duration = $data['duracao'];
         $course->created_at = $data['created_at'];
-
+        
         return $course;
     }
 
@@ -36,15 +40,19 @@ class CourseDAO implements CourseDAOInterface
 
         $con = $this->connect->prepare("
         INSERT INTO cminicursos (
-        nome, descricao, vagas, aberto, created_at
+        nome, descricao, vagas, aberto, data, ministrante, horario, duracao, created_at
         ) VALUES(
-            :name, :description, :vacancies, :open, :created_at
+            :name, :description, :vacancies, :open, :date, :minister, :time, :duration, :created_at
          )");
 
         $con->bindParam(":name", $course->name);
         $con->bindParam(":description", $course->description);
         $con->bindParam(":vacancies", $course->vacancies);
         $con->bindParam(":open", $course->open);
+        $con->bindParam(":date", $course->date);
+        $con->bindParam(":minister", $course->minister);
+        $con->bindParam(":time", $course->time);
+        $con->bindParam(":duration", $course->duration);
         $con->bindParam(":created_at", $course->created_at);
 
         $con->execute();

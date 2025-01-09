@@ -6,6 +6,10 @@ class Course {
     public $description;
     public $vacancies;
     public $open = 0;
+    public $date;
+    public $minister;
+    public $time;
+    public $duration;
     public $created_at;
     public $updated_at;
     public $deleted_at;

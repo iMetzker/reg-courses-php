@@ -18,6 +18,10 @@ if ($type == "create") {
     $description = filter_input(INPUT_POST, "course_description");
     $vacancies = filter_input(INPUT_POST, "course_vacancies");
     $open = filter_input(INPUT_POST, "course_open");
+    $minister = filter_input(INPUT_POST, "course_minister");
+    $date = filter_input(INPUT_POST, "course_date");
+    $time = filter_input(INPUT_POST, "course_time");
+    $duration = filter_input(INPUT_POST, "course_duration");
 
     if ($open === null) {
         $open = 0;
@@ -32,7 +36,12 @@ if ($type == "create") {
         $course->description = $description;
         $course->vacancies = $vacancies;
         $course->open = $open;
+        $course->date = $date;
+        $course->minister = $minister;
+        $course->time = $time;
+        $course->duration = $duration;
         $course->created_at = $dateAc->format("Y/m/d H:i:s");
+
 
         $courseDAO->createCourse($course);
 

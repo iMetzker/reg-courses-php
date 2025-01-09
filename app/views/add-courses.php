@@ -58,8 +58,8 @@ $msg = $message->getMessage();
                 </div>
             </div>
                 <div class="mb-3">
-                    <label for="course_time" class="form-label">Duração Total</label>
-                    <input type="time" class="form-control input-time-as" id="id_course_time" name="course_time" ></input>
+                    <label for="course_duration" class="form-label">Duração Total</label>
+                    <input type="time" class="form-control input-time-as" id="id_course_duration" name="course_duration" ></input>
                 </div>
             <div class="mb-3 row align-items-end">
                 <div class="col" style="max-width: 200px;">
