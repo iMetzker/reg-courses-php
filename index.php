@@ -19,7 +19,7 @@ require_once("./db.php");
     <div class="fluid-container d-flex justify-content-center align-items-center vh-100 flex-column">
         <h1>Página inicial de mini cursos</h1>
 
-        <div class="container text-center">
+        <div class="container d-flex justify-content-center gap-4">
         <a href="?page=new-course">Adicionar curso</a>
         <a href="?page=list-courses">Listar mini cursos</a>
         </div>

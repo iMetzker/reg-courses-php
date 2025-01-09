@@ -80,7 +80,18 @@ class CourseDAO implements CourseDAOInterface
         return $courses;
     }
 
-    public function deleteViewCourse(Course $course) {}
+    public function deleteViewCourse(Course $course) {
 
-    public function updateCourse(Course $course) {}
+        $con = $this->connect->prepare("
+        DELETE FROM cminicursos WHERE id = :id
+        ");
+
+        $con->bindParam(":id", $course->id);
+        $con->execute();
+    }
+
+    public function updateCourse(Course $course) {
+
+
+    }
 }
