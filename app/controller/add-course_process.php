@@ -26,7 +26,7 @@ if ($type == "create") {
     $course = new Course;
 
     // VALIDANDO FORMULÁRIO ANTES DE CONCATENAR COM O DB
-    if (!empty($name) && !empty($description) && !empty($vacancies)) {
+    if (!empty($name) && !empty($vacancies)) {
 
         $course->name = $name;
         $course->description = $description;
@@ -38,6 +38,6 @@ if ($type == "create") {
 
         $courseDAO->message->setMessage("Curso cadastrado com sucesso!", "success", "", "back");
     } else {
-        $courseDAO->message->setMessage("Cadastro de curso não realizado!", "error", "Você precisa adicionar pelo menos: nome do curso, descrição e quantidade de vagas.", "back");
+        $courseDAO->message->setMessage("Cadastro de curso não realizado!", "error", "Você precisa adicionar pelo menos: nome do curso e quantidade de vagas.", "back");
     }
 }

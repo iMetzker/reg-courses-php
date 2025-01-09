@@ -5,7 +5,6 @@
 }
 
 .card-body a,
-.modify a,
 .modify button {
     color: #fd7e14;
 }
@@ -20,17 +19,20 @@
 
     }
 
-    h5 {
-        max-width: 400px;
+    .card-description {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
-.modify {
-    position: absolute;
-    right: 0;
+/* CADASTRO DE CURSOS */
+.input-time-as {
+    width: 120px;
+}
 
-    button {
-        border: none;
-        background-color: transparent;
-    }
+.input-date {
+    width: 145px;
 }

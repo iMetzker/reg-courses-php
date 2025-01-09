@@ -16,6 +16,9 @@ $msg = $message->getMessage();
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- STYLES -->
+     <link rel="stylesheet" href="../styles/styles.scss">
 </head>
 
 <body>
@@ -36,9 +39,28 @@ $msg = $message->getMessage();
                 <input type="text" class="form-control" id="id_course_name" name="course_name">
             </div>
             <div class="mb-3">
-                <label for="course_description" class="form-label">Descrição do curso</label>
-                <textarea type="text" class="form-control" id="id_course_description" name="course_description" rows="5"></textarea>
+                <label for="course_minister" class="form-label">Prof. Ministrante</label>
+                <input type="text" class="form-control" id="id_course_minister" name="course_minister" ></input>
             </div>
+            <div class="mb-3">
+                <label for="course_description" class="form-label">Descrição do curso</label>
+                <textarea type="text" class="form-control" id="id_course_description" name="course_description" ></textarea>
+            </div>
+            <div class="mb-3 d-flex gap-3">
+                <div>
+                    <label for="course_date" class="form-label">Data de Realização</label>
+                    <input type="date" class="form-control input-date" id="id_course_date" name="course_date" style="width: 145px;"></input>
+                </div>
+                
+                <div>
+                    <label for="course_time" class="form-label">Horário de Início</label>
+                    <input type="time" class="form-control input-time-as" id="id_course_time" name="course_time" ></input>
+                </div>
+            </div>
+                <div class="mb-3">
+                    <label for="course_time" class="form-label">Duração Total</label>
+                    <input type="time" class="form-control input-time-as" id="id_course_time" name="course_time" ></input>
+                </div>
             <div class="mb-3 row align-items-end">
                 <div class="col" style="max-width: 200px;">
                     <label for="course_vacancies" class="form-label">Quantidade de vagas</label>
@@ -83,10 +105,10 @@ $msg = $message->getMessage();
                     'bold',
                     'italic',
                     'link',
+                    'bulletedList', 
+                    'numberedList',
                     'undo',
                     'redo',
-                    'bulletedList',
-                    'numberedList',
                 ],
                 heading: {
                     options: [{

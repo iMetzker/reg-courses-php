@@ -56,7 +56,7 @@ class CourseDAO implements CourseDAOInterface
         $courses = [];
 
         $con = $this->connect->prepare("
-        SELECT * FROM cminicursos
+        SELECT * FROM cminicursos ORDER BY id DESC
         ");
 
         $con->execute();

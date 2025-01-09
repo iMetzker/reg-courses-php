@@ -35,13 +35,12 @@ $allCourses = $courseDAO->getAllCourses();
             </ol>
         </nav>
 
-        <h2>Mini Cursos Cadastrados</h2>
-        <!--
-         <div class="col-md-12" id="all-courses">
+        <h2>Mini Cursos Alfa Unipac</h2>
+        
+         <!-- <div class="col-md-12" id="all-courses">
             <table class="table">
                 <thead>
                     <th scope="col">Cursos</th>
-                    <th scope="col">Descrição</th>
                     <th scope="col">Vagas</th>
                     <th scope="col">Disponibilidade</th>
                     <th scope="col">Inscrever-se</th>
@@ -52,7 +51,6 @@ $allCourses = $courseDAO->getAllCourses();
                     <?php foreach ($allCourses as $course): ?>
                         <tr>
                             <td scope="row"><?= $course->name ?></td>
-                            <td scope="row"><?= $course->description ?></td>
                             <td scope="row"><?= $course->vacancies ?></td>
                             <td scope="row"><?php
                                             if ($course->open === 1) {
@@ -77,37 +75,41 @@ $allCourses = $courseDAO->getAllCourses();
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
-        -->
-
+        </div> -->
         <div class="container">
             <div class="d-flex justify-content-center flex-row flex-wrap gap-5 mt-5">
                 <?php foreach ($allCourses as $course): ?>
                     <div class="card">
-                        <div class="modify d-flex gap-2 align-itens-center p-2">
-                            <a class="fs-4" href="<?= $BASE_URL ?>updte-courses.php?id=<?= $course->id ?>"><i class="bi bi-pencil-square"></i></a>
-                            <form action="<?= $BASE_URL ?>add-course_process.php" method="POST">
-                            <input type="hidden" name="type" value="delete">
-                            <input type="hidden" name="id" value="<?= $course->id ?>">
-                            <button type="submit" class="delete-btn fs-5">
-                                <i class="bi bi-trash3"></i>
-                            </button>
-                        </div>
+                    <img src="../assets/img/1.png" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title "><?= $course->name ?></h5>
-                            <div class="card-text"><?= $course->description ?></div>
-                            <p class="card-text">
+                            <h5 class="card-title"><?= $course->name ?></h5>
+                            <div class="card-text card-description mb-2" title="<?php echo str_replace("&nbsp;", "&#13• ",strip_tags($course->description)); ?>"><?= $course->description ?></div>
+                            <div class="d-flex card-text align-items-center gap-1">
+                                <i class="bi bi-file-person-fill"></i>
+                                <h6 class="card-title mb-0 ">Prof. Ministrante: Faozi Figueiredo</h6>
+                            </div>
+                            <div class="mt-2">
+                                <div class="d-flex card-text align-items-center gap-1">
+                                <i class="bi bi-calendar3"></i>
+                                <h6 class="card-title mb-0 ">12/01/2025 às 14h</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex card-text align-items-center gap-1 mt-2">
+                                <i class="bi bi-clock-history"></i>
+                                <h6 class="card-title mb-0 ">Duração: 8h</h6>
+                                </div>
+                            <p class="card-text mt-2">
                                 <b class="fs-3"><?= $course->vacancies ?></b>
                                 Vagas
                             </p>
                             <footer class="blockquote-footer">
                                 <?php
                                     if ($course->open === 1) {
-                                        echo "Inscrições Abertas";
+                                        echo "28 vagas restantes";
                                     } else {
-                                        echo "Inscrições Fechadas";
+                                        echo "Vagas esgotadas";
                                     }
-                                ?>
+                                ?> 
                             </footer>
                                 <?php 
                                 if($course->open === 1) {
