@@ -9,7 +9,7 @@
 
     <h2 class="text-center">Mini Cursos Alfa Unipac</h2>
 
-    <div class="d-flex justify-content-center flex-row flex-wrap gap-5 mt-5">
+    <div class="d-flex justify-content-center flex-wrap gap-5 mt-5">
         <?php foreach ($allCourses as $course):
 
             // FORMATANDO DATAS

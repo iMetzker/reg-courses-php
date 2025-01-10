@@ -1,7 +1,7 @@
 <?php
-require_once("./db.php");
-require_once("./app/models/course.php");
-require_once("./app//models/message.php");
+require_once(__DIR__ . "../../../db.php");
+require_once(__DIR__ . "../../../app/models/course.php");
+require_once(__DIR__ . "../../../app/models/message.php");
 
 class CourseDAO implements CourseDAOInterface
 {
@@ -35,27 +35,27 @@ class CourseDAO implements CourseDAOInterface
         return $course;
     }
 
-    public function createCourse(Course $course)
-    {
+    public function findByIdCourse($id) {
+
+        $course = [];
 
         $con = $this->connect->prepare("
-        INSERT INTO cminicursos (
-        nome, descricao, vagas, aberto, data, ministrante, horario, duracao, created_at
-        ) VALUES(
-            :name, :description, :vacancies, :open, :date, :minister, :time, :duration, :created_at
-         )");
+        SELECT * FROM cminicursos WHERE id = :id
+        ");
 
-        $con->bindParam(":name", $course->name);
-        $con->bindParam(":description", $course->description);
-        $con->bindParam(":vacancies", $course->vacancies);
-        $con->bindParam(":open", $course->open);
-        $con->bindParam(":date", $course->date);
-        $con->bindParam(":minister", $course->minister);
-        $con->bindParam(":time", $course->time);
-        $con->bindParam(":duration", $course->duration);
-        $con->bindParam(":created_at", $course->created_at);
-
+        $con->bindParam(":id", $id);
         $con->execute();
+
+        if($con->rowCount() > 0) {
+
+            $courseData = $con->fetch();
+            $course = $this->buildCourse($courseData);
+
+            return $course;
+
+        } else {
+            return false;
+        }
     }
 
     public function getAllCourses()
@@ -80,14 +80,39 @@ class CourseDAO implements CourseDAOInterface
         return $courses;
     }
 
-    public function deleteViewCourse(Course $course) {
+    public function createCourse(Course $course)
+    {
+
+        $con = $this->connect->prepare("
+        INSERT INTO cminicursos (
+        nome, descricao, vagas, aberto, data, ministrante, horario, duracao, created_at
+        ) VALUES(
+            :name, :description, :vacancies, :open, :date, :minister, :time, :duration, :created_at
+         )");
+
+        $con->bindParam(":name", $course->name);
+        $con->bindParam(":description", $course->description);
+        $con->bindParam(":vacancies", $course->vacancies);
+        $con->bindParam(":open", $course->open);
+        $con->bindParam(":date", $course->date);
+        $con->bindParam(":minister", $course->minister);
+        $con->bindParam(":time", $course->time);
+        $con->bindParam(":duration", $course->duration);
+        $con->bindParam(":created_at", $course->created_at);
+
+        $con->execute();
+    }
+
+    public function deleteViewCourse($id) {
 
         $con = $this->connect->prepare("
         DELETE FROM cminicursos WHERE id = :id
         ");
 
-        $con->bindParam(":id", $course->id);
+        $con->bindParam(":id", $id);
         $con->execute();
+
+        $this->message->setMessage("Curso excluído com sucesso!", "success", "", "back");
     }
 
     public function updateCourse(Course $course) {

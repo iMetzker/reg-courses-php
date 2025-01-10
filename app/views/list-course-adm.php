@@ -107,7 +107,7 @@
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
-                            <form action="<?= $BASE_URL ?>add-course_process.php" method="POST">
+                            <form action="<?= $BASE_URL ?>app/controller/add-course_process.php" method="POST">
                                 <input type="hidden" name="type" value="delete">
                                 <input type="hidden" name="id" value="<?= $course->id ?>">
 

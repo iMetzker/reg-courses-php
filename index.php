@@ -22,7 +22,7 @@ $allCourses = $courseDAO->getAllCourses();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="./app/styles/styles.scss">
+    <link rel="stylesheet" href="./app/styles/styles.css">
 </head>
 
 

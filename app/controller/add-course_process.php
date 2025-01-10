@@ -49,12 +49,12 @@ if ($type == "create") {
     } else {
         $courseDAO->message->setMessage("Cadastro de curso não realizado!", "error", "Você precisa adicionar pelo menos: nome do curso e quantidade de vagas.", "back");
     }
-} else if ($type === "delete"){
+} else if ($type == "delete") {
 
     $id = filter_input(INPUT_POST, "id");
-    $course = $CourseDAO->findById($id);
+    $course = $courseDAO->findByIdCourse($id);
 
-    if($movie) {
-        $CourseDAO->destroy($course->id);
+    if ($course) {
+        $courseDAO->deleteViewCourse($course->id);
     }
 }
