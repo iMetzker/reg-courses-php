@@ -73,7 +73,7 @@ class CourseDAO implements CourseDAOInterface
             $coursesArray = $con->fetchAll();
 
             foreach ($coursesArray as $course) {
-                $courses[] = $this->buildCourse($course);
+                $courses[] = $this->buildCourse($course) ;
             }
         }
 
