@@ -1,4 +1,14 @@
-<div class="container">
+<div class="container mt-5">
+
+    <nav aria-label="breadcrumb mb-5">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?= $BASE_URL ?>">Início</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Painel do Aluno</li>
+        </ol>
+    </nav>
+
+    <h2 class="text-center">Mini Cursos Alfa Unipac</h2>
+
     <div class="d-flex justify-content-center flex-row flex-wrap gap-5 mt-5">
         <?php foreach ($allCourses as $course):
 
@@ -13,7 +23,7 @@
 
         ?>
             <div class="card">
-                <img src="../assets/img/1.png" class="card-img-top" alt="...">
+                <img src="./app/assets/img/1.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
                         <?= $course->name ?>

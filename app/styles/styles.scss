@@ -1,7 +1,7 @@
 
 /* LISTAGEM DE CURSOS */
 .card {
-    max-width: 600px;
+    max-width: 500px;
 }
 
 .card-body a,
@@ -101,4 +101,74 @@
 .trash {
     border: none;
     background-color: transparent;
+    padding: 0px;
 }
+
+
+
+.header-buttons {
+
+    .header-export,
+    .header-add-course {
+        font-weight: 600;
+        padding: 7px 15px;
+
+        i {
+            font-size: 20px;
+        }
+
+    }
+
+    .header-export {
+        color: #212519;
+
+        &:hover {
+            transition: 0.2s ease-in-out;
+            background-color: #004e98;
+            border: 1px solid #004e98;
+            color: #ffffff;
+        }
+    }
+
+    .header-add-course {
+    background-color: #fd7e14;
+    border: 1px solid #fd7e14;
+
+    &:hover {
+        transition: 0.2s ease-in-out;
+        background-color: #e47011;
+    }
+    }
+}
+
+.submenu-header {
+
+    .nav-item {
+         a {
+            color: #212519;
+            font-weight: 400;
+         }
+
+        span.text-bg-secondary {
+            background-color: #F0F1F5 !important;
+            color: #212519 !important;
+            font-weight: 500;
+        }
+
+        .active {
+            color: #e47011;
+            font-weight: 500;
+
+            border-top: 1px solid #e47011;
+            border-left: 1px solid #e47011;
+            border-right: 1px solid #e47011;
+
+            .text-bg-secondary {
+                background-color: #FFF9E1 !important;
+                color: #e47011 !important;
+            }
+        } 
+    }
+}
+
+

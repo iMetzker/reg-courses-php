@@ -1,7 +1,7 @@
 <?php
-require_once("../../db.php");
-require_once("../models/course.php");
-require_once("../models/message.php");
+require_once("./db.php");
+require_once("./app/models/course.php");
+require_once("./app//models/message.php");
 
 class CourseDAO implements CourseDAOInterface
 {
