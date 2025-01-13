@@ -52,7 +52,7 @@ $msg = $message->getMessage();
 
             <div class="mb-3">
                 <label for="course_image" class="form-label"><span class="text-danger">*</span>Imagem para capa</label>
-                <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image">
+                <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image" required>
                 <span class="input-image-formats">Formatos aceitos: .png, .jpeg e jpg</span>
             </div>
 

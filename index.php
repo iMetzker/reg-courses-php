@@ -78,7 +78,7 @@ $msg = $message->getMessage();
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Sim, deletar!"
+                confirmButtonText: "Sim, excluir!"
             }).then((result) => {
                 if (result.isConfirmed) {
                     event.target.submit();

@@ -1,9 +1,11 @@
 <?php
 require_once("../../db.php");
+require_once("../models/message.php");
 require_once("../models/course.php");
 require_once("../DAO/CourseDAO.php");
 
 $courseDAO = new CourseDAO($connect, $BASE_URL);
+$message = new Message($BASE_URL);
 
 $timeZone = new DateTimeZone('America/Sao_Paulo');
 $dateAc = new DateTime('now', $timeZone);
@@ -49,25 +51,22 @@ if ($type == "create") {
             $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
             $jpgArray = ["image/jpeg", "image/jpg"];
 
-            if (in_array($image["type"], $imagetypes)) {
+            if (in_array($image["type"], $imageTypes)) {
 
                 if (in_array($image["type"], $jpgArray)) {
                     $imageFile = imagecreatefromjpeg($image["tmp_name"]);
                 } else {
-                    $imagefile = imagecreatefrompng($image["tmp_name"]);
+                    $imageFile = imagecreatefrompng($image["tmp_name"]);
                 }
 
                 $imageName = $course->imageGenerateName();
-                imagejpeg($imageFile, "../assets/img/", $imageName, 100);
+                imagejpeg($imageFile, "../assets/img/" . $imageName, 100);
 
                 $course->image = $imageName;
             } else {
-                $courseDao->setMessage("Tipo inválido de imagem", "error", "Envie uma imagem do tipo .png, .jpeg ou .jpg", "back");
+                $message->setMessage("Tipo inválido de imagem", "error", "Envie uma imagem do tipo .png, .jpeg ou .jpg", "back");
             }
         }
-
-        print_r($_FILES["course_image"]);
-        exit();
 
         $courseDAO->createCourse($course);
 

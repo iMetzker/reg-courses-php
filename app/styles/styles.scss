@@ -1,7 +1,11 @@
-
 /* LISTAGEM DE CURSOS */
 .card {
     max-width: 400px;
+}
+
+.course-image {
+    height: 200px;
+    object-fit: cover;
 }
 
 .card-body a,
@@ -28,13 +32,76 @@
     }
 }
 
+.header-container {
+    background: url("../assets/img/header-student.jpg") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    min-height: 300px;
 
+    color: #ffffff;
+
+    h1, p {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    }
+}
+
+.header-container::after {
+    content: ""; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1; 
+    border-radius: 10px;
+}
+
+.filter-course {
+    max-width: 180px;
+    height: 100%;
+}
+
+.pagination-courses a{
+    color: #fd7e14;
+
+    &:hover {
+        color: #e47011;
+    }
+}
+
+.footer-list-courses {
+    background-color: #041c39;
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    color: #ffffff;
+
+    img {
+        max-width: 200px;
+    }
+
+    p {
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .links-container a{
+        color: #ffffff;
+    }
+
+    .logo-content {
+        min-width: 480px;
+    }
+
+    .contact-us {
+        min-width: 270px;
+    }
+}
 
 /* CADASTRO DE CURSOS */
-
-.teste {
-    background-color: red;
-}
 
 .input-time-as {
     width: 100px;
