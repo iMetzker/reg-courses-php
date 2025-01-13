@@ -1,7 +1,7 @@
 
 /* LISTAGEM DE CURSOS */
 .card {
-    max-width: 500px;
+    max-width: 400px;
 }
 
 .card-body a,
@@ -28,14 +28,35 @@
     }
 }
 
+
+
 /* CADASTRO DE CURSOS */
+
+.teste {
+    background-color: red;
+}
+
 .input-time-as {
-    width: 120px;
+    width: 100px;
 }
 
 .input-date {
     width: 145px;
 }
+
+.btn-add-course {
+    background-color: #fd7e14;
+    border: none;
+    padding: 10px 25px;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+        background-color: #e47011;
+        transition: 0.2s ease-in-out;
+    }
+}
+
 
 /* LISTAGEM DE CURSOS PAINEL ADM */
 
@@ -170,5 +191,3 @@
         } 
     }
 }
-
-

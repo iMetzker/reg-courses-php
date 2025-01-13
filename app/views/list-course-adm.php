@@ -26,7 +26,9 @@
     <ul class="nav nav-tabs mb-5 mt-4 submenu-header">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Todos os Cursos
-                <span class="badge text-bg-secondary">15</span>
+                <span class="badge text-bg-secondary">
+                    <?= $totalCourses ?>
+                </span>
             </a>
         </li>
         <li class="nav-item">
@@ -107,7 +109,7 @@
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 
-                            <form action="<?= $BASE_URL ?>app/controller/add-course_process.php" method="POST">
+                            <form action="<?= $BASE_URL ?>app/controller/add-course_process.php" method="POST" onsubmit="return confirmDelete(event)" class="delete-form">
                                 <input type="hidden" name="type" value="delete">
                                 <input type="hidden" name="id" value="<?= $course->id ?>">
 

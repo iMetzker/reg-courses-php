@@ -17,8 +17,9 @@
             $timeInit = new DateTime($course->time);
             $durationCourse = new DateTime($course->duration);
 
+
             $dateFormat = $dateCourse->format("d/m/Y");
-            $timeInitFormat = str_replace("00", "", $timeInit->format("h\hi"));
+            $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
             $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
         ?>

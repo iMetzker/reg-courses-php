@@ -1,10 +1,14 @@
 <?php
 require_once("./db.php");
 require_once("./app/dao/CourseDAO.php");
+require_once("./app/models/message.php");
 
 $courseDAO = new CourseDAO($connect, $BASE_URL);
 $allCourses = $courseDAO->getAllCourses();
+$totalCourses = $courseDAO->getTotalCourses();
 
+$message = new Message($BASE_URL);
+$msg = $message->getMessage();
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +26,7 @@ $allCourses = $courseDAO->getAllCourses();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- STYLES -->
-    <link rel="stylesheet" href="./app/styles/styles.css">
+    <link rel="stylesheet" href="./app/styles/styles.scss">
 </head>
 
 
@@ -61,6 +65,42 @@ $allCourses = $courseDAO->getAllCourses();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
-</body>
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
 
+            Swal.fire({
+                title: "Tem certeza que deseja excluir este curso?",
+                text: "Você não poderá reverter esta ação!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, deletar!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.submit();
+                }
+            });
+
+        }
+    </script>
+
+    <?php if ($msg): ?>
+        <script>
+            Swal.fire({
+                title: "<?= $msg['msg']; ?>",
+                icon: "<?= $msg['type']; ?>",
+                text: "<?= $msg['text']; ?>",
+                draggable: true
+            });
+        </script>
+        <?php
+        $message->clearMessage();
+        ?>
+    <?php endif; ?>
+
+</body>
 </html>

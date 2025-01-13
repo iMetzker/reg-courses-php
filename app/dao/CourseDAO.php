@@ -31,11 +31,12 @@ class CourseDAO implements CourseDAOInterface
         $course->time = $data['horario'];
         $course->duration = $data['duracao'];
         $course->created_at = $data['created_at'];
-        
+
         return $course;
     }
 
-    public function findByIdCourse($id) {
+    public function findByIdCourse($id)
+    {
 
         $course = [];
 
@@ -46,13 +47,12 @@ class CourseDAO implements CourseDAOInterface
         $con->bindParam(":id", $id);
         $con->execute();
 
-        if($con->rowCount() > 0) {
+        if ($con->rowCount() > 0) {
 
             $courseData = $con->fetch();
             $course = $this->buildCourse($courseData);
 
             return $course;
-
         } else {
             return false;
         }
@@ -73,11 +73,23 @@ class CourseDAO implements CourseDAOInterface
             $coursesArray = $con->fetchAll();
 
             foreach ($coursesArray as $course) {
-                $courses[] = $this->buildCourse($course) ;
+                $courses[] = $this->buildCourse($course);
             }
         }
 
         return $courses;
+    }
+
+    public function getTotalCourses()
+    {
+        $con = $this->connect->prepare("
+        SELECT COUNT(*) FROM cminicursos
+        ");
+        $con->execute();
+
+        $result = $con->fetchColumn();
+
+        return $result;
     }
 
     public function createCourse(Course $course)
@@ -103,7 +115,8 @@ class CourseDAO implements CourseDAOInterface
         $con->execute();
     }
 
-    public function deleteViewCourse($id) {
+    public function deleteViewCourse($id)
+    {
 
         $con = $this->connect->prepare("
         DELETE FROM cminicursos WHERE id = :id
@@ -115,8 +128,5 @@ class CourseDAO implements CourseDAOInterface
         $this->message->setMessage("Curso excluído com sucesso!", "success", "", "back");
     }
 
-    public function updateCourse(Course $course) {
-
-
-    }
+    public function updateCourse(Course $course) {}
 }
