@@ -6,6 +6,7 @@ class Course {
     public $description;
     public $vacancies;
     public $open = 0;
+    public $image;
     public $date;
     public $minister;
     public $time;
@@ -13,6 +14,10 @@ class Course {
     public $created_at;
     public $updated_at;
     public $deleted_at;
+
+    public function imageGenerateName() {
+        return bin2hex(random_bytes(60)) . ".jpg";
+    }
 }
 
 interface CourseDAOInterface {

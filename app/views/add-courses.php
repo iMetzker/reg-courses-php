@@ -24,7 +24,7 @@ $msg = $message->getMessage();
 <body>
     <div class="fluid-container d-flex justify-content-center align-items-center min-vh-100 flex-column bg-light p-2">
 
-        <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/add-course_process.php">
+        <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/add-course_process.php" enctype="multipart/form-data">
             
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -49,6 +49,13 @@ $msg = $message->getMessage();
                 <label for="course_description" class="form-label"><span class="text-danger">*</span>Descrição do curso</label>
                 <textarea type="text" class="form-control bg-light rounded border-0" id="id_course_description" name="course_description" rows="5"></textarea>
             </div>
+
+            <div class="mb-3">
+                <label for="course_image" class="form-label"><span class="text-danger">*</span>Imagem para capa</label>
+                <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image">
+                <span class="input-image-formats">Formatos aceitos: .png, .jpeg e jpg</span>
+            </div>
+
             <div class="mb-3 d-flex gap-3">
                 <div>
                     <label for="course_date" class="form-label"><span class="text-danger">*</span>Data de Realização</label>

@@ -23,6 +23,7 @@ if ($type == "create") {
     $time = filter_input(INPUT_POST, "course_time");
     $duration = filter_input(INPUT_POST, "course_duration");
 
+    // GARANTIR QUE RETORNARÁ BOOLEAN
     if ($open === null) {
         $open = 0;
     }
@@ -42,6 +43,31 @@ if ($type == "create") {
         $course->duration = $duration;
         $course->created_at = $dateAc->format("Y/m/d H:i:s");
 
+        // TRATANDO O ULPLOAD DA IMAGEM
+        if (isset($_FILES["course_image"]) && !empty($_FILES['course_image']['tmp_name'])) {
+            $image = $_FILES['course_image'];
+            $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+            $jpgArray = ["image/jpeg", "image/jpg"];
+
+            if (in_array($image["type"], $imagetypes)) {
+
+                if (in_array($image["type"], $jpgArray)) {
+                    $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+                } else {
+                    $imagefile = imagecreatefrompng($image["tmp_name"]);
+                }
+
+                $imageName = $course->imageGenerateName();
+                imagejpeg($imageFile, "../assets/img/", $imageName, 100);
+
+                $course->image = $imageName;
+            } else {
+                $courseDao->setMessage("Tipo inválido de imagem", "error", "Envie uma imagem do tipo .png, .jpeg ou .jpg", "back");
+            }
+        }
+
+        print_r($_FILES["course_image"]);
+        exit();
 
         $courseDAO->createCourse($course);
 
