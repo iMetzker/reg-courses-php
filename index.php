@@ -17,6 +17,7 @@ $msg = $message->getMessage();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store" />
     <title>Listagem de Mini Cursos</title>
 
     <!-- BOOTSTRAP -->
@@ -31,7 +32,7 @@ $msg = $message->getMessage();
 
 
 <body>
-    <div class="fluid-container d-flex justify-content-center align-items-center flex-column">
+    <div class="d-flex justify-content-center align-items-center flex-column">
         <?php
         switch (@$_REQUEST["page"]) {
             case "student":

@@ -59,6 +59,8 @@ if ($type == "create") {
                     $imageFile = imagecreatefrompng($image["tmp_name"]);
                 }
 
+                var_dump($imageFile);
+                exit();
                 $imageName = $course->imageGenerateName();
                 imagejpeg($imageFile, "../assets/img/" . $imageName, 100);
 

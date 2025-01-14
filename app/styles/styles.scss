@@ -1,6 +1,6 @@
 /* LISTAGEM DE CURSOS */
 .card {
-    max-width: 400px;
+    max-width: 360px;
 }
 
 .course-image {
@@ -36,13 +36,39 @@
     background: url("../assets/img/header-student.jpg") no-repeat center center;
     background-size: cover;
     position: relative;
-    width: 100%;
-    min-height: 300px;
+    right: 0;
+    left: 0;
 
     color: #ffffff;
 
     h1, p {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    }
+
+    p {
+        max-width: 700px;
+    }
+
+    .breadcrumb-item+.breadcrumb-item::before {
+        color: #fff !important;
+    }
+
+    .btn-header {
+        text-decoration: none;
+        background-color: #041c39;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #031327;
+            transition: 0.2s ease-in-out;
+        }
+    }
+
+    .logo-header {
+        width: 200px;
     }
 }
 
@@ -53,9 +79,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(228, 112, 17, 0.6);
     z-index: 1; 
-    border-radius: 10px;
+}
+
+.logo-cards {
+    width: 100px;
+    bottom: 10px;
+    right: 10px;
 }
 
 .filter-course {
@@ -69,6 +100,55 @@
     &:hover {
         color: #e47011;
     }
+}
+
+/* CARD NOSSA HISTÓRIA */
+
+.about-content {
+    max-width: 500px;
+}
+
+.custom-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    max-width: 450px;
+}
+
+.custom-grid img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.grid-item-1 {
+    grid-column: 2 / 3;
+    grid-row: span 2;
+}
+
+.grid-item-2 {
+    grid-column: span 2;
+    grid-row: span 3;
+}
+
+.grid-item-3 {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.btn-about {
+    text-decoration: none;
+        background-color: #fd7e14;
+        border: none;
+        padding: 10px 20px;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #e47011;
+            transition: 0.2s ease-in-out;
+        }
 }
 
 .footer-list-courses {
@@ -99,6 +179,12 @@
     .contact-us {
         min-width: 270px;
     }
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: #000;
+    font-weight: 500;
 }
 
 /* CADASTRO DE CURSOS */

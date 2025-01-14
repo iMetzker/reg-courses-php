@@ -1,21 +1,26 @@
-<div class="container mt-5">
-
-    <div class="p-5 header-container rounded">
+<div class="container-fluid p-0">
+    <div class="p-5 header-container">
         <div class="z-2 position-relative container">
-            <nav aria-label="breadcrumb mb-5">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= $BASE_URL ?>">Início</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Painel do Aluno</li>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-light">
+                    <li class="breadcrumb-item"><a class="text-light" href="<?= $BASE_URL ?>">Início</a></li>
+                    <li class="breadcrumb-item active text-light" aria-current="page">Painel do Aluno</li>
                 </ol>
             </nav>
 
-            <h1>Experimente ir além da sala de aula</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis odit dolor in. Nam, accusantium atque cumque, sequi nihil quidem voluptatibus facilis perferendis ullam id nisi commodi quas possimus iste ex? <strong><a href="">Explore nossos mini cursos.</a></strong></p>
-            <a href="http://">Projeto de Extensão</a>
+            <div class="mb-4">
+                <h1>Experimente ir além da sala de aula com a Alfa</h1>
+                <p class="fs-5 mb-4">Explore nossa plataforma além da sala de aula com conteúdos preparados especialmente para você se desenvolver ainda mais!</p>
+                 <!-- <a class="rounded text-light fw-semibold btn-header" href="https://alfaunipac.com.br/academico/nice/extensao" target="_blank">Projeto de Extensão</a> -->
+                <a class="rounded text-light fw-semibold ms-2 btn-header" href="https://revista.unipacto.com.br/" target="_blank">Conheça nossa revista acadêmica</a>
+            </div>
+
+            <img class="logo-header" src="./app/assets/img/logo-white-orange.png" alt="logo AlfaUnipac">
+
         </div>
     </div>
 
-    <div class="mt-5">
+    <div class="container mt-5">
 
         <h2 class="text-start">Mini cursos, eventos e palestras</h2>
         <hr>
@@ -36,7 +41,7 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-center flex-wrap gap-5 mt-5">
+        <div class="d-flex justify-content-center flex-wrap gap-3 mt-5">
             <?php foreach ($allCourses as $course):
 
                 // FORMATANDO DATAS
@@ -51,7 +56,10 @@
 
             ?>
                 <div class="card">
-                    <img src="./app/assets/img/<?= $course->image ?>" class="card-img-top course-image" alt="...">
+                    <div class="image-container position-relative">
+                        <img src="./app/assets/img/<?= $course->image ?>" class="card-img-top course-image" alt="imagem ilustrativa do curso">
+                        <img src="./app/assets/img/logo-color.png" alt="logo AlfaUnipac" class="logo-cards position-absolute">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">
                             <?= $course->name ?>
@@ -122,17 +130,29 @@
         </nav>
     </div>
 
-    <div class="mt-5">
-        <div>
+    <div class="container mt-5 d-flex p-5 gap-5 align-items-center justify-content-center flex-wrap">
+        <div class="about-content">
             <h2>Transformando vidas por meio da educação</h2>
-            <p>A AlfaUnipac é a melhor e maior faculdade do nordeste mineiro.</p>
-            <p>Nosso propósito é formar profissionais por meio da oferta de cursos diferenciados e flexibilidade nos estudos. Com a AlfaUnipac você se tornará um profissional tecnicamente capaz e dotado de conhecimentos práticos para atuar no mercado de trabalho.</p>
-            <a href="">Nossa história</a>
+            <p class="fs-5">A AlfaUnipac é a melhor e maior faculdade do nordeste mineiro.</p>
+            <p class="mb-5">Nosso propósito é formar profissionais por meio da oferta de cursos diferenciados e flexibilidade nos estudos. Com a AlfaUnipac você se tornará um profissional tecnicamente capaz e dotado de conhecimentos práticos para atuar no mercado de trabalho.</p>
+            <a class="rounded-pill fs-6 text-light fw-semibold btn-about" href="https://alfaunipac.com.br/sobre-a-alfaunipac" target="_blank">Nossa história</a>
+        </div>
+
+        <div class="mt-5 custom-grid">
+            <div class="grid-item-1">
+                <img src="./app/assets/img/header-woman1.png" class="img-fluid" alt="aluna com cadernos">
+            </div>
+            <div class="grid-item-2">
+                <img src="./app/assets/img/woman2.jpg" class="img-fluid" alt="aluna com cadernos">
+            </div>
+            <div class="grid-item-3">
+                <img src="./app/assets/img/man1.jpg" class="img-fluid" alt="aluna com notebook">
+            </div>
         </div>
     </div>
 
-    <div class="mt-5 mb-5">
-        <h2>Dúvidas Frequêntes</h2>
+    <div class="container p-5 d-flex flex-column justify-content-center align-items-center gap-3">
+        <h2>Dúvidas frequêntes</h2>
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -142,7 +162,7 @@
                 </h2>
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                     <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <strong>Sim! Todos os cursos podem valer como horas complementares na nossa instituição.</strong> Basta ao final do curso, protocolar o certificado de participação junto a ouvidoria. É importante, no entando, salientar que se o curso realizado for de acordo com sua formação a carga horária será totalmente aproveitada, se caso escolher um curso de um nicho diferente da sua formação poderá não ser aproveitado o total de horas do curso.
                     </div>
                 </div>
             </div>
@@ -154,7 +174,7 @@
                 </h2>
                 <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <strong>Sim!</strong> Todos os cursos possuem certificado de participação, basta se atentar a confirmação de presença que será solicitada durante a realização do mesmo.
                     </div>
                 </div>
             </div>
@@ -166,19 +186,43 @@
                 </h2>
                 <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <strong>Não.</strong> O aluno não tem acesso a edição de inscrições enviadas, se caso desistir de algum curso, entre em contato com a Ouvidoria para cancelar sua inscrição.
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
                         Posso me candidatar a mais de um curso?
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <strong>Sim!</strong> Você pode se candidatar em quantos cursos quiser. Se atente, no entando, para a data de realização dos cursos.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                        Posso realizar um curso diferente da minha formação?
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <strong>Sim!</strong> Você pode realizar qualquer curso da nossa plataforma, <b>não sendo um pré requisito</b> ter nível superior cursando ou em curso.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+                        Não sou aluno Alfa, posso me inscrever em algum curso?
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <strong>Sim!</strong> Nossos mini cursos são uma iniciativa em prol da livre aducação para a comunidade, para realizá-los <b>não é necessário estar matriculado</b>.
                     </div>
                 </div>
             </div>
@@ -187,10 +231,10 @@
 
     <footer class="footer-list-courses mt-5 p-5">
         <div class="container">
-            
+
             <div class="row d-flex justify-content-between gap-3">
                 <div class="col-lg-2 logo-content">
-                    <img src="./app/assets/img/logo-white-orange.png" alt="logo alfa unipac">
+                    <img src="./app/assets/img/logo-white-orange.png" alt="logo Alfa Unipac">
                     <p class="mt-3"> Rua Engenheiro Celso Murta, 600 <br>
                         Dr. Laerte Laender, Teófilo Otoni <br>
                         MG - 39803-087
