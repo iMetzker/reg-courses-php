@@ -59,8 +59,6 @@ if ($type == "create") {
                     $imageFile = imagecreatefrompng($image["tmp_name"]);
                 }
 
-                var_dump($imageFile);
-                exit();
                 $imageName = $course->imageGenerateName();
                 imagejpeg($imageFile, "../assets/img/" . $imageName, 100);
 
@@ -84,4 +82,6 @@ if ($type == "create") {
     if ($course) {
         $courseDAO->deleteViewCourse($course->id);
     }
+} else if ($type == "edit") {
+    
 }

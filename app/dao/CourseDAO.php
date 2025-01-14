@@ -130,5 +130,36 @@ class CourseDAO implements CourseDAOInterface
         $this->message->setMessage("Curso excluído com sucesso!", "success", "", "back");
     }
 
-    public function updateCourse(Course $course) {}
+    public function updateCourse(Course $course)
+    {
+        $con = $this->connect->prepare("
+        UPDATE cminicursos SET
+        nome = :name,
+        descricao = :description,
+        vagas = :vacances,
+        aberto = :open,
+        imagem = :image,
+        data = :date,
+        ministrante = :minister,
+        horario = :time,
+        duracao = :duration,
+        updated_at = :updated_at,
+        WHERE id = :id
+        ");
+
+        $con->bindParam(":name", $course->name);
+        $con->bindParam("description", $course->description);
+        $con->bindParam(":vacancies", $course->vacancies);
+        $con->bindParam(":open", $course->open);
+        $con->bindParam(":image", $course->image);
+        $con->bindParam(":date", $course->date);
+        $con->bindParam(":minister", $course->minister);
+        $con->bindParam(":time", $course->time);
+        $con->bindParam(":duration", $course->duration);
+        $con->bindParam(":updated_at", $course->updated_at);
+
+        $con->execute();
+
+        $this->message->setMessage("Curso editado com sucesso!", "success", "", "back");
+    }
 }
