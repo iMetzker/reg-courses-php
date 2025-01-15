@@ -42,7 +42,7 @@ if(empty($id)) {
             
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?= $BASE_URL ?>list-course-adm.php">Voltar</a></li>
+                <li class="breadcrumb-item"><a href="<?= $_SERVER["HTTP_REFERER"] ?>">Voltar</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Editar Mini Curso</li>
             </ol>
         </nav>
@@ -67,7 +67,7 @@ if(empty($id)) {
             </div>
 
             <div class="mb-3 d-flex flex-column">
-                <label for="course_image" class="form-label">Imagem para capa</label>
+                <label for="course_image" class="form-label">Imagem de capa</label>
                 <img class="rounded card-img-top mb-2 image-preview-course" src="../assets/img/<?= $course->image ?>" alt="">
                 <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image">
                 <span class="input-image-formats">Formatos aceitos: .png, .jpeg e jpg</span>
