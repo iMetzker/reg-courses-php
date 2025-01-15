@@ -105,7 +105,7 @@
                                 <i class="bi bi-people fs-4"></i>
                             </a>
 
-                            <a href="<?= $BASE_URL ?>updte-courses.php?id=<?= $course->id ?>" title="Editar curso">
+                            <a href="<?= $BASE_URL ?>app/views/update-course.php?id=<?= $course->id ?>" title="Editar curso">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
 

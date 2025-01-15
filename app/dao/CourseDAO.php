@@ -132,31 +132,39 @@ class CourseDAO implements CourseDAOInterface
 
     public function updateCourse(Course $course)
     {
-        $con = $this->connect->prepare("
+        // $img = empty($course->image) ? '' : 'imagem = :image,';
+
+        $sql = "
         UPDATE cminicursos SET
         nome = :name,
         descricao = :description,
-        vagas = :vacances,
+        vagas = :vacancies,
         aberto = :open,
-        imagem = :image,
         data = :date,
         ministrante = :minister,
         horario = :time,
         duracao = :duration,
-        updated_at = :updated_at,
+        imagem = :image,
+        updated_at = :updated_at
         WHERE id = :id
-        ");
+        ";
+        $con = $this->connect->prepare($sql);
 
         $con->bindParam(":name", $course->name);
-        $con->bindParam("description", $course->description);
+        $con->bindParam(":description", $course->description);
         $con->bindParam(":vacancies", $course->vacancies);
         $con->bindParam(":open", $course->open);
-        $con->bindParam(":image", $course->image);
         $con->bindParam(":date", $course->date);
         $con->bindParam(":minister", $course->minister);
         $con->bindParam(":time", $course->time);
         $con->bindParam(":duration", $course->duration);
+        $con->bindParam(":image", $course->image);
         $con->bindParam(":updated_at", $course->updated_at);
+        $con->bindParam(":id", $course->id);
+        
+        // if (!empty($course->image)) {
+        //     $con->bindParam(":image", $course->image);
+        // }
 
         $con->execute();
 
