@@ -65,7 +65,9 @@ class CourseDAO implements CourseDAOInterface
         $courses = [];
 
         $con = $this->connect->prepare("
-        SELECT * FROM cminicursos ORDER BY id DESC
+        SELECT * FROM cminicursos
+        WHERE deleted_at IS NULL
+        ORDER BY id DESC
         ");
 
         $con->execute();
@@ -85,6 +87,7 @@ class CourseDAO implements CourseDAOInterface
     {
         $con = $this->connect->prepare("
         SELECT COUNT(*) FROM cminicursos
+        WHERE deleted_at IS NULL
         ");
         $con->execute();
 
