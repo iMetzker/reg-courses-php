@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../../db.php");
 require_once("../../app/dao/CourseDAO.php");
 require_once("../../app/models/message.php");
@@ -10,17 +10,16 @@ $msg = $message->getMessage();
 
 $id = filter_input(INPUT_GET, "id");
 
-if(empty($id)) {
+if (empty($id)) {
 
     $message->setMessage("Curso não encontrado!", "error", "", "");
 } else {
     $course = $courseDAO->findByIdCourse($id);
 
-    if(!$course) {
+    if (!$course) {
 
         $message->setMessage("Curso não encontrado!", "error", "", "");
-  
-      }
+    }
 }
 ?>
 
@@ -47,7 +46,6 @@ if(empty($id)) {
     <div class="container-enrollment container-fluid d-flex align-items-center justify-content-center gap-5">
 
         <div class="p-5 content-enrollment">
-
             <div>
                 <nav aria-label="breadcrumb" class="container p-0">
                     <ol class="breadcrumb text-light">
@@ -64,36 +62,46 @@ if(empty($id)) {
                 <div><?= $course->description ?></div>
             </div>
 
-            <form class="mt-3 form-floating">
-            <h4>Increver-se neste curso</h4>
+            <form class="mt-3 form-floating" method="POST" action="">
+                <h4>Increver-se neste curso</h4>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Nome Completo</label>
+                    <input type="email" class="form-control" id="id_student_name" placeholder="name@example.com" name="student_name">
+                    <label for="student_name">Nome Completo</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">E-mail</label>
+                    <input type="email" class="form-control" id="id_student_email" placeholder="name@example.com" name="student_email">
+                    <label for="student_email">E-mail</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">CPF</label>
+                    <input type="email" class="form-control" id="id_student_cpf" placeholder="name@example.com" maxlength="14">
+                    <label for="student_cpf">CPF</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Telefone de contato</label>
+                    <input type="text" class="form-control" id="id_student_phone" placeholder="name@example.com" name="student_phone" maxlength="15">
+                    <label for="student_phone">Telefone de contato</label>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Data de Nascimento</label>
-                </div>
+                <div class="form-floating mb-3 d-flex gap-5  align-items-end">
+                    <input type="date" class="form-control date-btn-student" id="id_student_bth" placeholder="name@example.com">
+                    <label for="student_bth">Data de Nascimento</label>
 
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Sexo</label>
+                    <div class="form-floating ">
+                        <div class="col select-gender">
+                            <label for="student_gender" class="form-label text-secondary m-0">Gênero</label>
+                            <select id="student_gender" class="form-select" name="student_gender">
+                                <option selected>Selecione</option>
+                                <option>Feminino</option>
+                                <option>Masculino</option>
+                                <option>Transgênero</option>
+                                <option>Gênero Neutro</option>
+                                <option>Não-binário</option>
+                                <option>Prefiro não Informar</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <button class="rounded-pill mt-3 btn-add-course fs-6" type="submit">Inscrever-se</button>
@@ -135,7 +143,7 @@ if(empty($id)) {
                 <div class="mt-2">
                     <p class="card-text m-0">
                         <b class="fs-3">
-                        <?= $course->vacancies ?></b> Vagas
+                            <?= $course->vacancies ?></b> Vagas
                     </p>
                     <footer class="blockquote-footer m-0">
                         28 vagas restantes
@@ -193,6 +201,8 @@ if(empty($id)) {
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <script src="../assets/js/mask_inputs.js"></script>
 
     <?php if ($msg): ?>
         <script>

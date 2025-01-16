@@ -402,6 +402,29 @@
     h4 {
         color: #fd7e14;
     }
+
+    select {
+        border: none;
+        border-radius: 0px;
+        border-bottom: 1px solid #e4701179;
+        padding-left: 0px;
+
+        min-width: 190px;
+
+        &:focus {
+            box-shadow: none;
+            border-bottom: 2px solid #fd7e14;
+        }
+    }
+
+    .select-gender {
+        label {
+            position: relative;
+            bottom: -9px;
+
+            font-size: 14px;
+        }
+    }
 }
 
 .details-enrollment {
