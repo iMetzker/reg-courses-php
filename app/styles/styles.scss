@@ -387,6 +387,17 @@
     a {
         color: #fd7e14;
     }
+
+    input {
+        border: none;
+        border-radius: 0px;
+        border-bottom: 1px solid #e4701179;
+
+        &:focus {
+            box-shadow: none;
+            border-bottom: 2px solid #fd7e14;
+        }
+    }
 }
 
 .details-enrollment {
@@ -396,9 +407,4 @@
     i {
         color: #fd7e14;
     }
-
-   input:focus {
-    color: red;
-    box-shadow: red;
-   }
 }
