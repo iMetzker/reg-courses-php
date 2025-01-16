@@ -1,10 +1,36 @@
+<?php 
+require_once("../../db.php");
+require_once("../../app/dao/CourseDAO.php");
+require_once("../../app/models/message.php");
+
+$courseDAO = new CourseDAO($connect, $BASE_URL);
+
+$message = new Message($BASE_URL);
+$msg = $message->getMessage();
+
+$id = filter_input(INPUT_GET, "id");
+
+if(empty($id)) {
+
+    $message->setMessage("Curso não encontrado!", "error", "", "");
+} else {
+    $course = $courseDAO->findByIdCourse($id);
+
+    if(!$course) {
+
+        $message->setMessage("Curso não encontrado!", "error", "", "");
+  
+      }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Minicursos</title>
+    <title>Inscrever-se em Minicursos</title>
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -25,22 +51,21 @@
             <div>
                 <nav aria-label="breadcrumb" class="container p-0">
                     <ol class="breadcrumb text-light">
-                        <li class="breadcrumb-item"><a href="<?= $BASE_URL ?>">Voltar</a></li>
+                        <li class="breadcrumb-item"><a href="http://localhost/php-sty/gitHub/reg-courses-php/?page=student">Voltar</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Inscrição</li>
                     </ol>
                 </nav>
                 <span class="fs-6 fw-semibold">Minicurso Alfa</span>
-                <h2 class="fs-1">Robôtica - Turma II</h2>
+                <h2 class="fs-1"><?= $course->name ?></h2>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 mb-4">
                 <h3 class="fs-5">O que você vai aprender?</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam veritatis expedita reprehenderit. Earum hic veritatis id sequi ab error similique quis perspiciatis quod possimus rem beatae commodi, impedit natus aspernatur.</p>
+                <div><?= $course->description ?></div>
             </div>
-
-            <h4>Increver-se neste curso</h4>
 
             <form class="mt-3 form-floating">
+            <h4>Increver-se neste curso</h4>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Nome Completo</label>
@@ -78,7 +103,7 @@
         <div class="image-container-enrollment position-relative">
 
             <div class="card-img-top position-relative img-header-enrollment">
-                <img class="rounded-4 card-img-top" src="../assets/img/man1.jpg" alt="">
+                <img class="rounded-4 card-img-top" src="../assets/img/<?= $course->image ?>" alt="Imagem ilustrativa do curso">
             </div>
 
             <div class="details-enrollment position-absolute p-4 rounded-4 bg-light-subtle">
@@ -104,13 +129,13 @@
                         <i class="bi bi-file-person-fill"></i>
                         <h6 class="m-0">Ministrante</h6>
                     </div>
-                    Professor Sergio Duarte
+                    <?= $course->minister ?>
                 </div>
 
                 <div class="mt-2">
                     <p class="card-text m-0">
                         <b class="fs-3">
-                            40</b> Vagas
+                        <?= $course->vacancies ?></b> Vagas
                     </p>
                     <footer class="blockquote-footer m-0">
                         28 vagas restantes
@@ -168,6 +193,20 @@
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <?php if ($msg): ?>
+        <script>
+            Swal.fire({
+                title: "<?= $msg['msg']; ?>",
+                icon: "<?= $msg['type']; ?>",
+                text: "<?= $msg['text']; ?>",
+                draggable: true
+            });
+        </script>
+        <?php
+        $message->clearMessage();
+        ?>
+    <?php endif; ?>
 </body>
 
 </html>
