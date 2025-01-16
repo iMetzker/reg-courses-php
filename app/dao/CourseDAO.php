@@ -134,7 +134,7 @@ class CourseDAO implements CourseDAOInterface
     {
         // $img = empty($course->image) ? '' : 'imagem = :image,';
 
-        $sql = "
+        $con = $this->connect->prepare("
         UPDATE cminicursos SET
         nome = :name,
         descricao = :description,
@@ -147,8 +147,9 @@ class CourseDAO implements CourseDAOInterface
         imagem = :image,
         updated_at = :updated_at
         WHERE id = :id
-        ";
-        $con = $this->connect->prepare($sql);
+        ");
+
+        // $con = $this->connect->prepare($sql);
 
         $con->bindParam(":name", $course->name);
         $con->bindParam(":description", $course->description);
