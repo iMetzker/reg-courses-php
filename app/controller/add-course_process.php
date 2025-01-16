@@ -77,10 +77,14 @@ if ($type == "create") {
 } else if ($type == "delete") {
 
     $id = filter_input(INPUT_POST, "id");
+
     $course = $courseDAO->findByIdCourse($id);
 
     if ($course) {
-        $courseDAO->deleteViewCourse($course->id);
+
+        $course->deleted_at = $dateAc->format("Y-m-d H:i:s");
+
+        $courseDAO->deleteViewCourse($course, $course->id);
     }
 } else if ($type == "update") {
 
@@ -140,7 +144,6 @@ if ($type == "create") {
         if ($courseDate < $dateAc) {
             $message->setMessage("Data Inválida", "error", "A data de realização do curso não pode ser inferior a data de hoje!", "back");
             exit();
-
         } else {
             $courseData->date = $date;
         }

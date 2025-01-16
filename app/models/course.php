@@ -27,6 +27,6 @@ interface CourseDAOInterface {
     public function getTotalCourses();
     public function findByIdCourse($id);
     public function createCourse(Course $course);
-    public function deleteViewCourse($id);
+    public function deleteViewCourse(Course $course, $id);
     public function updateCourse(Course $course);
 }

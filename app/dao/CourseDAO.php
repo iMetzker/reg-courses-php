@@ -117,14 +117,22 @@ class CourseDAO implements CourseDAOInterface
         $con->execute();
     }
 
-    public function deleteViewCourse($id)
+    public function deleteViewCourse(Course $course, $id)
     {
 
+        // $con = $this->connect->prepare("
+        // DELETE FROM cminicursos WHERE id = :id
+        // ");
+
         $con = $this->connect->prepare("
-        DELETE FROM cminicursos WHERE id = :id
+        UPDATE cminicursos SET
+        deleted_at = :deleted_at
+        WHERE id = :id
         ");
 
         $con->bindParam(":id", $id);
+        $con->bindParam(":deleted_at", $course->deleted_at);
+
         $con->execute();
 
         $this->message->setMessage("Curso excluído com sucesso!", "success", "", "back");
