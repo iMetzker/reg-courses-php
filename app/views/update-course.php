@@ -9,12 +9,12 @@ $msg = $message->getMessage();
 
 $id = filter_input(INPUT_GET, "id");
 
-if(empty($id)) {
+if (empty($id)) {
     $message->setMessage("Oops...", "error", "Algo deu errado, o curso não foi encontrado", "back");
 } else {
     $course = $courseDao->findByIdCourse($id);
 
-    if(!$course) {
+    if (!$course) {
         $message->setMessage("Oops...", "error", "Algo deu errado, o curso não foi encontrado", "back");
     }
 }
@@ -39,13 +39,13 @@ if(empty($id)) {
     <div class="fluid-container d-flex justify-content-center align-items-center min-vh-100 flex-column bg-light p-2">
 
         <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/add-course_process.php" enctype="multipart/form-data">
-            
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?= $_SERVER["HTTP_REFERER"] ?>">Voltar</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Editar Mini Curso</li>
-            </ol>
-        </nav>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="<?= $_SERVER["HTTP_REFERER"] ?>">Voltar</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editar Mini Curso</li>
+                </ol>
+            </nav>
 
             <h2>EDITAR MINI CURSO</h2>
             <hr class="mb-2">
@@ -68,7 +68,7 @@ if(empty($id)) {
 
             <div class="mb-3 d-flex flex-column">
                 <label for="course_image" class="form-label">Imagem de capa</label>
-                <img class="rounded card-img-top mb-2 image-preview-course" src="../assets/img/<?= $course->image ?>" alt="">
+                <img class="rounded card-img-top mb-2 image-preview-course" src="../assets/img/<?= $course->image ?>" alt="preview da capa do curso" id="preview_img_course">
                 <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image">
                 <span class="input-image-formats">Formatos aceitos: .png, .jpeg e jpg</span>
             </div>
@@ -94,7 +94,7 @@ if(empty($id)) {
                     <input type="number" class="form-control bg-light rounded-pill border-0" id="id_course_vacancies" name="course_vacancies" value="<?= $course->vacancies ?>">
                 </div>
                 <div class="form-check col" style="margin-bottom: -3px;">
-                    <input type="checkbox" class="form-check-input" id="id_course_open" name="course_open" value="1" >
+                    <input type="checkbox" class="form-check-input" id="id_course_open" name="course_open" value="1">
                     <label class="form-check-label" for="course_open">Curso Aberto</label>
                 </div>
             </div>
@@ -121,6 +121,28 @@ if(empty($id)) {
         $message->clearMessage();
         ?>
     <?php endif; ?>
+
+    <!-- ALTERANDO A PREVIEW DA IMG CAPA DO CURSO -->
+    <script>
+        const fileInput = document.getElementById("id_course_image");
+        const previewImg = document.getElementById("preview_img_course");
+
+        fileInput.addEventListener("change", function(event) {
+            const fileImg = event.target.files[0];
+
+            if (fileImg && fileImg.type.startsWith("image/")) { 
+                const readerImg = new FileReader();
+
+                readerImg.onload = function(element) {
+                    previewImg.src = element.target.result;
+                };
+
+                readerImg.readAsDataURL(fileImg);
+            } else {
+                previewImg.src = ""; 
+            }
+        })
+    </script>
 
 </body>
 

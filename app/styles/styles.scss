@@ -356,5 +356,7 @@
 /* UPDATE CURSOS */
 
 .image-preview-course {
-    max-width: 250px;
+    width: 250px;
+    object-fit: cover;
+    height: 150px;
 }
