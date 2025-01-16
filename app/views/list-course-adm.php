@@ -9,7 +9,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
         <div>
-            <h2>Mini Cursos Alfa Unipac</h2>
+            <h2>Minicursos Alfa Unipac</h2>
             <p>Painel do administrador</p>
         </div>
 

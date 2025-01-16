@@ -11,7 +11,6 @@
             <div class="mb-4">
                 <h1>Experimente ir além da sala de aula com a Alfa</h1>
                 <p class="fs-5 mb-4">Explore nossa plataforma além da sala de aula com conteúdos preparados especialmente para você se desenvolver ainda mais!</p>
-                 <!-- <a class="rounded text-light fw-semibold btn-header" href="https://alfaunipac.com.br/academico/nice/extensao" target="_blank">Projeto de Extensão</a> -->
                 <a class="rounded text-light fw-semibold ms-2 btn-header" href="https://revista.unipacto.com.br/" target="_blank">Conheça nossa revista acadêmica</a>
             </div>
 
@@ -22,7 +21,7 @@
 
     <div class="container mt-5">
 
-        <h2 class="text-start">Mini cursos, eventos e palestras</h2>
+        <h2 class="text-start">Minicursos, eventos e palestras</h2>
         <hr>
 
         <div class="d-flex justify-content-between gap-3">
@@ -103,7 +102,8 @@
                         </footer>
                         <?php
                         if ($course->open === 1) {
-                            echo "<a class=\"card-text card-icon fs-4\" href=\"<?= $BASE_URL ?>add-student.php?id=<?= $course->id ?>\">Inscrever-se <i class=\"bi bi-person-add\"></i></a>";
+                            echo '<a class="card-text card-icon fs-4" href="./app/views/add-student.php?id=' . $course->id . '">
+                            Inscrever-se <i class="bi bi-person-add"></i></a>';
                         }
                         ?>
                     </div>

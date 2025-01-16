@@ -360,3 +360,45 @@
     object-fit: cover;
     height: 150px;
 }
+
+/* ADD ESTUDANTE */
+
+.container-enrollment {
+   min-height: 100vh;
+}
+
+.image-container-enrollment {
+
+    .img-header-enrollment {
+        height: 650px;
+        max-width: 500px;
+        min-width: 350px;
+    }
+
+    img {
+        object-fit: cover;
+        height: 100%;
+    }
+}
+
+.content-enrollment {
+    max-width: 750px;
+
+    a {
+        color: #fd7e14;
+    }
+}
+
+.details-enrollment {
+    right: 8px;
+    bottom: 50px;
+
+    i {
+        color: #fd7e14;
+    }
+
+   input:focus {
+    color: red;
+    box-shadow: red;
+   }
+}
