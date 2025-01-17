@@ -24,7 +24,7 @@ $msg = $message->getMessage();
 <body>
     <div class="fluid-container d-flex justify-content-center align-items-center min-vh-100 flex-column bg-light p-2">
 
-        <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/add-course_process.php" enctype="multipart/form-data">
+        <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/course_process.php" enctype="multipart/form-data">
             
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

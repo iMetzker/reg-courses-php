@@ -21,6 +21,17 @@ if (empty($id)) {
         $message->setMessage("Curso não encontrado!", "error", "", "");
     }
 }
+
+
+// FORMATANDO DATAS
+$dateCourse = new DateTime($course->date);
+$timeInit = new DateTime($course->time);
+$durationCourse = new DateTime($course->duration);
+
+
+$dateFormat = $dateCourse->format("d/m/Y");
+$timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
+$durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 ?>
 
 <!DOCTYPE html>
@@ -121,14 +132,14 @@ if (empty($id)) {
                             <i class="bi bi-calendar3"></i>
                             <h6 class="m-0">Data de Realização</h6>
                         </div>
-                        21/03/2025 às 18h20
+                        <?= $dateFormat . ' às ' . $timeInitFormat ?>
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <div class="d-flex gap-2 align-items-center justify-content-center">
                             <i class="bi bi-clock-history"></i>
                             <h6 class="m-0">Duração</h6>
                         </div>
-                        8h
+                        <?= $durationFormat ?>
                     </div>
                 </div>
 
