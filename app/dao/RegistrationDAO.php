@@ -52,7 +52,7 @@ class RegistrationDAO implements RegistrationDAOInterface {
         nome, cpf, telefone, email, nascimento, sexo, created_at
         ) VALUES (
          :name, :cpf, :phone, :email, :dateBth, :gender, :created_at
-        ");
+        )");
 
         $con->bindParam(":name", $registration->name);
         $con->bindParam(":cpf", $registration->cpf);

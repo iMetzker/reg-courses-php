@@ -55,46 +55,91 @@ if (empty($id)) {
             <input type="hidden" name="id" value="<?= $course->id ?>">
             <div class="mb-3 mt-4">
                 <label for="course_name" class="form-label">Nome do curso</label>
-                <input type="text" class="form-control bg-light rounded-pill border-0" id="id_course_name" name="course_name" value="<?= $course->name ?>">
+                <input
+                    class="form-control bg-light rounded-pill border-0"
+                    type="text"
+                    id="id_course_name"
+                    name="course_name"
+                    value="<?= $course->name ?>">
             </div>
             <div class="mb-3">
                 <label for="course_minister" class="form-label">Prof. Ministrante</label>
-                <input type="text" class="form-control bg-light rounded-pill border-0" id="id_course_minister" name="course_minister" value="<?= $course->minister ?>"></input>
+                <input
+                    class="form-control bg-light rounded-pill border-0"
+                    type="text"
+                    id="id_course_minister"
+                    name="course_minister"
+                    value="<?= $course->minister ?>"></input>
             </div>
             <div class="mb-3">
                 <label for="course_description" class="form-label">Descrição do curso</label>
-                <textarea type="text" class="form-control bg-light rounded border-0" id="id_course_description" name="course_description" rows="5"><?= $course->description ?></textarea>
+                <textarea
+                    class="form-control bg-light rounded border-0"
+                    type="text"
+                    id="id_course_description"
+                    name="course_description"
+                    rows="5"><?= $course->description ?></textarea>
             </div>
 
             <div class="mb-3 d-flex flex-column">
                 <label for="course_image" class="form-label">Imagem de capa</label>
                 <img class="rounded card-img-top mb-2 image-preview-course" src="../assets/img/<?= $course->image ?>" alt="preview da capa do curso" id="preview_img_course">
-                <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image">
+                <input
+                    class="form-control form-control-sm rounded"
+                    type="file"
+                    name="course_image"
+                    id="id_course_image">
                 <span class="input-image-formats">Formatos aceitos: .png, .jpeg e jpg</span>
             </div>
 
             <div class="mb-3 d-flex gap-3">
                 <div>
                     <label for="course_date" class="form-label">Data de Realização</label>
-                    <input type="date" class="form-control input-date bg-light rounded-pill border-0" id="id_course_date" name="course_date" style="width: 145px;" value="<?= $course->date ?>"></input>
+                    <input
+                        class="form-control input-date bg-light rounded-pill border-0"
+                        style="width: 145px;"
+                        type="date"
+                        id="id_course_date"
+                        name="course_date"
+                        value="<?= $course->date ?>"></input>
                 </div>
 
                 <div>
                     <label for="course_time" class="form-label">Horário de Início</label>
-                    <input type="time" class="form-control input-time-as bg-light rounded-pill border-0" id="id_course_time" name="course_time" value="<?= $course->time ?>"></input>
+                    <input
+                        class="form-control input-time-as bg-light rounded-pill border-0"
+                        type="time"
+                        id="id_course_time"
+                        name="course_time"
+                        value="<?= $course->time ?>"></input>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="course_duration" class="form-label">Duração Total</label>
-                <input type="time" class="form-control input-time-as bg-light rounded-pill border-0" id="id_course_duration" name="course_duration" value="<?= $course->duration ?>"></input>
+                <input
+                    class="form-control input-time-as bg-light rounded-pill border-0"
+                    type="time"
+                    id="id_course_duration"
+                    name="course_duration"
+                    value="<?= $course->duration ?>"></input>
             </div>
             <div class="mb-3 row align-items-end">
                 <div class="col" style="max-width: 200px;">
                     <label for="course_vacancies" class="form-label">Quantidade de vagas</label>
-                    <input type="number" class="form-control bg-light rounded-pill border-0" id="id_course_vacancies" name="course_vacancies" value="<?= $course->vacancies ?>">
+                    <input
+                        class="form-control bg-light rounded-pill border-0"
+                        type="number"
+                        id="id_course_vacancies"
+                        name="course_vacancies"
+                        value="<?= $course->vacancies ?>">
                 </div>
                 <div class="form-check col" style="margin-bottom: -3px;">
-                    <input type="checkbox" class="form-check-input" id="id_course_open" name="course_open" value="1">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="id_course_open"
+                        name="course_open"
+                        value="1">
                     <label class="form-check-label" for="course_open">Curso Aberto</label>
                 </div>
             </div>
@@ -130,7 +175,7 @@ if (empty($id)) {
         fileInput.addEventListener("change", function(event) {
             const fileImg = event.target.files[0];
 
-            if (fileImg && fileImg.type.startsWith("image/")) { 
+            if (fileImg && fileImg.type.startsWith("image/")) {
                 const readerImg = new FileReader();
 
                 readerImg.onload = function(element) {
@@ -139,7 +184,7 @@ if (empty($id)) {
 
                 readerImg.readAsDataURL(fileImg);
             } else {
-                previewImg.src = ""; 
+                previewImg.src = "";
             }
         })
     </script>

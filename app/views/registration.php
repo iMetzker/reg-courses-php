@@ -73,43 +73,80 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                 <div><?= $course->description ?></div>
             </div>
 
-            <form class="mt-3 form-floating" method="POST" action="">
+            <form class="mt-3 form-floating" method="POST" action="../controller/registration_process.php">
+                
+                <input type="hidden" name="type" value="register">
+
                 <h4>Increver-se neste curso</h4>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="id_student_name" placeholder="name@example.com" name="student_name">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="id_student_name"
+                        placeholder="name@example.com"
+                        name="student_name"
+                        required>
                     <label for="student_name">Nome Completo</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="id_student_email" placeholder="name@example.com" name="student_email">
+                    <input
+                        class="form-control"
+                        type="email"
+                        id="id_student_email"
+                        placeholder="name@example.com"
+                        name="student_email"
+                        required>
                     <label for="student_email">E-mail</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="id_student_cpf" placeholder="name@example.com" maxlength="14">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="id_student_cpf"
+                        placeholder="name@example.com"
+                        maxlength="14"
+                        name="student_cpf"
+                        required
+                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                     <label for="student_cpf">CPF</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="id_student_phone" placeholder="name@example.com" name="student_phone" maxlength="15">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="id_student_phone"
+                        placeholder="name@example.com"
+                        name="student_phone"
+                        maxlength="15"
+                        required
+                        pattern="\(\d{2}\) \d{5}-\d{4}">
                     <label for="student_phone">Telefone de contato</label>
                 </div>
 
                 <div class="form-floating mb-3 d-flex gap-5  align-items-end">
-                    <input type="date" class="form-control date-btn-student" id="id_student_bth" placeholder="name@example.com">
+                    <input
+                        class="form-control date-btn-student"
+                        type="date"
+                        id="id_student_bth"
+                        placeholder="name@example.com"
+                        name="student_bth"
+                        required>
                     <label for="student_bth">Data de Nascimento</label>
 
                     <div class="form-floating ">
                         <div class="col select-gender">
                             <label for="student_gender" class="form-label text-secondary m-0">Gênero</label>
-                            <select id="student_gender" class="form-select" name="student_gender">
-                                <option selected>Selecione</option>
-                                <option>Feminino</option>
-                                <option>Masculino</option>
-                                <option>Transgênero</option>
-                                <option>Gênero Neutro</option>
-                                <option>Não-binário</option>
-                                <option>Prefiro não Informar</option>
+                            <select
+                                class="form-select"
+                                id="student_gender"
+                                name="student_gender"
+                                required>
+                                <option value="" selected disabled>Selecione</option>
+                                <option value="F">Feminino</option>
+                                <option value="M">Masculino</option>
                             </select>
                         </div>
                     </div>

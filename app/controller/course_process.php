@@ -43,7 +43,7 @@ if ($type == "create") {
         $course->minister = $minister;
         $course->time = $time;
         $course->duration = $duration;
-        $course->created_at = $dateAc->format("Y/m/d H:i:s");
+        $course->created_at = $dateAc->format("Y-m-d H:i:s");
 
         // TRATANDO O ULPLOAD DA IMAGEM
         if (isset($_FILES["course_image"]) && !empty($_FILES['course_image']['tmp_name'])) {

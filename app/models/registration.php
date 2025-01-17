@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class Registration {
+class Registration
+{
     public $id;
     public $name;
     public $cpf;
@@ -13,7 +14,8 @@ class Registration {
     public $updated_at;
 }
 
-interface RegistrationDAOInterface {
+interface RegistrationDAOInterface
+{
 
     public function buildRegistration($data);
     public function findByIdRegistration($id);
@@ -23,5 +25,4 @@ interface RegistrationDAOInterface {
     public function createCourseRegistration(Registration $registration, Course $course);
     public function updateRegistration(Registration $registration);
     public function deleteRegistration(Registration $registration);
-
 }

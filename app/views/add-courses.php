@@ -25,13 +25,13 @@ $msg = $message->getMessage();
     <div class="fluid-container d-flex justify-content-center align-items-center min-vh-100 flex-column bg-light p-2">
 
         <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/course_process.php" enctype="multipart/form-data">
-            
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../../index.php">Início</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Adicionar Curso</li>
-            </ol>
-        </nav>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../../index.php">Início</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Adicionar Curso</li>
+                </ol>
+            </nav>
 
             <h2>CADASTRO DE MINICURSO</h2>
             <hr class="mb-5">
@@ -39,45 +39,85 @@ $msg = $message->getMessage();
             <input type="hidden" name="type" value="create">
             <div class="mb-3">
                 <label for="course_name" class="form-label"><span class="text-danger">*</span>Nome do curso</label>
-                <input type="text" class="form-control bg-light rounded-pill border-0" id="id_course_name" name="course_name">
+                <input
+                    class="form-control bg-light rounded-pill border-0"
+                    type="text"
+                    id="id_course_name"
+                    name="course_name">
             </div>
             <div class="mb-3">
                 <label for="course_minister" class="form-label"><span class="text-danger">*</span>Prof. Ministrante</label>
-                <input type="text" class="form-control bg-light rounded-pill border-0" id="id_course_minister" name="course_minister"></input>
+                <input
+                    class="form-control bg-light rounded-pill border-0"
+                    type="text"
+                    id="id_course_minister"
+                    name="course_minister"></input>
             </div>
             <div class="mb-3">
                 <label for="course_description" class="form-label"><span class="text-danger">*</span>Descrição do curso</label>
-                <textarea type="text" class="form-control bg-light rounded border-0" id="id_course_description" name="course_description" rows="5"></textarea>
+                <textarea
+                    class="form-control bg-light rounded border-0"
+                    type="text"
+                    id="id_course_description"
+                    name="course_description"
+                    rows="5"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="course_image" class="form-label"><span class="text-danger">*</span>Imagem para capa</label>
-                <input type="file" class="form-control form-control-sm rounded" name="course_image" id="id_course_image" required>
+                <input
+                    class="form-control form-control-sm rounded"
+                    type="file"
+                    name="course_image"
+                    id="id_course_image"
+                    required>
                 <span class="input-image-formats">Formatos aceitos: .png, .jpeg e jpg</span>
             </div>
 
             <div class="mb-3 d-flex gap-3">
                 <div>
                     <label for="course_date" class="form-label"><span class="text-danger">*</span>Data de Realização</label>
-                    <input type="date" class="form-control input-date bg-light rounded-pill border-0" id="id_course_date" name="course_date" style="width: 145px;"></input>
+                    <input
+                        class="form-control input-date bg-light rounded-pill border-0"
+                        style="width: 145px;"
+                        type="date"
+                        id="id_course_date"
+                        name="course_date"></input>
                 </div>
 
                 <div>
                     <label for="course_time" class="form-label"><span class="text-danger">*</span>Horário de Início</label>
-                    <input type="time" class="form-control input-time-as bg-light rounded-pill border-0" id="id_course_time" name="course_time"></input>
+                    <input
+                        class="form-control input-time-as bg-light rounded-pill border-0"
+                        type="time"
+                        id="id_course_time"
+                        name="course_time"></input>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="course_duration" class="form-label"><span class="text-danger">*</span>Duração Total</label>
-                <input type="time" class="form-control input-time-as bg-light rounded-pill border-0" id="id_course_duration" name="course_duration"></input>
+                <input
+                    class="form-control input-time-as bg-light rounded-pill border-0"
+                    type="time"
+                    id="id_course_duration"
+                    name="course_duration"></input>
             </div>
             <div class="mb-3 row align-items-end">
                 <div class="col" style="max-width: 200px;">
                     <label for="course_vacancies" class="form-label"><span class="text-danger">*</span>Quantidade de vagas</label>
-                    <input type="number" class="form-control bg-light rounded-pill border-0" id="id_course_vacancies" name="course_vacancies">
+                    <input
+                        class="form-control bg-light rounded-pill border-0"
+                        type="number"
+                        id="id_course_vacancies"
+                        name="course_vacancies">
                 </div>
                 <div class="form-check col" style="margin-bottom: -3px;">
-                    <input type="checkbox" class="form-check-input" id="id_course_open" name="course_open" value="1">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="id_course_open"
+                        name="course_open"
+                        value="1">
                     <label class="form-check-label" for="course_open">Curso Aberto</label>
                 </div>
             </div>
