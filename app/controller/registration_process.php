@@ -50,4 +50,26 @@ if ($type == "register") {
 
         $registrationDAO->deleteRegistration($register, $register->id);
     }
+} else if ($type == "update") {
+    $name = filter_input(INPUT_POST, "student_name");
+    $email = filter_input(INPUT_POST, "student_email");
+    $cpf = filter_input(INPUT_POST, "student_cpf");
+    $phone = filter_input(INPUT_POST, "student_phone");
+    $dateBth = filter_input(INPUT_POST, "student_bth");
+    $gender = filter_input(INPUT_POST, "student_gender");
+    $id = filter_input(INPUT_POST, "id");
+
+    $registerData = $registrationDAO->findByIdRegistration($id);
+
+    if ($registerData) {
+        $registerData->name = $name;
+        $registerData->email = $email;
+        $registerData->cpf = $cpf;
+        $registerData->phone = $phone;
+        $registerData->dateBth = $dateBth;
+        $registerData->gender = $gender;
+        $registerData->updated_at = $dateAc->format("Y-m-d H:i:s");
+
+        $registrationDAO->updateRegistration($registerData);
+    }
 }

@@ -77,7 +77,7 @@ $msg = $message->getMessage();
             event.preventDefault();
 
             Swal.fire({
-                title: "Tem certeza que deseja excluir este curso?",
+                title: "Tem certeza que deseja excluir?",
                 text: "Você não poderá reverter esta ação!",
                 icon: "warning",
                 showCancelButton: true,

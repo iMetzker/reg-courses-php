@@ -29,7 +29,7 @@
                 <td scope="row" class="text-center"><?= $register->dateBth ?></td>
                 <td scope="row" class="text-center"><?= $register->gender ?></td>
                 <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center">
-                    <a href="<?= $BASE_URL ?>" title="Editar aluno">
+                    <a href="<?= $BASE_URL ?>/app/views/update-registration.php?id=<?= $register->id ?>" title="Editar aluno">
                         <i class="bi bi-pencil-square"></i>
                     </a>
 

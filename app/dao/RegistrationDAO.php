@@ -115,7 +115,33 @@ class RegistrationDAO implements RegistrationDAOInterface
 
     public function createCourseRegistration(Registration $registration, Course $course) {}
 
-    public function updateRegistration(Registration $registration) {}
+    public function updateRegistration(Registration $registration) {
+        $con = $this->connect->prepare("
+        UPDATE ccontato SET
+        nome = :name,
+        email = :email,
+        cpf = :cpf,
+        telefone = :phone,
+        nascimento = :dateBth,
+        sexo = :gender,
+        updated_at = :updated_at
+        WHERE id = :id 
+        ");
+
+        $con->bindParam(":name", $registration->name);
+        $con->bindParam(":email", $registration->email);
+        $con->bindParam(":cpf", $registration->cpf);
+        $con->bindParam(":phone", $registration->phone);
+        $con->bindParam(":dateBth", $registration->dateBth);
+        $con->bindParam(":gender", $registration->gender);
+        $con->bindParam(":updated_at", $registration->updated_at);
+        $con->bindParam(":id", $registration->id);
+
+        $con->execute();
+
+        $this->message->setMessage("Cadastro editado com sucesso!", "success", "", "back");
+
+    }
 
     public function deleteRegistration(Registration $registration, $id)
     {

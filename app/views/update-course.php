@@ -52,6 +52,7 @@ if (empty($id)) {
             <span>Última edição: 15/01/25 às 14h</span>
 
             <input type="hidden" name="type" value="update">
+
             <input type="hidden" name="id" value="<?= $course->id ?>">
             <div class="mb-3 mt-4">
                 <label for="course_name" class="form-label">Nome do curso</label>
@@ -62,6 +63,7 @@ if (empty($id)) {
                     name="course_name"
                     value="<?= $course->name ?>">
             </div>
+
             <div class="mb-3">
                 <label for="course_minister" class="form-label">Prof. Ministrante</label>
                 <input
@@ -71,6 +73,7 @@ if (empty($id)) {
                     name="course_minister"
                     value="<?= $course->minister ?>"></input>
             </div>
+            
             <div class="mb-3">
                 <label for="course_description" class="form-label">Descrição do curso</label>
                 <textarea
