@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once("../../db.php");
 require_once("../models/message.php");
@@ -13,7 +13,7 @@ $dateAc = new DateTime('now', $timeZone);
 
 $type = filter_input(INPUT_POST, "type");
 
-if($type == "register") {
+if ($type == "register") {
 
     $name = filter_input(INPUT_POST, "student_name");
     $email = filter_input(INPUT_POST, "student_email");
@@ -24,7 +24,7 @@ if($type == "register") {
 
     $register = new Registration;
 
-    if($register) {
+    if ($register) {
 
         $register->name = $name;
         $register->email = $email;
@@ -39,5 +39,15 @@ if($type == "register") {
         $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
     } else {
         $registrationDAO->message->setMessage("Oops...", "error", "Ocorreu algum erro, não foi possível realizar inscrição.", "back");
+    }
+} else if ($type == "delete") {
+
+    $id = filter_input(INPUT_POST, "id");
+
+    $register = $registrationDAO->findByIdRegistration($id);
+
+    if ($register) {
+
+        $registrationDAO->deleteRegistration($register, $register->id);
     }
 }

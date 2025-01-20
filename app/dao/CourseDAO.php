@@ -123,9 +123,6 @@ class CourseDAO implements CourseDAOInterface
     public function deleteViewCourse(Course $course, $id)
     {
 
-        // $con = $this->connect->prepare("
-        // DELETE FROM cminicursos WHERE id = :id
-        // ");
 
         $con = $this->connect->prepare("
         UPDATE cminicursos SET

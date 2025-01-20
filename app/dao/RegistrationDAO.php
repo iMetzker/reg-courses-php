@@ -35,7 +35,27 @@ class RegistrationDAO implements RegistrationDAOInterface
         return $register;
     }
 
-    public function findByIdRegistration($id) {}
+    public function findByIdRegistration($id)
+    {
+
+        $register = [];
+
+        $con = $this->connect->prepare("
+        SELECT * FROM ccontato WHERE id = :id
+        ");
+
+        $con->bindParam(":id", $id);
+        $con->execute();
+
+        if ($con->rowCount() > 0) {
+            $registerData = $con->fetch();
+            $register = $this->buildRegistration($registerData);
+
+            return $register;
+        } else {
+            return false;
+        }
+    }
 
     public function getAllRegistrations()
     {
@@ -51,7 +71,7 @@ class RegistrationDAO implements RegistrationDAOInterface
         if ($con->rowCount() > 0) {
             $registrationsArray = $con->fetchAll();
 
-            foreach($registrationsArray as $register) {
+            foreach ($registrationsArray as $register) {
                 $registrations[] = $this->buildRegistration($register);
             }
         }
@@ -59,8 +79,9 @@ class RegistrationDAO implements RegistrationDAOInterface
         return $registrations;
     }
 
-    public function getTotalRegistrations() {
-        
+    public function getTotalRegistrations()
+    {
+
         $con = $this->connect->prepare("
         SELECT COUNT(*) FROM ccontato
         ");
@@ -96,5 +117,17 @@ class RegistrationDAO implements RegistrationDAOInterface
 
     public function updateRegistration(Registration $registration) {}
 
-    public function deleteRegistration(Registration $registration) {}
+    public function deleteRegistration(Registration $registration, $id)
+    {
+
+        $con = $this->connect->prepare("
+        DELETE FROM ccontato WHERE id = :id
+        ");
+
+        $con->bindParam(":id", $id);
+
+        $con->execute();
+
+        $this->message->setMessage("Estudante excluído com sucesso!", "success", "", "back");
+    }
 }

@@ -24,5 +24,5 @@ interface RegistrationDAOInterface
     public function createRegistration(Registration $registration);
     public function createCourseRegistration(Registration $registration, Course $course);
     public function updateRegistration(Registration $registration);
-    public function deleteRegistration(Registration $registration);
+    public function deleteRegistration(Registration $registration, $id);
 }

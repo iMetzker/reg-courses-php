@@ -33,7 +33,7 @@
                         <i class="bi bi-pencil-square"></i>
                     </a>
 
-                    <form action="<?= $BASE_URL ?>" method="POST" class="delete-form" onsubmit="return confirmDelete(event)">
+                    <form action="<?= $BASE_URL ?>app/controller/registration_process.php" method="POST" class="delete-form" onsubmit="return confirmDelete(event)">
                         <input type="hidden" name="type" value="delete">
                          <input type="hidden" name="id" value="<?= $register->id ?>"> 
 
