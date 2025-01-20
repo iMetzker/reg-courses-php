@@ -74,7 +74,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
             </div>
 
             <form class="mt-3 form-floating" method="POST" action="../controller/registration_process.php">
-                
+
                 <input type="hidden" name="type" value="register">
 
                 <h4>Increver-se neste curso</h4>
@@ -251,6 +251,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
     <script src="../assets/js/mask_inputs.js"></script>
+    <script src="../assets/js/validate_cpf.js"></script>
 
     <?php if ($msg): ?>
         <script>
