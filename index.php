@@ -1,11 +1,17 @@
 <?php
 require_once("./db.php");
 require_once("./app/dao/CourseDAO.php");
+require_once("./app/dao/RegistrationDAO.php");
+
 require_once("./app/models/message.php");
 
 $courseDAO = new CourseDAO($connect, $BASE_URL);
 $allCourses = $courseDAO->getAllCourses();
 $totalCourses = $courseDAO->getTotalCourses();
+
+$registrationDAO = new RegistrationDAO($connect, $BASE_URL);
+$allRegistrations = $registrationDAO->getAllRegistrations();
+$totalRegistrations = $registrationDAO->getTotalRegistrations();
 
 $message = new Message($BASE_URL);
 $msg = $message->getMessage();
@@ -58,8 +64,6 @@ $msg = $message->getMessage();
                     </div>";
         }
         ?>
-
-
     </div>
 
     <!-- BOOTSTRAP -->
