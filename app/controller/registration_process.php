@@ -46,6 +46,7 @@ if ($type == "register") {
         } else {
             $registrationDAO->message->setMessage("Oops...", "error", "Não foi possível realizar inscrição, data de nascimento inválida.", "back");
         }
+        
     } else {
         $registrationDAO->message->setMessage("Oops...", "error", "Ocorreu algum erro, não foi possível realizar inscrição.", "back");
     }

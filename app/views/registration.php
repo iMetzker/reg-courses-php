@@ -135,6 +135,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                         name="student_bth"
                         required>
                     <label for="student_bth">Data de Nascimento</label>
+                    <span id="birthdate-error" class="text-danger" style="display: none;">A idade deve ser entre 10 e 100 anos.</span>
 
                     <div class="form-floating ">
                         <div class="col select-gender">
@@ -253,6 +254,8 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
     <script src="../assets/js/mask_inputs.js"></script>
     <script src="../assets/js/validate_cpf.js"></script>
 
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php if ($msg): ?>
         <script>
             Swal.fire({
