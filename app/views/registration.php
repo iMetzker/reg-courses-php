@@ -253,6 +253,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
     <script src="../assets/js/mask_inputs.js"></script>
     <script src="../assets/js/validate_cpf.js"></script>
+    <script src="../assets/js/validate_dateBth.js"></script>
 
     <!-- SWEET ALERT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

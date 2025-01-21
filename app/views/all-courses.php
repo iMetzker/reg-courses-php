@@ -40,7 +40,7 @@
         <tbody>
             <?php foreach ($allCourses as $course):
                 $dateCourse = new DateTime($course->date);
-                $dateFormat = $dateCourse->format("d/m/y");
+                $dateFormat = $dateCourse->format("d/m/Y");
             ?>
                 <tr>
                     <td scope="row"><?= $course->name ?></td>

@@ -4,16 +4,14 @@ require_once("../../db.php");
 require_once("../models/message.php");
 require_once("../models/registration.php");
 require_once("../dao/RegistrationDAO.php");
-require_once("../dao/CourseDAO.php");
 
 $registrationDAO = new RegistrationDAO($connect, $BASE_URL);
 $message = new Message($BASE_URL);
 
 $timeZone = new DateTimeZone('America/Sao_Paulo');
 $dateAc = new DateTime('now', $timeZone);
-$currentYearAc = $dateAc->format("Y");
 
-$courseDAO = new CourseDAO($connect, $BASE_URL);
+$dateAcFormat = $dateAc->format("Y-m-d H:i:s");
 
 $type = filter_input(INPUT_POST, "type");
 
@@ -38,30 +36,12 @@ if ($type == "register") {
         $register->gender = $gender;
         $register->created_at = $dateAc->format("Y-m-d H:i:s");
 
-        // VALIDAÇÃO DA DATA +10 OU -100
-        $bthYearFormat = new DateTime($dateBth);
+        $idContact =  $registrationDAO->createRegistration($register);
+        $idCourse = filter_input(INPUT_GET, "id_course");
 
-        if ($bthYearFormat->format("Y") <= ($currentYearAc - 10) && $bthYearFormat->format("Y") >= ($currentYearAc - 100)) {
+        $registrationDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
 
-           $registrationDAO->createRegistration($register);
-
-           $idContact =  $registrationDAO->createRegistration($register);
-           $registration = $registrationDAO->findByIdRegistration($idContact);
-
-           $idCourse = filter_input(INPUT_GET, "id_course");
-           $course = $courseDAO->findByIdCourse($idCourse);
-
-           $createdAt = $dateAc->format("Y-m-d H:i:s");
-
-           $registrationDAO->createCourseRegistration($course, $registration, $createdAt);
-           
-            var_dump( $idContact,  $idCourse, $registration->id, $course->name);
-            exit();
-
-            $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
-        } else {
-            $registrationDAO->message->setMessage("Oops...", "error", "Não foi possível realizar inscrição, data de nascimento inválida.", "back");
-        }
+        $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
     } else {
         $registrationDAO->message->setMessage("Oops...", "error", "Ocorreu algum erro, não foi possível realizar inscrição.", "back");
     }

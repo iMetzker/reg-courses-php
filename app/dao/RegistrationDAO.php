@@ -25,12 +25,12 @@ class RegistrationDAO implements RegistrationDAOInterface
         $register = new Registration;
 
         $register->id = $data['id'];
-        $register->name = $data['nome'];
+        $register->name = $data['candidato'];
         $register->cpf = $data['cpf'];
         $register->phone = $data['telefone'];
         $register->email = $data['email'];
         $register->dateBth = $data['nascimento'];
-        $register->gender = $data['sexo'];
+        $register->course = $data['curso'];
 
         return $register;
     }
@@ -62,8 +62,18 @@ class RegistrationDAO implements RegistrationDAOInterface
         $registrations = [];
 
         $con = $this->connect->prepare("
-        SELECT * FROM ccontato 
-        ORDER BY id DESC
+        SELECT
+        ccontato.id,
+        ccontato.nome candidato,
+        ccontato.cpf,
+        ccontato.telefone,
+        ccontato.email,
+        ccontato.nascimento,
+        cminicursos.nome curso
+        FROM
+        `cinscricoesminicurso` 
+        JOIN ccontato on ccontato.id = cinscricoesminicurso.ccontato_id 
+        JOIN cminicursos on cminicursos.id = cinscricoesminicurso.cminicurso_id
         ");
 
         $con->execute();
@@ -83,7 +93,7 @@ class RegistrationDAO implements RegistrationDAOInterface
     {
 
         $con = $this->connect->prepare("
-        SELECT COUNT(*) FROM ccontato
+        SELECT COUNT(*) FROM cinscricoesminicurso
         ");
         $con->execute();
 
@@ -115,7 +125,7 @@ class RegistrationDAO implements RegistrationDAOInterface
         return $this->connect->lastInsertId();
     }
 
-    public function createCourseRegistration(Course $course, Registration $registration, $createdAt) {
+    public function createCourseRegistration($register, $course, $createdAt) {
 
         $con = $this->connect->prepare("
         INSERT INTO cinscricoesminicurso (
@@ -124,8 +134,8 @@ class RegistrationDAO implements RegistrationDAOInterface
         :ccontato_id, :cminicurso_id, :created_at, :updated_at
         )");
 
-        $con->bindParam(":ccontato_id", $registration->id);
-        $con->bindParam(":cminicurso_id", $course->id);
+        $con->bindParam(":ccontato_id", $register);
+        $con->bindParam(":cminicurso_id", $course);
         $con->bindParam(":created_at", $createdAt);
         $con->bindParam(":updated_at", $createdAt);
 
