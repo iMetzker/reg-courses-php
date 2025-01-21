@@ -22,7 +22,7 @@ interface RegistrationDAOInterface
     public function getAllRegistrations();
     public function getTotalRegistrations();
     public function createRegistration(Registration $registration);
-    public function createCourseRegistration(Registration $registration, Course $course);
+    public function createCourseRegistration(Course $course, Registration $registration, $createdAt);
     public function updateRegistration(Registration $registration);
     public function deleteRegistration(Registration $registration, $id);
 }

@@ -15,7 +15,7 @@
         <th scope="col" class="text-center">Telefone</th>
         <th scope="col" class="text-center">E-mail</th>
         <th scope="col" class="text-center">Data de Nascimento</th>
-        <th scope="col" class="text-center">Sexo</th>
+        <th scope="col" class="text-center">Curso</th>
         <th scope="col" class="text-center"></th>
     </thead>
 

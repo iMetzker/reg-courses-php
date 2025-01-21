@@ -109,11 +109,28 @@ class RegistrationDAO implements RegistrationDAOInterface
         $con->bindParam(":dateBth", $registration->dateBth);
         $con->bindParam(":gender", $registration->gender);
         $con->bindParam(":created_at", $registration->created_at);
+  
+        $con->execute();
+
+        return $this->connect->lastInsertId();
+    }
+
+    public function createCourseRegistration(Course $course, Registration $registration, $createdAt) {
+
+        $con = $this->connect->prepare("
+        INSERT INTO cinscricoesminicurso (
+        ccontato_id, cminicurso_id, created_at, updated_at
+        ) VALUES (
+        :ccontato_id, :cminicurso_id, :created_at, :updated_at
+        )");
+
+        $con->bindParam(":ccontato_id", $registration->id);
+        $con->bindParam(":cminicurso_id", $course->id);
+        $con->bindParam(":created_at", $createdAt);
+        $con->bindParam(":updated_at", $createdAt);
 
         $con->execute();
     }
-
-    public function createCourseRegistration(Registration $registration, Course $course) {}
 
     public function updateRegistration(Registration $registration) {
 
