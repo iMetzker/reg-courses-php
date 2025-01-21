@@ -116,6 +116,7 @@ class RegistrationDAO implements RegistrationDAOInterface
     public function createCourseRegistration(Registration $registration, Course $course) {}
 
     public function updateRegistration(Registration $registration) {
+
         $con = $this->connect->prepare("
         UPDATE ccontato SET
         nome = :name,
@@ -140,7 +141,6 @@ class RegistrationDAO implements RegistrationDAOInterface
         $con->execute();
 
         $this->message->setMessage("Cadastro editado com sucesso!", "success", "", "back");
-
     }
 
     public function deleteRegistration(Registration $registration, $id)

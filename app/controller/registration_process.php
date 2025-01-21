@@ -10,6 +10,7 @@ $message = new Message($BASE_URL);
 
 $timeZone = new DateTimeZone('America/Sao_Paulo');
 $dateAc = new DateTime('now', $timeZone);
+$currentYearAc = $dateAc->format("Y");
 
 $type = filter_input(INPUT_POST, "type");
 
@@ -34,9 +35,17 @@ if ($type == "register") {
         $register->gender = $gender;
         $register->created_at = $dateAc->format("Y-m-d H:i:s");
 
-        $registrationDAO->createRegistration($register);
+        // VALIDAÇÃO DA DATA +10 OU -100
+        $bthYearFormat = new DateTime($dateBth);
 
-        $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
+        if ($bthYearFormat->format("Y") <= ($currentYearAc - 10) && $bthYearFormat->format("Y") >= ($currentYearAc - 100)) {
+
+            $registrationDAO->createRegistration($register);
+
+            $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
+        } else {
+            $registrationDAO->message->setMessage("Oops...", "error", "Não foi possível realizar inscrição, data de nascimento inválida.", "back");
+        }
     } else {
         $registrationDAO->message->setMessage("Oops...", "error", "Ocorreu algum erro, não foi possível realizar inscrição.", "back");
     }
