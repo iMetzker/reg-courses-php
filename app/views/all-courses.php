@@ -56,7 +56,7 @@
                         ?>
                     </td>
                     <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center">
-                        <a href="<?= $BASE_URL ?>registration.php?id=<?= $course->id ?>" title="Adicionar aluno">
+                        <a href="<?= $BASE_URL ?>contact.php?id=<?= $course->id ?>" title="Adicionar aluno">
                             <i class="bi bi-person-add fs-4"></i>
                         </a>
 

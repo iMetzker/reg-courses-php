@@ -73,7 +73,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                 <div><?= $course->description ?></div>
             </div>
 
-            <form class="mt-3 form-floating" method="POST" action="../controller/registration_process.php?id_course=<?= $id ?>">
+            <form class="mt-3 form-floating" method="POST" action="../controller/contact_process.php?id_course=<?= $id ?>">
 
                 <input type="hidden" name="type" value="register">
 

@@ -111,6 +111,7 @@ if ($type == "create") {
         $courseData->duration = $duration;
         $courseData->vacancies = $vacancies;
         $courseData->open = $open;
+        $courseData->date = $date;
         $courseData->updated_at = $dateAc->format("Y-m-d H:i:s");
 
         // VALIDANDO A IMAGEM
@@ -137,17 +138,6 @@ if ($type == "create") {
                 $message->setMessage("Tipo inválido de imagem", "error", "Envie uma imagem do tipo .png, .jpeg ou .jpg", "back");
             }
         }
-
-        // VALIDANDO A DATA
-        $courseDate = DateTime::createFromFormat("Y-m-d", $date);
-
-        if ($courseDate < $dateAc) {
-            $message->setMessage("Data Inválida", "error", "A data de realização do curso não pode ser inferior a data de hoje!", "back");
-            exit();
-        } else {
-            $courseData->date = $date;
-        }
-
         $courseDAO->updateCourse($courseData);
     }
 }
