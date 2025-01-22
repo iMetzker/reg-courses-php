@@ -36,25 +36,37 @@ if ($type == "register") {
         $contact->gender = $gender;
         $contact->created_at = $dateAc->format("Y-m-d H:i:s");
 
-        $idContact =  $contactDAO->createContact($contact);
+        $idContact = $contactDAO->createContact($contact);
         $idCourse = filter_input(INPUT_GET, "id_course");
 
-        $contactDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
+        if ($idContact) {
+            header("Location: registration_process.php?&action=$type&id_contact=$idContact&id_course=" . $idCourse);
+            exit();
 
-        $contactDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
+        } else {
+            $contactDAO->message->setMessage("Erro ao criar o contato. Tente novamente.", "error", "", "back");
+        }
+
+        // $idContact =  $contactDAO->createContact($contact);
+        // $idCourse = filter_input(INPUT_GET, "id_course");
+
+        // $contactDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
+
+        // $contactDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
+
     } else {
         $contactDAO->message->setMessage("Oops...", "error", "Ocorreu algum erro, não foi possível realizar inscrição.", "back");
     }
 } else if ($type == "delete") {
 
-    $id = filter_input(INPUT_POST, "id");
+    // $id = filter_input(INPUT_POST, "id");
 
-    $contact = $contactDAO->findByIdContact($id);
+    // $contact = $contactDAO->findByIdContact($id);
 
-    if ($contact) {
+    // if ($contact) {
 
-        $contactDAO->deleteRegistration($register, $register->id);
-    }
+    //     $contactDAO->deleteRegistration($register, $register->id);
+    // }
 } else if ($type == "update") {
     $name = filter_input(INPUT_POST, "student_name");
     $email = filter_input(INPUT_POST, "student_email");

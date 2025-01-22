@@ -58,7 +58,7 @@ class ContactDAO implements ContactDAOInterface
     }
 
     public function getAllRegistrations()
-    {
+    { // excluir
         $registrations = [];
 
         $con = $this->connect->prepare("
@@ -119,14 +119,14 @@ class ContactDAO implements ContactDAOInterface
         $con->bindParam(":dateBth", $contact->dateBth);
         $con->bindParam(":gender", $contact->gender);
         $con->bindParam(":created_at", $contact->created_at);
-  
+
         $con->execute();
 
         return $this->connect->lastInsertId();
     }
 
-    public function createCourseRegistration($register, $course, $createdAt) {
-
+    public function createCourseRegistration($register, $course, $createdAt)
+    {
         $con = $this->connect->prepare("
         INSERT INTO cinscricoesminicurso (
         ccontato_id, cminicurso_id, created_at, updated_at
@@ -142,7 +142,8 @@ class ContactDAO implements ContactDAOInterface
         $con->execute();
     }
 
-    public function updateRegistration(Contact $registration) {
+    public function updateRegistration(Contact $contact)
+    {
 
         $con = $this->connect->prepare("
         UPDATE ccontato SET
@@ -156,31 +157,17 @@ class ContactDAO implements ContactDAOInterface
         WHERE id = :id 
         ");
 
-        $con->bindParam(":name", $registration->name);
-        $con->bindParam(":email", $registration->email);
-        $con->bindParam(":cpf", $registration->cpf);
-        $con->bindParam(":phone", $registration->phone);
-        $con->bindParam(":dateBth", $registration->dateBth);
-        $con->bindParam(":gender", $registration->gender);
-        $con->bindParam(":updated_at", $registration->updated_at);
-        $con->bindParam(":id", $registration->id);
+        $con->bindParam(":name", $contact->name);
+        $con->bindParam(":email", $contact->email);
+        $con->bindParam(":cpf", $contact->cpf);
+        $con->bindParam(":phone", $contact->phone);
+        $con->bindParam(":dateBth", $contact->dateBth);
+        $con->bindParam(":gender", $contact->gender);
+        $con->bindParam(":updated_at", $contact->updated_at);
+        $con->bindParam(":id", $contact->id);
 
         $con->execute();
 
         $this->message->setMessage("Cadastro editado com sucesso!", "success", "", "back");
-    }
-
-    public function deleteRegistration(Contact $registration, $id)
-    {
-
-        $con = $this->connect->prepare("
-        DELETE FROM ccontato WHERE id = :id
-        ");
-
-        $con->bindParam(":id", $id);
-
-        $con->execute();
-
-        $this->message->setMessage("Estudante excluído com sucesso!", "success", "", "back");
     }
 }

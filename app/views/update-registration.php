@@ -1,9 +1,9 @@
 <?php
 require_once("../../db.php");
 require_once("../../app/models/message.php");
-require_once("../../app/dao/ContactDAO.php");
+require_once("../../app/dao/RegistrationDAO.php");
 
-$registerDao = new ContactDAO($connect, $BASE_URL);
+$registerDao = new RegistrationDAO($connect, $BASE_URL);
 $message = new Message($BASE_URL);
 
 $msg = $message->getMessage();
@@ -13,12 +13,13 @@ $id = filter_input(INPUT_GET, "id");
 if (empty($id)) {
     $message->setMessage("Oops...", "error", "Algo deu errado, o estudante não foi encontrado", "back");
 } else {
-    $register = $registerDao->findByIdContact($id);
+    $register = $registerDao->findByIdRegistration($id);
 
     if (!$register) {
         $message->setMessage("Oops...", "error", "Algo deu errado, o estudante não foi encontrado", "back");
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@ if (empty($id)) {
 <body>
     <div class="fluid-container d-flex justify-content-center align-items-center min-vh-100 flex-column bg-light p-2">
 
-        <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/contact_process.php">
+        <form class="container bg-white form-add-course p-5 rounded" method="POST" action="../controller/registration_process.php">
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -62,7 +63,7 @@ if (empty($id)) {
                     type="text"
                     id="id_student_name"
                     name="student_name"
-                    value="<?= $register->name ?>">
+                    value="<?= $register->candidate ?>">
             </div>
 
             <div class="mb-3 mt-4">

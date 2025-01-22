@@ -19,15 +19,12 @@ class Contact
 
 interface ContactDAOInterface
 {
-
     public function buildContact($data);
     public function findByIdContact($id);
     public function createContact(Contact $registration);
-
 
     public function getAllRegistrations();
     public function getTotalRegistrations();
     public function createCourseRegistration($idCourse, $idRegister, $createdAt);
     public function updateRegistration(Contact $registration);
-    public function deleteRegistration(Contact $registration, $id);
 }
