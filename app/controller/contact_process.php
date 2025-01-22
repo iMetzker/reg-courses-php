@@ -47,26 +47,9 @@ if ($type == "register") {
             $contactDAO->message->setMessage("Erro ao criar o contato. Tente novamente.", "error", "", "back");
         }
 
-        // $idContact =  $contactDAO->createContact($contact);
-        // $idCourse = filter_input(INPUT_GET, "id_course");
-
-        // $contactDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
-
-        // $contactDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
-
     } else {
         $contactDAO->message->setMessage("Oops...", "error", "Ocorreu algum erro, não foi possível realizar inscrição.", "back");
     }
-} else if ($type == "delete") {
-
-    // $id = filter_input(INPUT_POST, "id");
-
-    // $contact = $contactDAO->findByIdContact($id);
-
-    // if ($contact) {
-
-    //     $contactDAO->deleteRegistration($register, $register->id);
-    // }
 } else if ($type == "update") {
     $name = filter_input(INPUT_POST, "student_name");
     $email = filter_input(INPUT_POST, "student_email");

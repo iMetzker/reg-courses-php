@@ -25,12 +25,12 @@ class ContactDAO implements ContactDAOInterface
         $contact = new Contact;
 
         $contact->id = $data['id'];
-        $contact->student = $data['candidato'];
+        $contact->name = $data['nome'];
         $contact->cpf = $data['cpf'];
         $contact->phone = $data['telefone'];
         $contact->email = $data['email'];
+        $contact->gender = $data['sexo'];
         $contact->dateBth = $data['nascimento'];
-        $contact->course = $data['curso'];
 
         return $contact;
     }
@@ -142,7 +142,7 @@ class ContactDAO implements ContactDAOInterface
         $con->execute();
     }
 
-    public function updateRegistration(Contact $contact)
+    public function updateContact(Contact $contact)
     {
 
         $con = $this->connect->prepare("

@@ -26,5 +26,5 @@ interface ContactDAOInterface
     public function getAllRegistrations();
     public function getTotalRegistrations();
     public function createCourseRegistration($idCourse, $idRegister, $createdAt);
-    public function updateRegistration(Contact $registration);
+    public function updateContact(Contact $registration);
 }

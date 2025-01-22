@@ -54,7 +54,7 @@ if (empty($id)) {
             <span>Última edição: 15/01/25 às 14h</span>
 
             <input type="hidden" name="type" value="update">
-            <input type="hidden" name="id" value="<?= $register->id ?>">
+            <input type="hidden" name="id" value="<?= $register->candidate_id ?>">
 
             <div class="mb-3 mt-4">
                 <label for="student_name" class="form-label">Nome Completo</label>
@@ -132,6 +132,20 @@ if (empty($id)) {
                     </div>
                 </div>
             </div>
+
+            <div class="mb-3 d-flex gap-5 align-items-end">
+                    <div class="col select-gender">
+                        <label for="student_gender" class="form-label text-secondary m-0">Alterar Inscrição</label>
+                        <select
+                            class="form-select bg-light rounded-pill border-0 mt-2 "
+                            id="student_gender"
+                            name="student_gender"
+                            required>
+                            <option value="" disabled>Selecione</option>
+                            <option value="F" selected><?= $register->course ?></option>
+                        </select>
+                    </div>
+                </div>
 
             <button class="rounded-pill mt-3 btn-add-course fs-6" type="submit">Salvar</button>
         </form>
