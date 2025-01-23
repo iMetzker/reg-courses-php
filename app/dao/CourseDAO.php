@@ -32,6 +32,8 @@ class CourseDAO implements CourseDAOInterface
         $course->time = $data['horario'];
         $course->duration = $data['duracao'];
         $course->created_at = $data['created_at'];
+        $course->total_registrations = $data['TOTAL_INSCRICOES'];
+        $course->available_vacancies = $data['VAGAS_DISPONIVEIS'];
 
         return $course;
     }
@@ -65,9 +67,39 @@ class CourseDAO implements CourseDAOInterface
         $courses = [];
 
         $con = $this->connect->prepare("
-        SELECT * FROM cminicursos
-        WHERE deleted_at IS NULL
-        ORDER BY id DESC
+        SELECT 
+            cminicursos.id,
+            cminicursos.created_at,
+            cminicursos.nome, 
+            cminicursos.descricao, 
+            cminicursos.aberto,
+            cminicursos.imagem,
+            cminicursos.ministrante, 
+            cminicursos.data,
+            cminicursos.horario,
+            cminicursos.duracao,
+            cminicursos.vagas, 
+        COUNT(cinscricoesminicurso.ccontato_id) AS TOTAL_INSCRICOES,
+        cminicursos.vagas - COUNT(cinscricoesminicurso.ccontato_id) AS VAGAS_DISPONIVEIS 
+        FROM 
+            cminicursos 
+        LEFT JOIN 
+            cinscricoesminicurso ON cinscricoesminicurso.cminicurso_id = cminicursos.id 
+        WHERE 
+            cminicursos.deleted_at IS NULL
+        GROUP BY 
+            cminicursos.id,
+            cminicursos.nome, 
+            cminicursos.descricao, 
+            cminicursos.aberto,
+            cminicursos.imagem,
+            cminicursos.ministrante, 
+            cminicursos.data,
+            cminicursos.horario,
+            cminicursos.duracao,
+            cminicursos.vagas
+        ORDER BY 
+            cminicursos.id DESC;
         ");
 
         $con->execute();
@@ -123,7 +155,6 @@ class CourseDAO implements CourseDAOInterface
     public function deleteViewCourse(Course $course, $id)
     {
 
-
         $con = $this->connect->prepare("
         UPDATE cminicursos SET
         deleted_at = :deleted_at
@@ -140,7 +171,6 @@ class CourseDAO implements CourseDAOInterface
 
     public function updateCourse(Course $course)
     {
-        // $img = empty($course->image) ? '' : 'imagem = :image,';
 
         $con = $this->connect->prepare("
         UPDATE cminicursos SET
@@ -157,8 +187,6 @@ class CourseDAO implements CourseDAOInterface
         WHERE id = :id
         ");
 
-        // $con = $this->connect->prepare($sql);
-
         $con->bindParam(":name", $course->name);
         $con->bindParam(":description", $course->description);
         $con->bindParam(":vacancies", $course->vacancies);
@@ -170,10 +198,6 @@ class CourseDAO implements CourseDAOInterface
         $con->bindParam(":image", $course->image);
         $con->bindParam(":updated_at", $course->updated_at);
         $con->bindParam(":id", $course->id);
-        
-        // if (!empty($course->image)) {
-        //     $con->bindParam(":image", $course->image);
-        // }
 
         $con->execute();
 

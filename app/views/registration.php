@@ -195,7 +195,9 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                             <?= $course->vacancies ?></b> Vagas
                     </p>
                     <footer class="blockquote-footer m-0">
-                        28 vagas restantes
+                        <?php
+                        echo $course->available_vacancies . " vagas restantes";
+                        ?>
                     </footer>
                 </div>
             </div>

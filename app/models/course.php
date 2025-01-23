@@ -11,6 +11,8 @@ class Course {
     public $minister;
     public $time;
     public $duration;
+    public $total_registrations;
+    public $available_vacancies;
     public $created_at;
     public $updated_at;
     public $deleted_at;

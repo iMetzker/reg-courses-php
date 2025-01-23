@@ -4,27 +4,29 @@ require_once("../models/message.php");
 require_once("../models/registration.php");
 require_once("../dao/RegistrationDAO.php");
 require_once("../dao/ContactDAO.php");
+require_once("../dao/CourseDAO.php");
 
-
+$courseDAO = new CourseDAO($connect, $BASE_URL);
 $registrationDAO = new RegistrationDAO($connect, $BASE_URL);
 $contactDAO = new ContactDAO($connect, $BASE_URL);
 $message = new Message($BASE_URL);
-
 
 $timeZone = new DateTimeZone('America/Sao_Paulo');
 $dateAc = new DateTime('now', $timeZone);
 
 $dateAcFormat = $dateAc->format("Y-m-d H:i:s");
 
+$type = filter_input(INPUT_POST, "type");
 $idContact = filter_input(INPUT_GET, "id_contact", FILTER_VALIDATE_INT);
 $idCourse = filter_input(INPUT_GET, "id_course", FILTER_VALIDATE_INT);
 $typeAdd = filter_input(INPUT_GET, "action");
 
-$type = filter_input(INPUT_POST, "type");
 
 if ($typeAdd == "register") {
 
     if ($idContact && $idCourse) {
+
+        $courseRegister = $courseDAO->findByIdCourse($idCourse);
 
         $registrationDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
 

@@ -93,11 +93,13 @@
                         </p>
                         <footer class="blockquote-footer">
                             <?php
-                            if ($course->open === 1) {
-                                echo "28 vagas restantes";
-                            } else {
-                                echo "Vagas esgotadas";
-                            }
+                            // if ($course->open === 1) {
+                            //     echo "28 vagas restantes";
+                            // } else {
+                            //     echo "Vagas esgotadas";
+                            // }
+
+                            echo $course->available_vacancies . " vagas restantes";
                             ?>
                         </footer>
                         <?php
