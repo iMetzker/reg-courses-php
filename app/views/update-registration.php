@@ -2,9 +2,13 @@
 require_once("../../db.php");
 require_once("../../app/models/message.php");
 require_once("../../app/dao/RegistrationDAO.php");
+require_once("../../app/dao/CourseDAO.php");
 
 $registerDao = new RegistrationDAO($connect, $BASE_URL);
 $message = new Message($BASE_URL);
+
+$courseDAO = new CourseDAO($connect, $BASE_URL);
+$allCourses = $courseDAO->getAllCourses();
 
 $msg = $message->getMessage();
 
@@ -19,7 +23,6 @@ if (empty($id)) {
         $message->setMessage("Oops...", "error", "Algo deu errado, o estudante não foi encontrado", "back");
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +57,7 @@ if (empty($id)) {
             <span>Última edição: 15/01/25 às 14h</span>
 
             <input type="hidden" name="type" value="update">
+            <input type="hidden" name="register_id" value="<?= $register->id ?>">
             <input type="hidden" name="id" value="<?= $register->candidate_id ?>">
 
             <div class="mb-3 mt-4">
@@ -133,19 +137,25 @@ if (empty($id)) {
                 </div>
             </div>
 
-            <div class="mb-3 d-flex gap-5 align-items-end">
-                    <div class="col select-gender">
-                        <label for="student_gender" class="form-label text-secondary m-0">Alterar Inscrição</label>
-                        <select
-                            class="form-select bg-light rounded-pill border-0 mt-2 "
-                            id="student_gender"
-                            name="student_gender"
-                            required>
-                            <option value="" disabled>Selecione</option>
-                            <option value="F" selected><?= $register->course ?></option>
-                        </select>
-                    </div>
+            <div class="mb-3">
+                <div class="col">
+                    <label for="student_course" class="form-label text-secondary m-0">Alterar Inscrição</label>
+                    <select
+                        class="form-select bg-light rounded-pill border-0 mt-2"
+                        id="id_student_course"
+                        name="student_course"
+                        required>
+                        <option value="" disabled>Selecione</option>
+                        <?php foreach ($allCourses as $course): ?>
+                            <option value="<?= $course->id ?>"
+                                <?= $register->course == $course->name ? 'selected' : '' ?>>
+                                <?= $course->name ?> (<?= $course->vacancies ?> vagas restantes)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
                 </div>
+            </div>
 
             <button class="rounded-pill mt-3 btn-add-course fs-6" type="submit">Salvar</button>
         </form>

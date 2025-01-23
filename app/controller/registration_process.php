@@ -63,5 +63,6 @@ if ($typeAdd == "register") {
         $contactData->updated_at = $dateAc->format("Y-m-d H:i:s");
 
         $contactDAO->updateContact($contactData);
+        $registrationDAO->updateCourseRegistration($contactData);
     }
 }

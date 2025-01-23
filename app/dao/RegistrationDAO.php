@@ -67,7 +67,6 @@ class RegistrationDAO implements RegistrationDAOInterface
             $register = $this->buildRegistration($registerData);
 
             return $register;
-
         } else {
             return false;
         }
@@ -136,9 +135,25 @@ class RegistrationDAO implements RegistrationDAOInterface
         return $result;
     }
 
-    public function updateCourseRegistration(Registration $registration)
+    public function updateCourseRegistration(Contact $contact)
     {
-        // pensar
+        $course_id = filter_input(INPUT_POST, "student_course");
+        $register_id = filter_input(INPUT_POST, "register_id");
+
+        $con = $this->connect->prepare("
+        UPDATE cinscricoesminicurso SET 
+        cminicurso_id = :course,
+        updated_at = :updated_at
+        WHERE id = :id
+        ");
+
+        $con->bindParam(":course", $course_id);
+        $con->bindParam(":updated_at", $contact->updated_at);
+        $con->bindParam(":id", $register_id);
+
+        $con->execute();
+
+        $this->message->setMessage("Cadastro editado com sucesso!", "success", "", "back");
     }
 
     public function deleteRegistration(Registration $registration, $id)
