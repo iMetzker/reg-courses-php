@@ -48,7 +48,7 @@
                     <td scope="row" class="text-center"><?= $course->vacancies ?></td>
                     <td scope="row" class="text-center">
                         <?php
-                        if ($course->open === 1) {
+                        if ($course->open == 1) {
                             if ($course->available_vacancies === 0) {
                                 echo "<span class=\"tag soldout\">Vagas encerradas</span>";
                             } else if ($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) {
@@ -66,7 +66,7 @@
                         <?php
                         // CADASTRO DE ALUNO APENAS COM CURSO DISPONÍVEL
                         if (
-                            $course->open === 1 && $course->available_vacancies > 0 &&
+                            $course->open == 1 && $course->available_vacancies > 0 &&
                             ($dateCourse >= $dataAc || $dateCourse->format("Y-m-d") === $dataAc->format("Y-m-d"))) {
                             echo "
                             <a href=\"./app/views/registration.php?id={$course->id}\" title=\"Adicionar aluno\">
@@ -77,7 +77,7 @@
                         }
                         ?>
 
-                        <a href="<?= $BASE_URL ?>all-students.php?id=<?= $course->id ?>" title="Visualizar todas as inscrições">
+                        <a href="http://localhost/php-sty/gitHub/reg-courses-php/app/views/all-registrations-for-course.php?id=<?= $course->id ?>" title="Visualizar todas as inscrições">
                             <i class="bi bi-people fs-4"></i>
                         </a>
 

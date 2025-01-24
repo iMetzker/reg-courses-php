@@ -123,6 +123,7 @@ class RegistrationDAO implements RegistrationDAOInterface
 
         return $registrations;
     }
+
     public function getTotalRegistrations()
     {
         $con = $this->connect->prepare("
@@ -166,5 +167,60 @@ class RegistrationDAO implements RegistrationDAOInterface
         $con->execute();
 
         $this->message->setMessage("Inscrição excluída com sucesso!", "success", "", "back");
+    }
+
+    public function getRegistrationsByCourseId($id)
+    {
+        $registrations = [];
+
+        $con = $this->connect->prepare("
+        SELECT
+        cinscricoesminicurso.id,
+        ccontato.id candidato_id,
+        ccontato.nome candidato,
+        ccontato.cpf,
+        ccontato.telefone,
+        ccontato.email,
+        ccontato.nascimento,
+        ccontato.sexo,
+        cminicursos.id curso_id,
+        cminicursos.nome curso
+        FROM
+        `cinscricoesminicurso`
+        JOIN ccontato on ccontato.id = cinscricoesminicurso.ccontato_id 
+        JOIN cminicursos on cminicursos.id = cinscricoesminicurso.cminicurso_id
+        WHERE cminicursos.id = :id
+        ");
+
+        $con->bindParam(":id", $id);
+        $con->execute();
+
+        if ($con->rowCount() > 0) {
+            $registrationsArray = $con->fetchAll();
+
+            foreach ($registrationsArray as $register) {
+                $registrations[] = $this->buildRegistration($register);
+            }
+        }
+
+        return $registrations;
+    }
+
+    public function getTotalRegistrationsByCourseId($id)
+    {
+        $registrations = [];
+
+        $con = $this->connect->prepare("
+        SELECT COUNT(*) AS total 
+        FROM cinscricoesminicurso
+        WHERE cminicurso_id = :id
+        ");
+
+        $con->bindParam(":id", $id);
+        $con->execute();
+
+        $result = $con->fetchColumn();
+
+        return $result;
     }
 }

@@ -23,6 +23,8 @@ interface RegistrationDAOInterface
     public function findByIdRegistration($id);
     public function getAllRegistrations();
     public function getTotalRegistrations();
+    public function getRegistrationsByCourseId($id);
+    public function getTotalRegistrationsByCourseId($id);
     public function createCourseRegistration($idCourse, $idRegister, $createdAt);
     public function updateCourseRegistration(Contact $contact);
     public function deleteRegistration(Registration $registration, $id);
