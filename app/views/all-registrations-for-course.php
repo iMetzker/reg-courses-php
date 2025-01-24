@@ -105,11 +105,11 @@ $totalRegistrations = $registrationDAO->getTotalRegistrationsByCourseId($id);
                                 <td scope="row" class="text-center"><?= $dateBthStudentFormat ?></td>
                                 <td scope="row" class="text-center"><?= $register->gender ?></td>
                                 <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center">
-                                    <a href="<?= $BASE_URL ?>/app/views/update-registration.php?id=<?= $register->id ?>" title="Editar aluno">
+                                    <a href="<?= $BASE_URL ?>update-registration.php?id=<?= $register->id ?>" title="Editar aluno">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
 
-                                    <form action="<?= $BASE_URL ?>app/controller/registration_process.php" method="POST" class="delete-form" onsubmit="return confirmDelete(event)">
+                                    <form action="http://localhost/php-sty/gitHub/reg-courses-php/app/controller/registration_process.php" method="POST" class="delete-form" onsubmit="return confirmDelete(event)">
                                         <input type="hidden" name="type" value="delete">
                                         <input type="hidden" name="id" value="<?= $register->id ?>">
 
@@ -125,6 +125,47 @@ $totalRegistrations = $registrationDAO->getTotalRegistrationsByCourseId($id);
             </div>
         </div>
     </div>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Tem certeza que deseja excluir?",
+                text: "Você não poderá reverter esta ação!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, excluir!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.submit();
+                }
+            });
+
+        }
+    </script>
+
+    <?php if ($msg): ?>
+        <script>
+            Swal.fire({
+                title: "<?= $msg['msg']; ?>",
+                icon: "<?= $msg['type']; ?>",
+                text: "<?= $msg['text']; ?>",
+                draggable: true
+            });
+        </script>
+        <?php
+        $message->clearMessage();
+        ?>
+    <?php endif; ?>
 
 </body>
 
