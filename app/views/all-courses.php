@@ -49,7 +49,7 @@
                     <td scope="row" class="text-center">
                         <?php
                         if ($course->open == 1) {
-                            if ($course->available_vacancies === 0) {
+                            if ($course->available_vacancies == 0) {
                                 echo "<span class=\"tag soldout\">Vagas encerradas</span>";
                             } else if ($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) {
                                 echo "<span class=\"tag closed\">Fora do Período</span>";
@@ -77,7 +77,7 @@
                         }
                         ?>
 
-                        <a href="http://localhost/php-sty/gitHub/reg-courses-php/app/views/all-registrations-for-course.php?id=<?= $course->id ?>" title="Visualizar todas as inscrições">
+                        <a href="http://localhost/php-sty/gitHub/reg-courses-php/app/views/all-registrations-for-course.php?id=<?= $course->id ?>&curso=<?= $course->name ?>" title="Visualizar todas as inscrições">
                             <i class="bi bi-people fs-4"></i>
                         </a>
 

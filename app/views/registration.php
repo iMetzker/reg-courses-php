@@ -196,7 +196,11 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                     </p>
                     <footer class="blockquote-footer m-0">
                         <?php
-                        echo $course->available_vacancies . " vagas restantes";
+                         if($course->available_vacancies == 1) {
+                            echo $course->available_vacancies . " vaga restante";
+                        } else {
+                            echo $course->available_vacancies . " vagas restantes";
+                        }
                         ?>
                     </footer>
                 </div>

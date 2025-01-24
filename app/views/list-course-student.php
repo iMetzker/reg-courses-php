@@ -55,7 +55,7 @@
                 $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
 
-                if ($course->open === 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
+                if ($course->open == 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
             ?>
                 <div class="card">
                     <div class="image-container position-relative">
@@ -98,6 +98,8 @@
                             <?php
                             if ($course->available_vacancies === 0) {
                                 echo "<span>Vagas encerradas</span>";
+                            } else if($course->available_vacancies == 1) {
+                                echo $course->available_vacancies . " vaga restante";
                             } else {
                                 echo $course->available_vacancies . " vagas restantes";
                             }

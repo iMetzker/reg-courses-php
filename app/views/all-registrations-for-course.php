@@ -10,10 +10,10 @@ $registrationDAO = new RegistrationDAO($connect, $BASE_URL);
 $message = new Message($BASE_URL);
 $msg = $message->getMessage();
 
+$course_name = filter_input(INPUT_GET, "curso");
 $id = filter_input(INPUT_GET, "id");
 $allRegistrations = $registrationDAO->getRegistrationsByCourseId($id);
 $totalRegistrations = $registrationDAO->getTotalRegistrationsByCourseId($id);
-
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +51,7 @@ $totalRegistrations = $registrationDAO->getTotalRegistrationsByCourseId($id);
             <div class="mb-4">
                 <span class="fs-6 fw-semibold">Minicurso Alfa</span>
                 <h2 class="fs-1">
-                    <?= $allRegistrations[0]->course ?>
+                    <?= $course_name ?>
                 </h2>
             </div>
 
