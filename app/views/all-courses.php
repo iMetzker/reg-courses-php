@@ -49,22 +49,33 @@
                     <td scope="row" class="text-center">
                         <?php
                         if ($course->open === 1) {
-                           if($course->available_vacancies === 0) {
-                            echo "<span class=\"tag soldout\">Vagas encerradas</span>";
-                           } else if ($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) {
-                            echo "<span class=\"tag closed\">Fora do Período</span>";
-                           } else {
-                            echo "<span class=\"tag open\">Aberto</span>";
-                           }
+                            if ($course->available_vacancies === 0) {
+                                echo "<span class=\"tag soldout\">Vagas encerradas</span>";
+                            } else if ($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) {
+                                echo "<span class=\"tag closed\">Fora do Período</span>";
+                            } else {
+                                echo "<span class=\"tag open\">Aberto</span>";
+                            }
                         } else {
                             echo "<span class=\"tag close\">Fechado</span>";
                         }
                         ?>
                     </td>
                     <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center">
-                        <a href="<?= $BASE_URL ?>registration.php?id=<?= $course->id ?>" title="Adicionar aluno">
-                            <i class="bi bi-person-add fs-4"></i>
-                        </a>
+
+                        <?php
+                        // CADASTRO DE ALUNO APENAS COM CURSO DISPONÍVEL
+                        if (
+                            $course->open === 1 && $course->available_vacancies > 0 &&
+                            ($dateCourse >= $dataAc || $dateCourse->format("Y-m-d") === $dataAc->format("Y-m-d"))) {
+                            echo "
+                            <a href=\"./app/views/registration.php?id={$course->id}\" title=\"Adicionar aluno\">
+                                <i class=\"bi bi-person-add fs-4\"></i>
+                            </a>";
+                        } else {
+                            echo "<i class=\"bi bi-person-exclamation text-body-tertiary fs-4\" title=\"Cadastro indisponível\"></i>";
+                        }
+                        ?>
 
                         <a href="<?= $BASE_URL ?>all-students.php?id=<?= $course->id ?>" title="Visualizar todas as inscrições">
                             <i class="bi bi-people fs-4"></i>
