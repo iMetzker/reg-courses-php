@@ -47,12 +47,15 @@
                 $dateCourse = new DateTime($course->date);
                 $timeInit = new DateTime($course->time);
                 $durationCourse = new DateTime($course->duration);
+                $dataAc = new DateTime();
 
 
                 $dateFormat = $dateCourse->format("d/m/Y");
                 $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
                 $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
+
+                if ($course->open === 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
             ?>
                 <div class="card">
                     <div class="image-container position-relative">
@@ -93,24 +96,23 @@
                         </p>
                         <footer class="blockquote-footer">
                             <?php
-                            // if ($course->open === 1) {
-                            //     echo "28 vagas restantes";
-                            // } else {
-                            //     echo "Vagas esgotadas";
-                            // }
-
-                            echo $course->available_vacancies . " vagas restantes";
+                            if ($course->available_vacancies === 0) {
+                                echo "<span>Vagas encerradas</span>";
+                            } else {
+                                echo $course->available_vacancies . " vagas restantes";
+                            }
                             ?>
                         </footer>
                         <?php
-                        if ($course->open == 1) {
+                        if ($course->available_vacancies > 0) {
                             echo '<a class="card-text card-icon fs-4" href="./app/views/registration.php?id=' . $course->id . '">
                             Inscrever-se <i class="bi bi-person-add"></i></a>';
                         }
                         ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php }
+         endforeach; ?>
         </div>
 
         <nav aria-label="Page navigation" class="pagination-courses mt-5 d-flex justify-content-center">
