@@ -42,7 +42,7 @@ if (empty($id)) {
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?= $_SERVER["HTTP_REFERER"] ?>">Voltar</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/php-sty/gitHub/reg-courses-php/?page=adm">Voltar</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Editar Mini Curso</li>
                 </ol>
             </nav>

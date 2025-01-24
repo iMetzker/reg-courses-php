@@ -44,8 +44,39 @@ class CourseDAO implements CourseDAOInterface
         $course = [];
 
         $con = $this->connect->prepare("
-        SELECT * FROM cminicursos WHERE id = :id
-        ");
+        SELECT 
+            cminicursos.id,
+            cminicursos.created_at,
+            cminicursos.nome, 
+            cminicursos.descricao, 
+            cminicursos.aberto,
+            cminicursos.imagem,
+            cminicursos.ministrante, 
+            cminicursos.data,
+            cminicursos.horario,
+            cminicursos.duracao,
+            cminicursos.vagas, 
+            COUNT(cinscricoesminicurso.ccontato_id) AS TOTAL_INSCRICOES,
+            cminicursos.vagas - COUNT(cinscricoesminicurso.ccontato_id) AS VAGAS_DISPONIVEIS 
+        FROM 
+            cminicursos 
+        LEFT JOIN 
+            cinscricoesminicurso ON cinscricoesminicurso.cminicurso_id = cminicursos.id 
+        WHERE 
+            cminicursos.id = :id
+        GROUP BY 
+            cminicursos.id,
+            cminicursos.created_at,
+            cminicursos.nome, 
+            cminicursos.descricao, 
+            cminicursos.aberto,
+            cminicursos.imagem,
+            cminicursos.ministrante, 
+            cminicursos.data,
+            cminicursos.horario,
+            cminicursos.duracao,
+            cminicursos.vagas;
+    ");
 
         $con->bindParam(":id", $id);
         $con->execute();
