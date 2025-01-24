@@ -103,7 +103,7 @@
                             ?>
                         </footer>
                         <?php
-                        if ($course->open === 1) {
+                        if ($course->open == 1) {
                             echo '<a class="card-text card-icon fs-4" href="./app/views/registration.php?id=' . $course->id . '">
                             Inscrever-se <i class="bi bi-person-add"></i></a>';
                         }

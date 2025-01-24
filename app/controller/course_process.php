@@ -15,64 +15,69 @@ $type = filter_input(INPUT_POST, "type");
 
 if ($type == "create") {
 
-    // RECEBENDO OS DADOS DOS INPUTS
-    $name = filter_input(INPUT_POST, "course_name");
-    $description = filter_input(INPUT_POST, "course_description");
-    $vacancies = filter_input(INPUT_POST, "course_vacancies");
-    $open = filter_input(INPUT_POST, "course_open");
-    $minister = filter_input(INPUT_POST, "course_minister");
-    $date = filter_input(INPUT_POST, "course_date");
-    $time = filter_input(INPUT_POST, "course_time");
-    $duration = filter_input(INPUT_POST, "course_duration");
+    try {
 
-    // GARANTIR QUE RETORNARÁ BOOLEAN
-    if ($open === null) {
-        $open = 0;
-    }
+        // RECEBENDO OS DADOS DOS INPUTS
+        $name = filter_input(INPUT_POST, "course_name");
+        $description = filter_input(INPUT_POST, "course_description");
+        $vacancies = filter_input(INPUT_POST, "course_vacancies");
+        $open = filter_input(INPUT_POST, "course_open");
+        $minister = filter_input(INPUT_POST, "course_minister");
+        $date = filter_input(INPUT_POST, "course_date");
+        $time = filter_input(INPUT_POST, "course_time");
+        $duration = filter_input(INPUT_POST, "course_duration");
 
-    $course = new Course;
-
-    // VALIDANDO FORMULÁRIO ANTES DE CONCATENAR COM O DB
-    if (!empty($name) && !empty($minister) && !empty($description) && !empty($vacancies) && !empty($date) && !empty($time) && !empty($duration)) {
-
-        $course->name = $name;
-        $course->description = $description;
-        $course->vacancies = $vacancies;
-        $course->open = $open;
-        $course->date = $date;
-        $course->minister = $minister;
-        $course->time = $time;
-        $course->duration = $duration;
-        $course->created_at = $dateAc->format("Y-m-d H:i:s");
-
-        // TRATANDO O ULPLOAD DA IMAGEM
-        if (isset($_FILES["course_image"]) && !empty($_FILES['course_image']['tmp_name'])) {
-            $image = $_FILES['course_image'];
-            $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
-            $jpgArray = ["image/jpeg", "image/jpg"];
-
-            if (in_array($image["type"], $imageTypes)) {
-
-                if (in_array($image["type"], $jpgArray)) {
-                    $imageFile = imagecreatefromjpeg($image["tmp_name"]);
-                } else {
-                    $imageFile = imagecreatefrompng($image["tmp_name"]);
-                }
-
-                $imageName = $course->imageGenerateName();
-                imagejpeg($imageFile, "../assets/img/" . $imageName, 100);
-
-                $course->image = $imageName;
-            } else {
-                $message->setMessage("Tipo inválido de imagem", "error", "Envie uma imagem do tipo .png, .jpeg ou .jpg", "back");
-            }
+        // GARANTIR QUE RETORNARÁ BOOLEAN
+        if ($open === null) {
+            $open = 0;
         }
 
-        $courseDAO->createCourse($course);
+        $course = new Course;
 
-        $courseDAO->message->setMessage("Curso cadastrado com sucesso!", "success", "", "back");
-    } else {
-        $courseDAO->message->setMessage("Cadastro de curso não realizado!", "error", "Você precisa adicionar pelo menos: nome do curso e quantidade de vagas.", "back");
+        // VALIDANDO FORMULÁRIO ANTES DE CONCATENAR COM O DB
+        if (!empty($name) && !empty($minister) && !empty($description) && !empty($vacancies) && !empty($date) && !empty($time) && !empty($duration)) {
+
+            $course->name = $name;
+            $course->description = $description;
+            $course->vacancies = $vacancies;
+            $course->open = $open;
+            $course->date = $date;
+            $course->minister = $minister;
+            $course->time = $time;
+            $course->duration = $duration;
+            $course->created_at = $dateAc->format("Y-m-d H:i:s");
+
+            // TRATANDO O ULPLOAD DA IMAGEM
+            if (isset($_FILES["course_image"]) && !empty($_FILES['course_image']['tmp_name'])) {
+                $image = $_FILES['course_image'];
+                $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+                $jpgArray = ["image/jpeg", "image/jpg"];
+
+                if (in_array($image["type"], $imageTypes)) {
+
+                    if (in_array($image["type"], $jpgArray)) {
+                        $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+                    } else {
+                        $imageFile = imagecreatefrompng($image["tmp_name"]);
+                    }
+
+                    $imageName = $course->imageGenerateName();
+                    imagejpeg($imageFile, "../assets/img/" . $imageName, 100);
+
+                    $course->image = $imageName;
+                } else {
+                    $message->setMessage("Tipo inválido de imagem", "error", "Envie uma imagem do tipo .png, .jpeg ou .jpg", "back");
+                }
+            }
+
+            $courseDAO->createCourse($course);
+
+            $courseDAO->message->setMessage("Curso cadastrado com sucesso!", "success", "", "back");
+        } else {
+            $courseDAO->message->setMessage("Cadastro de curso não realizado!", "error", "Você precisa adicionar pelo menos: nome do curso e quantidade de vagas.", "back");
+        }
+    } catch (\PDOException $error) {
+        $courseDAO->message->setMessage($error->getMessage(), "error", "", "back");
     }
 } else if ($type == "delete") {
 
