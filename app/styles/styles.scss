@@ -240,12 +240,12 @@
 
    /*fechado*/
    &.close {
-    background-color: #6c757d;
+    background-color: #e5383b;
    }
 
    /*fora do período*/
    &.closed {
-    background-color: #e5383b;
+    background-color: #6c757d;
    }
 
 }
@@ -432,5 +432,14 @@
 
     i {
         color: #fd7e14;
+    }
+}
+
+.btn-disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+
+    &:hover {
+        background-color: #6c757d;
     }
 }

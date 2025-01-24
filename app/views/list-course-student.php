@@ -97,7 +97,7 @@
                         <footer class="blockquote-footer">
                             <?php
                             if ($course->available_vacancies === 0) {
-                                echo "<span>Vagas encerradas</span>";
+                                echo "<span>Vagas esgotadas</span>";
                             } else if($course->available_vacancies == 1) {
                                 echo $course->available_vacancies . " vaga restante";
                             } else {

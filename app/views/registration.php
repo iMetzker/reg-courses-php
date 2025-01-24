@@ -152,8 +152,11 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                         </div>
                     </div>
                 </div>
-
-                <button class="rounded-pill mt-3 btn-add-course fs-6" type="submit">Inscrever-se</button>
+                
+                <button class="rounded-pill mt-3 btn-add-course fs-6
+                <?= ($course->available_vacancies == 0) ? 'btn-disabled' : '' ?>"
+                 type="submit"
+                  <?= ($course->available_vacancies == 0) ? 'disabled' : '' ?>>Inscrever-se</button>
             </form>
         </div>
 
@@ -196,7 +199,9 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                     </p>
                     <footer class="blockquote-footer m-0">
                         <?php
-                         if($course->available_vacancies == 1) {
+                        if ($course->available_vacancies == 0) {
+                            echo "Vagas esgotadas";
+                        } else if ($course->available_vacancies == 1) {
                             echo $course->available_vacancies . " vaga restante";
                         } else {
                             echo $course->available_vacancies . " vagas restantes";

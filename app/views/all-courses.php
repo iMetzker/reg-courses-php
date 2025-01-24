@@ -50,7 +50,7 @@
                         <?php
                         if ($course->open == 1) {
                             if ($course->available_vacancies == 0) {
-                                echo "<span class=\"tag soldout\">Vagas encerradas</span>";
+                                echo "<span class=\"tag soldout\">Vagas esgotadas</span>";
                             } else if ($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) {
                                 echo "<span class=\"tag closed\">Fora do Período</span>";
                             } else {
