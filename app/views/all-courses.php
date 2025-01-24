@@ -1,5 +1,4 @@
 <div class="mb-3 d-flex justify-content-between align-items-end gap-3">
-
     <div class="form-floating input-search">
         <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></input>
         <label for="floatingTextarea"><i class="bi bi-search me-2"></i>Buscar curso</label>
@@ -40,6 +39,7 @@
         <tbody>
             <?php foreach ($allCourses as $course):
                 $dateCourse = new DateTime($course->date);
+                $dataAc = new DateTime();
                 $dateFormat = $dateCourse->format("d/m/Y");
             ?>
                 <tr>
@@ -49,7 +49,13 @@
                     <td scope="row" class="text-center">
                         <?php
                         if ($course->open === 1) {
+                           if($course->available_vacancies === 0) {
+                            echo "<span class=\"tag soldout\">Vagas encerradas</span>";
+                           } else if ($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) {
+                            echo "<span class=\"tag closed\">Fora do Período</span>";
+                           } else {
                             echo "<span class=\"tag open\">Aberto</span>";
+                           }
                         } else {
                             echo "<span class=\"tag close\">Fechado</span>";
                         }
