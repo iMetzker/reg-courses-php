@@ -1,3 +1,4 @@
+
 <div class="container-fluid p-0">
     <div class="p-5 header-container">
         <div class="z-2 position-relative container">
@@ -10,7 +11,7 @@
 
             <div class="mb-4">
                 <h1>Experimente ir além da sala de aula com a Alfa</h1>
-                <p class="fs-5 mb-4">Explore nossa plataforma além da sala de aula com conteúdos preparados especialmente para você se desenvolver ainda mais!</p>
+                <p class="fs-5 mb-4">Explore nossa plataforma com conteúdos preparados especialmente para você se desenvolver ainda mais!</p>
                 <a class="rounded text-light fw-semibold ms-2 btn-header" href="https://revista.unipacto.com.br/" target="_blank">Conheça nossa revista acadêmica</a>
             </div>
 
@@ -57,64 +58,64 @@
 
                 if ($course->open == 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
             ?>
-                <div class="card">
-                    <div class="image-container position-relative">
-                        <img src="./app/assets/img/<?= $course->image ?>" class="card-img-top course-image" alt="imagem ilustrativa do curso">
-                        <img src="./app/assets/img/logo-color.png" alt="logo AlfaUnipac" class="logo-cards position-absolute">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <?= $course->name ?>
-                        </h5>
-                        <div class="card-text card-description mb-2"
-                            title="<?php echo str_replace("&nbsp;", "&#13• ", strip_tags($course->description)); ?>">
-                            <?= $course->description ?>
+                    <div class="card">
+                        <div class="image-container position-relative">
+                            <img src="./app/assets/img/<?= $course->image ?>" class="card-img-top course-image" alt="imagem ilustrativa do curso">
+                            <img src="./app/assets/img/logo-color.png" alt="logo AlfaUnipac" class="logo-cards position-absolute">
                         </div>
-                        <hr>
-                        <div class="d-flex card-text align-items-center gap-1">
-                            <i class="bi bi-file-person-fill"></i>
-                            <h6 class="card-title mb-0 ">Ministrante:
-                                <?= $course->minister ?>
-                            </h6>
-                        </div>
-                        <div class="mt-2 d-flex align-items-center gap-3">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <?= $course->name ?>
+                            </h5>
+                            <div class="card-text card-description mb-2"
+                                title="<?php echo str_replace("&nbsp;", "&#13• ", strip_tags($course->description)); ?>">
+                                <?= $course->description ?>
+                            </div>
+                            <hr>
                             <div class="d-flex card-text align-items-center gap-1">
-                                <i class="bi bi-calendar3"></i>
-                                <h6 class="card-title mb-0 ">
-                                    <?= $dateFormat . ' às ' . $timeInitFormat
-                                    ?>
+                                <i class="bi bi-file-person-fill"></i>
+                                <h6 class="card-title mb-0 ">Ministrante:
+                                    <?= $course->minister ?>
                                 </h6>
                             </div>
-                            <div class="d-flex card-text align-items-center gap-1">
-                                <i class="bi bi-clock-history"></i>
-                                <h6 class="card-title mb-0 ">Duração: <?= $durationFormat ?></h6>
+                            <div class="mt-2 d-flex align-items-center gap-3">
+                                <div class="d-flex card-text align-items-center gap-1">
+                                    <i class="bi bi-calendar3"></i>
+                                    <h6 class="card-title mb-0 ">
+                                        <?= $dateFormat . ' às ' . $timeInitFormat
+                                        ?>
+                                    </h6>
+                                </div>
+                                <div class="d-flex card-text align-items-center gap-1">
+                                    <i class="bi bi-clock-history"></i>
+                                    <h6 class="card-title mb-0 ">Duração: <?= $durationFormat ?></h6>
+                                </div>
                             </div>
-                        </div>
-                        <p class="card-text mt-2">
-                            <b class="fs-3">
-                                <?= $course->vacancies ?></b> Vagas
-                        </p>
-                        <footer class="blockquote-footer">
+                            <p class="card-text mt-2">
+                                <b class="fs-3">
+                                    <?= $course->vacancies ?></b> Vagas
+                            </p>
+                            <footer class="blockquote-footer">
+                                <?php
+                                if ($course->available_vacancies === 0) {
+                                    echo "<span>Vagas esgotadas</span>";
+                                } else if ($course->available_vacancies == 1) {
+                                    echo $course->available_vacancies . " vaga restante";
+                                } else {
+                                    echo $course->available_vacancies . " vagas restantes";
+                                }
+                                ?>
+                            </footer>
                             <?php
-                            if ($course->available_vacancies === 0) {
-                                echo "<span>Vagas esgotadas</span>";
-                            } else if($course->available_vacancies == 1) {
-                                echo $course->available_vacancies . " vaga restante";
-                            } else {
-                                echo $course->available_vacancies . " vagas restantes";
+                            if ($course->available_vacancies > 0) {
+                                echo '<a class="card-text card-icon fs-4" href="./app/views/registration.php?id=' . $course->id . '">
+                            Inscrever-se <i class="bi bi-person-add"></i></a>';
                             }
                             ?>
-                        </footer>
-                        <?php
-                        if ($course->available_vacancies > 0) {
-                            echo '<a class="card-text card-icon fs-4" href="./app/views/registration.php?id=' . $course->id . '">
-                            Inscrever-se <i class="bi bi-person-add"></i></a>';
-                        }
-                        ?>
+                        </div>
                     </div>
-                </div>
             <?php }
-         endforeach; ?>
+            endforeach; ?>
         </div>
 
         <nav aria-label="Page navigation" class="pagination-courses mt-5 d-flex justify-content-center">
