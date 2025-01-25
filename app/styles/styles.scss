@@ -54,89 +54,14 @@
   }
 }
 
-/* CARD NOSSA HISTÓRIA */
+/* CURSOS */
 
-.about-content {
-  max-width: 500px;
+.detail-course-hour {
+  background-color: #fd5f00 !important;
 }
 
-.custom-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-
-  max-width: 450px;
-}
-
-.custom-grid img {
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.grid-item-1 {
-  grid-column: 2 / 3;
-  grid-row: span 2;
-}
-
-.grid-item-2 {
-  grid-column: span 2;
-  grid-row: span 3;
-}
-
-.grid-item-3 {
-  grid-column: span 2;
-  grid-row: span 1;
-}
-
-.btn-about {
-  text-decoration: none;
-  background-color: #fd7e14;
-  border: none;
-  padding: 10px 20px;
-  transition: 0.2s ease-in-out;
-
-  &:hover {
-    background-color: #e47011;
-    transition: 0.2s ease-in-out;
-  }
-}
-
-.footer-list-courses {
-  background-color: #041c39;
-  position: absolute;
-  right: 0;
-  left: 0;
-
-  color: #ffffff;
-
-  img {
-    max-width: 200px;
-  }
-
-  p {
-    text-transform: uppercase;
-    font-size: 14px;
-  }
-
-  .links-container a {
-    color: #ffffff;
-  }
-
-  .logo-content {
-    min-width: 480px;
-  }
-
-  .contact-us {
-    min-width: 270px;
-  }
-}
-
-.accordion-button:not(.collapsed) {
-  background-color: transparent;
-  color: #000;
-  font-weight: 500;
+.course-date {
+  background-color: #041c39 !important;
 }
 
 /* CADASTRO DE CURSOS */
@@ -415,14 +340,33 @@
     background-image: url(../assets/img/img2.jpg);
 }
 
-// COURSES
-.text-detail-course {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: red;
+//FOOTER
+.bg-img-footer1 {
+  background-image: url(../public/img/insta/turma_engc.jpg);
 }
 
-.icon-detail-course {
-    color: #fd7e14;
+.bg-img-footer2 {
+  background-image: url(../public/img/insta/turma_farmacia.jpg);
+}
+
+.bg-img-footer3 {
+  background-image: url(../public/img/insta/biblioteca.jpg);
+}
+
+.bg-img-footer4 {
+  background-image: url(../public/img/insta/workshop.jpg);
+}
+
+.bg-img-footer5 {
+  background-image: url(../public/img/insta/turma_engc.jpg);
+}
+
+.logo-footer img{
+height: 65px;
+width: 252px;
+margin-top: -23px;
+}
+
+.logo-emec img{
+  height: 65px;
 }

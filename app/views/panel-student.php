@@ -119,16 +119,34 @@
                 </div>
             </div>
 
+            <div class="d-flex justify-content-between gap-3 mb-5">
+                <div class="form-floating input-search">
+                    <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></input>
+                    <label for="floatingTextarea"><i class="bi bi-search me-2"></i>Digite aqui o que você procura</label>
+                </div>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <p class="m-0">Ordenar por: </p>
+                    <select class="form-select filter-course" aria-label="filtrar curso">
+                        <option selected>Mais recentes</option>
+                        <option value="2">Cursos abertos</option>
+                        <option value="2">Cursos encerrados</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="row">
                 <?php foreach ($allCourses as $course):
                     // FORMATANDO DATAS
+                    setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
                     $dateCourse = new DateTime($course->date);
                     $timeInit = new DateTime($course->time);
                     $durationCourse = new DateTime($course->duration);
                     $dataAc = new DateTime();
 
-
-                    $dateFormat = $dateCourse->format("d/m/Y");
+                    $dateDayFormat = $dateCourse->format("d");
+                    $dateMonthFormat = strftime('%b', $dateCourse->getTimestamp());
+                    $dateYearFormat = $dateCourse->format("Y");
                     $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
                     $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
@@ -137,30 +155,43 @@
                 ?>
                         <div class="col-md-6 col-lg-4 ftco-animate">
                             <div class="blog-entry">
-                                <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url(./app/assets/img/<?= $course->image ?>);">
-                                    <div class="meta-date text-center p-2">
-                                        <span class="day">26</span>
-                                        <span class="mos">Julho</span>
-                                        <span class="yr">2025</span>
+                                <a href="./app/views/registration.php?id=<?=$course->id?>" class="block-20 d-flex align-items-end" style="background-image: url(./app/assets/img/<?= $course->image ?>);">
+                                    <div class="meta-date text-center p-2 course-date">
+                                        <span class="day"><?= $dateDayFormat ?></span>
+                                        <span class="mos"><?= $dateMonthFormat ?></span>
+                                        <span class="yr"><?= $dateYearFormat ?></span>
+                                    </div>
+
+                                    <div class="meta-date text-center p-2 ma-5 detail-course-hour">
+                                        <span class="mos">ás <?= $timeInitFormat ?></span>
                                     </div>
                                 </a>
                                 <div class="text bg-white d-flex justify-content-start gap-3 pb-2 px-4 pt-4">
-                                        <div class=" d-flex align-items-center gap-2">
-                                            <i class="bi bi-person-square icon-detail-course"></i>
-                                            <p class="card-title mb-0 text-detail-course">
-                                                <?= $course->minister ?>
-                                            </p>
-                                        </div>
-
-                                        <div class=" d-flex align-items-center gap-2">
-                                            <i class="bi bi-clock icon-detail-course"></i>
-                                            <p class="card-title mb-0 text-detail-course"><?= $durationFormat ?></p>
-                                        </div>
+                                    <div
+                                        class="d-flex align-items-center gap-2"
+                                        style="font-size: 12px; font-weight: bold;">
+                                        <i
+                                            class="bi bi-person-square icon-detail-course"
+                                            style="color: #fd7e14;"></i>
+                                        <p class="card-title mb-0">
+                                            <?= $course->minister ?>
+                                        </p>
                                     </div>
+
+                                    <div
+                                        class=" d-flex align-items-center gap-2"
+                                        style="font-size: 12px; font-weight: bold;">
+                                        <i
+                                            class="bi bi-clock-fill icon-detail-course"
+                                            style="color: #fd7e14;"></i>
+                                        <p class="card-title mb-0 text-detail-course">
+                                            <?= $durationFormat ?></p>
+                                    </div>
+                                </div>
 
                                 <div class="text bg-white px-4">
                                     <h3 class="heading">
-                                        <a href="#"><?= $course->name ?></a>
+                                        <a href="./app/views/registration.php?id=<?=$course->id?>"><?= $course->name ?></a>
                                     </h3>
 
                                     <div class="card-text card-description mb-2"
@@ -168,28 +199,33 @@
                                         <?= $course->description ?>
                                     </div>
 
-                                    <p class="ml-auto mb-0 d-flex align-items-center gap-2">
-                                        <?php
-                                        if ($course->available_vacancies === 0) {
-                                            echo "<span>Vagas esgotadas</span>";
-                                        } else if ($course->available_vacancies == 1) {
-                                            echo
-                                            '<i class="bi bi-person fs-5"></i>' .
-                                                $course->available_vacancies . " vaga restante";
-                                        } else {
-                                            echo
-                                            '<i class="bi bi-person fs-5"></i>' . $course->available_vacancies . " vagas restantes";
-                                        }
-                                        ?>
-                                    </p>
-
-                                    <div class="d-flex align-items-center mt-4 pb-4">
+                                    <div class="d-flex align-items-center mt-4 pb-4 justify-content-between">
                                         <?php
                                         if ($course->available_vacancies > 0) {
                                             echo '
                                             <p class="mb-0"><a href="./app/views/registration.php?id=' . $course->id . '" class="btn btn-primary">Inscreva-se <span class="ion-ios-arrow-round-forward"></span></a></p>';
                                         }
                                         ?>
+
+                                        <p class="m-0 d-flex align-items-center gap-2">
+                                            <?php
+                                            if ($course->available_vacancies === 0) {
+                                                echo
+                                                '<i class="bi bi-person-exclamation"
+                                                 style="color: #fd7e14;"></i>' .
+                                                    '<span>Vagas esgotadas</span>';
+                                            } else if ($course->available_vacancies == 1) {
+                                                echo
+                                                '<i class="bi bi-person fs-5"
+                                                 style="color: #fd7e14;"></i>' .
+                                                    $course->available_vacancies . " vaga";
+                                            } else {
+                                                echo
+                                                '<i class="bi bi-person fs-5"
+                                                 style="color: #fd7e14;"></i>' . $course->available_vacancies . " vagas";
+                                            }
+                                            ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -307,82 +343,12 @@
         </div>
     </section>
 
-    <!-- <section class="ftco-section ftco-no-pt ftc-no-pb">
-        <div class="container">
-            <div class="row d-flex">
-                <div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
-                    <div class="img" style="background-image: url(images/about.jpg); border"></div>
-                </div>
-                <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
-                    <h2 class="mb-4">What We Offer</h2>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word.</p>
-                    <div class="row mt-5">
-                        <div class="col-lg-6">
-                            <div class="services-2 d-flex">
-                                <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-security"></span></div>
-                                <div class="text pl-3">
-                                    <h3>Safety First</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="services-2 d-flex">
-                                <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-reading"></span></div>
-                                <div class="text pl-3">
-                                    <h3>Regular Classes</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="services-2 d-flex">
-                                <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-diploma"></span></div>
-                                <div class="text pl-3">
-                                    <h3>Certified Teachers</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="services-2 d-flex">
-                                <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-education"></span></div>
-                                <div class="text pl-3">
-                                    <h3>Sufficient Classrooms</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="services-2 d-flex">
-                                <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-jigsaw"></span></div>
-                                <div class="text pl-3">
-                                    <h3>Creative Lessons</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="services-2 d-flex">
-                                <div class="icon mt-2 d-flex justify-content-center align-items-center"><span class="flaticon-kids"></span></div>
-                                <div class="text pl-3">
-                                    <h3>Sports Facilities</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <section class="ftco-section testimony-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-2">
                 <div class="col-md-8 text-center heading-section ftco-animate">
-                    <h2 class="mb-4">Quem já foi aluno indica!</h2>
-                    <p>Saiba o que nossos alunos falam sobre nossa metodologia de ensino.</p>
+                    <h2 class="mb-4">Quem é aluno indica!</h2>
+                    <p>Nos orgulhamos em fazer parte da jornada acadêmica de cada um de nossos alunos. Confira o que eles têm a dizer sobre nossa metodologia de ensino!</p>
                 </div>
             </div>
             <div class="row ftco-animate justify-content-center">
@@ -390,71 +356,86 @@
                     <div class="carousel-testimony owl-carousel">
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img mr-4" style="background-image: url(images/teacher-1.jpg)">
-                                </div>
                                 <div class="text ml-2">
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Racky Henderson</p>
-                                    <span class="position">Father</span>
+                                    <p>Diz o ditado chinês que uma longa caminhada começa com o primeiro passo. E a escolha de uma boa Faculdade para a graduação é uma ferramenta extremamente indispensável para uma boa atuação profissional. Foi pensando no exercício de minha futura profissão, que escolhi, a Faculdade Presidente Antônio Carlos como um caminho mais curto para se alcançar a aprovação na OAB e em Concursos Públicos.</p>
+                                    <p class="name">Breno Gil de Carvalho</p>
+                                    <span class="position">Ex-Aluno do Curso de Direito</span>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img mr-4" style="background-image: url(images/teacher-2.jpg)">
-                                </div>
                                 <div class="text ml-2">
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
                                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Henry Dee</p>
-                                    <span class="position">Mother</span>
+                                    <p class="name">Ivny Metzker</p>
+                                    <span class="position">Aluna do Curso de Sistemas de Informação</span>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img mr-4" style="background-image: url(images/teacher-3.jpg)">
-                                </div>
                                 <div class="text ml-2">
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
                                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Mark Huff</p>
-                                    <span class="position">Mother</span>
+                                    <p class="name">Fulana de Tal</p>
+                                    <span class="position">Aluna do Curso de Odontologia</span>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img mr-4" style="background-image: url(images/teacher-4.jpg)">
-                                </div>
                                 <div class="text ml-2">
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Rodel Golez</p>
-                                    <span class="position">Mother</span>
+                                    <p>Estudar na AlfaUnipac foi muito importante para minha formação profissional, pois adquiri conhecimentos não só teóricos como também práticos. O curso tem um excelente corpo docente que estava sempre à disposição para me passar conhecimento. Através do curso consegui vaga de estagário o que me possibilitou colocar em prática o que estava aprendendo e assim podendo me aperfeiçoar mais ainda.</p>
+                                    <p class="name">Moisés Borges</p>
+                                    <span class="position">Ex-Aluno do curso de Sistemas de Informação</span>
                                 </div>
                             </div>
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex">
-                                <div class="user-img mr-4" style="background-image: url(images/teacher-1.jpg)">
+                                <div class="text ml-2">
+                                    <span class="quote d-flex align-items-center justify-content-center">
+                                        <i class="icon-quote-left"></i>
+                                    </span>
+                                    <p>O Curso de Administração da Faculdade Presidente Antônio Carlos oferece realmente os elementos básicos necessários à formação de um bom profissional da área. Além dos conteúdos ministrados na grade curricular, são oferecidos sistematicamente cursos extracurriculares e palestras.</p>
+                                    <p class="name">Bruna Doehler Santos</p>
+                                    <span class="position">Ex-Aluna do Curso de Administração</span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap d-flex">
                                 <div class="text ml-2">
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
                                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <p class="name">Ken Bosh</p>
-                                    <span class="position">Mother</span>
+                                    <p class="name">Saimon Tal</p>
+                                    <span class="position">Aluno do Curso de Administração</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="testimony-wrap d-flex">
+                                <div class="text ml-2">
+                                    <span class="quote d-flex align-items-center justify-content-center">
+                                        <i class="icon-quote-left"></i>
+                                    </span>
+                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p class="name">Fulano de Tal</p>
+                                    <span class="position">Aluno do Curso de Medicina</span>
                                 </div>
                             </div>
                         </div>
@@ -468,28 +449,28 @@
         <div class="container-wrap">
             <div class="row no-gutters">
                 <div class="col-md-3 ftco-animate">
-                    <a href="images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/course-1.jpg);">
+                    <a href="https://www.instagram.com/p/C8re6HHgiP5/?img_index=1" target="_blank" class="gallery img d-flex align-items-center bg-img-footer5">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
                             <span class="icon-instagram"></span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 ftco-animate">
-                    <a href="images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_2.jpg);">
+                    <a href="https://www.instagram.com/p/DAb0ocVvYGp/?img_index=1" target="_blank" class="gallery img d-flex align-items-center bg-img-footer2">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
                             <span class="icon-instagram"></span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 ftco-animate">
-                    <a href="images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_3.jpg);">
+                    <a href="https://www.instagram.com/p/DDhhg99xGuL/" target="_blank" class="gallery img d-flex align-items-center bg-img-footer3">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
                             <span class="icon-instagram"></span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-3 ftco-animate">
-                    <a href="images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_4.jpg);">
+                    <a href="https://www.instagram.com/p/DChoGSuPnQl/?img_index=1" target="_blank" class="gallery img d-flex align-items-center bg-img-footer4">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
                             <span class="icon-instagram"></span>
                         </div>
@@ -502,285 +483,75 @@
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
-            <div class="row mb-5">
+            <div class="row mb-5 d-flex justify-content-between">
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="ftco-footer-widget mb-4 logo-footer">
+                        <img src="./app/assets/img/logo-white-orange.png" alt="logo Alfa Unipac">
+                    </div>
+                    <div class="ftco-footer-widget mb-5">
+                        <h2 class="ftco-heading-2 mb-0">Siga-nos!</h2>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                            <li class="ftco-animate"><a href="https://www.linkedin.com/company/alfaunipac" target="_blank"><span class="icon-linkedin"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.youtube.com/c/FaculdadeAlfaUnipac" target="_blank"><span class="icon-youtube"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.instagram.com/alfaunipac.oficial/" target="_blank"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col-md-6 col-lg-3">
                     <div class="ftco-footer-widget mb-5">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
+                        <h2 class="ftco-heading-2">Como nos Encontrar?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                                <li>
+                                    <span class="icon icon-map-marker"></span>
+                                    <span class="text">
+                                        <a href="" target="_blank">
+                                            Rua Engenheiro Celso Murta, 600
+                                            Dr. Laerte Laender, Teófilo Otoni
+                                            MG - 39803-087
+                                        </a>
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <span class="icon icon-phone"></span>
+                                    <span class="text">
+                                        (33) 3529-4750
+                                    </span>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-5">
-                        <h2 class="ftco-heading-2">Recent Blog</h2>
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> June 27, 2019</a></div>
-                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                                </div>
+                    <div class="ftco-footer-widget mb-5 ml-md-4 ">
+                        <h2 class="ftco-heading-2">Situação e-Mec</h2>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a target="_blank" href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTQxNTY">
+                                    <figure class="logo-emec">
+                                        <img src="https://alfaunipac.com.br/./site/images/emec.png" alt="AlfaUnipac Emec">
+                                    </figure>
+                                </a>
+
                             </div>
-                        </div>
-                        <div class="block-21 mb-5 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> June 27, 2019</a></div>
-                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                                </div>
+                            <div class="col-lg-12 mt-2">
+                                <a href="https://alfaunipac.com.br/./site/file/portaria-758.pdf" target="_blank" class="text-white">PORTARIA Nº 758, DE 20 DE JUNHO DE 2017<br>
+                                    Publicada em: 23 de junho de 2017</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-5 ml-md-4">
-                        <h2 class="ftco-heading-2">Links</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Services</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
-                            <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-5">
-                        <h2 class="ftco-heading-2">Subscribe Us!</h2>
-                        <form action="#" class="subscribe-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                                <input type="submit" value="Subscribe" class="form-control submit px-3">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="ftco-footer-widget mb-5">
-                        <h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
-                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright © 2025 Alfaunipac, Todos os direitos reservados</p>
                 </div>
             </div>
-
-        </div>
-    </footer>
-
-</div>
-
-<div class="container-fluid p-0">
-    <div class="p-5 header-container">
-        <div class="z-2 position-relative container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb text-light">
-                    <li class="breadcrumb-item"><a class="text-light" href="<?= $BASE_URL ?>">Início</a></li>
-                    <li class="breadcrumb-item active text-light" aria-current="page">Painel do Aluno</li>
-                </ol>
-            </nav>
-
-            <div class="mb-4">
-                <h1>Experimente ir além da sala de aula com a Alfa</h1>
-                <p class="fs-5 mb-4">Explore nossa plataforma com conteúdos preparados especialmente para você se desenvolver ainda mais!</p>
-                <a class="rounded text-light fw-semibold ms-2 btn-header" href="https://revista.unipacto.com.br/" target="_blank">Conheça nossa revista acadêmica</a>
-            </div>
-
-            <img class="logo-header" src="./app/assets/img/logo-white-orange.png" alt="logo AlfaUnipac">
-
-        </div>
-    </div>
-
-    <div class="container mt-5">
-
-        <h2 class="text-start">Minicursos, eventos e palestras</h2>
-        <hr>
-
-        <div class="d-flex justify-content-between gap-3">
-            <div class="form-floating input-search">
-                <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></input>
-                <label for="floatingTextarea"><i class="bi bi-search me-2"></i>Digite aqui o que você procura</label>
-            </div>
-
-            <div class="d-flex gap-2 align-items-center">
-                <p class="m-0">Ordenar por: </p>
-                <select class="form-select filter-course" aria-label="filtrar curso">
-                    <option selected>Mais recentes</option>
-                    <option value="2">Cursos abertos</option>
-                    <option value="2">Cursos encerrados</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center flex-wrap gap-3 mt-5">
-            <?php foreach ($allCourses as $course):
-
-                // FORMATANDO DATAS
-                $dateCourse = new DateTime($course->date);
-                $timeInit = new DateTime($course->time);
-                $durationCourse = new DateTime($course->duration);
-                $dataAc = new DateTime();
-
-
-                $dateFormat = $dateCourse->format("d/m/Y");
-                $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
-                $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
-
-
-                if ($course->open == 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
-            ?>
-                    <div class="card">
-                        <div class="image-container position-relative">
-                            <img src="./app/assets/img/<?= $course->image ?>" class="card-img-top course-image" alt="imagem ilustrativa do curso">
-                            <img src="./app/assets/img/logo-color.png" alt="logo AlfaUnipac" class="logo-cards position-absolute">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <?= $course->name ?>
-                            </h5>
-                            <div class="card-text card-description mb-2"
-                                title="<?php echo str_replace("&nbsp;", "&#13• ", strip_tags($course->description)); ?>">
-                                <?= $course->description ?>
-                            </div>
-                            <hr>
-                            <div class="d-flex card-text align-items-center gap-1">
-                                <i class="bi bi-file-person-fill"></i>
-                                <h6 class="card-title mb-0 ">Ministrante:
-                                    <?= $course->minister ?>
-                                </h6>
-                            </div>
-                            <div class="mt-2 d-flex align-items-center gap-3">
-                                <div class="d-flex card-text align-items-center gap-1">
-                                    <i class="bi bi-calendar3"></i>
-                                    <h6 class="card-title mb-0 ">
-                                        <?= $dateFormat . ' às ' . $timeInitFormat
-                                        ?>
-                                    </h6>
-                                </div>
-                                <div class="d-flex card-text align-items-center gap-1">
-                                    <i class="bi bi-clock-history"></i>
-                                    <h6 class="card-title mb-0 ">Duração: <?= $durationFormat ?></h6>
-                                </div>
-                            </div>
-                            <p class="card-text mt-2">
-                                <b class="fs-3">
-                                    <?= $course->vacancies ?></b> Vagas
-                            </p>
-                            <footer class="blockquote-footer">
-                                <?php
-                                if ($course->available_vacancies === 0) {
-                                    echo "<span>Vagas esgotadas</span>";
-                                } else if ($course->available_vacancies == 1) {
-                                    echo $course->available_vacancies . " vaga restante";
-                                } else {
-                                    echo $course->available_vacancies . " vagas restantes";
-                                }
-                                ?>
-                            </footer>
-                            <?php
-                            if ($course->available_vacancies > 0) {
-                                echo '<a class="card-text card-icon fs-4" href="./app/views/registration.php?id=' . $course->id . '">
-                            Inscrever-se <i class="bi bi-person-add"></i></a>';
-                            }
-                            ?>
-                        </div>
-                    </div>
-            <?php }
-            endforeach; ?>
-        </div>
-
-        <nav aria-label="Page navigation" class="pagination-courses mt-5 d-flex justify-content-center">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <div class="container mt-5 d-flex p-5 gap-5 align-items-center justify-content-center flex-wrap">
-        <div class="about-content">
-            <h2>Transformando vidas por meio da educação</h2>
-            <p class="fs-5">A AlfaUnipac é a melhor e maior faculdade do nordeste mineiro.</p>
-            <p class="mb-5">Nosso propósito é formar profissionais por meio da oferta de cursos diferenciados e flexibilidade nos estudos. Com a AlfaUnipac você se tornará um profissional tecnicamente capaz e dotado de conhecimentos práticos para atuar no mercado de trabalho.</p>
-            <a class="rounded-pill fs-6 text-light fw-semibold btn-about" href="https://alfaunipac.com.br/sobre-a-alfaunipac" target="_blank">Nossa história</a>
-        </div>
-
-        <div class="mt-5 custom-grid">
-            <div class="grid-item-1">
-                <img src="./app/assets/img/header-woman1.png" class="img-fluid" alt="aluna com cadernos">
-            </div>
-            <div class="grid-item-2">
-                <img src="./app/assets/img/woman2.jpg" class="img-fluid" alt="aluna com cadernos">
-            </div>
-            <div class="grid-item-3">
-                <img src="./app/assets/img/man1.jpg" class="img-fluid" alt="aluna com notebook">
-            </div>
-        </div>
-    </div>
-
-
-    <footer class="footer-list-courses mt-5 p-5">
-        <div class="container">
-
-            <div class="row d-flex justify-content-between gap-3">
-                <div class="col-lg-2 logo-content">
-                    <img src="./app/assets/img/logo-white-orange.png" alt="logo Alfa Unipac">
-                    <p class="mt-3"> Rua Engenheiro Celso Murta, 600 <br>
-                        Dr. Laerte Laender, Teófilo Otoni <br>
-                        MG - 39803-087
-                    </p>
-
-                    <span>Direito Autoral © 2025 Alfaunipac, Todos os direitos reservados.</span>
-                </div>
-
-                <div class="col-lg-2 contact-us">
-                    <h5>Siga-nos nas nossas redes!</h5>
-                    <div class="d-flex gap-3 fs-4 links-container">
-                        <a href="https://www.linkedin.com/company/alfaunipac" target="_blank"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://www.instagram.com/alfaunipac.oficial/" target="_blank"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.youtube.com/c/FaculdadeAlfaUnipac" target="_blank"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 regularidade footer-4">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <a target="_blank" href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTQxNTY">
-                                <figure>
-                                    <img src="https://alfaunipac.com.br/./site/images/emec.png" alt="AlfaUnipac Emec">
-                                </figure>
-                            </a>
-
-                        </div>
-                        <div class="col-lg-12 mt-2">
-                            <a href="https://alfaunipac.com.br/./site/file/portaria-758.pdf" target="_blank" class="text-white">PORTARIA Nº 758, DE 20 DE JUNHO DE 2017<br>
-                                Publicada em: 23 de junho de 2017</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </footer>
 
