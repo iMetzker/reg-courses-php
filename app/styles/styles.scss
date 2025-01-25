@@ -1,445 +1,428 @@
 /* LISTAGEM DE CURSOS */
 .card {
-    max-width: 360px;
+  max-width: 360px;
 }
 
 .course-image {
-    height: 200px;
-    object-fit: cover;
+  height: 200px;
+  object-fit: cover;
 }
 
 .card-body a,
-.modify button{
-    color: #fd7e14;
+.modify button {
+  color: #fd7e14;
 }
 
-.card-body{
-    a {
-        text-decoration: none;
-    
-        &:hover {
-            text-decoration: underline;
-        }
+.card-body {
+  a {
+    text-decoration: none;
 
+    &:hover {
+      text-decoration: underline;
     }
-
-    .card-description {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+  }
 }
+
+.card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
 .header-container {
-    background: url("../assets/img/header-student.jpg") no-repeat center center;
-    background-size: cover;
-    position: relative;
-    right: 0;
-    left: 0;
-
-    color: #ffffff;
-
-    h1, p {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-    }
-
-    p {
-        max-width: 700px;
-    }
-
-    .breadcrumb-item+.breadcrumb-item::before {
-        color: #fff !important;
-    }
-
-    .btn-header {
-        text-decoration: none;
-        background-color: #041c39;
-        border: none;
-        padding: 10px 15px;
-        font-size: 14px;
-        transition: 0.2s ease-in-out;
-
-        &:hover {
-            background-color: #031327;
-            transition: 0.2s ease-in-out;
-        }
-    }
-
-    .logo-header {
-        width: 200px;
-    }
-}
-
-.header-container::after {
-    content: ""; 
-    position: absolute; 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(228, 112, 17, 0.6);
-    z-index: 1; 
+  background: #041c39;
 }
 
 .logo-cards {
-    width: 100px;
-    bottom: 10px;
-    right: 10px;
+  width: 100px;
+  bottom: 10px;
+  right: 10px;
 }
 
 .filter-course {
-    max-width: 180px;
-    height: 100%;
+  max-width: 180px;
+  height: 100%;
 }
 
-.pagination-courses a{
-    color: #fd7e14;
+.pagination-courses a {
+  color: #fd7e14;
 
-    &:hover {
-        color: #e47011;
-    }
+  &:hover {
+    color: #e47011;
+  }
 }
 
 /* CARD NOSSA HISTÓRIA */
 
 .about-content {
-    max-width: 500px;
+  max-width: 500px;
 }
 
 .custom-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 
-    max-width: 450px;
+  max-width: 450px;
 }
 
 .custom-grid img {
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .grid-item-1 {
-    grid-column: 2 / 3;
-    grid-row: span 2;
+  grid-column: 2 / 3;
+  grid-row: span 2;
 }
 
 .grid-item-2 {
-    grid-column: span 2;
-    grid-row: span 3;
+  grid-column: span 2;
+  grid-row: span 3;
 }
 
 .grid-item-3 {
-    grid-column: span 2;
-    grid-row: span 1;
+  grid-column: span 2;
+  grid-row: span 1;
 }
 
 .btn-about {
-    text-decoration: none;
-        background-color: #fd7e14;
-        border: none;
-        padding: 10px 20px;
-        transition: 0.2s ease-in-out;
+  text-decoration: none;
+  background-color: #fd7e14;
+  border: none;
+  padding: 10px 20px;
+  transition: 0.2s ease-in-out;
 
-        &:hover {
-            background-color: #e47011;
-            transition: 0.2s ease-in-out;
-        }
+  &:hover {
+    background-color: #e47011;
+    transition: 0.2s ease-in-out;
+  }
 }
 
 .footer-list-courses {
-    background-color: #041c39;
-    position: absolute;
-    right: 0;
-    left: 0;
+  background-color: #041c39;
+  position: absolute;
+  right: 0;
+  left: 0;
 
+  color: #ffffff;
+
+  img {
+    max-width: 200px;
+  }
+
+  p {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  .links-container a {
     color: #ffffff;
+  }
 
-    img {
-        max-width: 200px;
-    }
+  .logo-content {
+    min-width: 480px;
+  }
 
-    p {
-        text-transform: uppercase;
-        font-size: 14px;
-    }
-
-    .links-container a{
-        color: #ffffff;
-    }
-
-    .logo-content {
-        min-width: 480px;
-    }
-
-    .contact-us {
-        min-width: 270px;
-    }
+  .contact-us {
+    min-width: 270px;
+  }
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: transparent;
-    color: #000;
-    font-weight: 500;
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
 }
 
 /* CADASTRO DE CURSOS */
 
 .input-time-as {
-    width: 100px;
+  width: 100px;
 }
 
 .input-date {
-    width: 145px;
+  width: 145px;
 }
 
 .btn-add-course {
-    background-color: #fd7e14;
-    border: none;
-    padding: 10px 25px;
-    color: #fff;
-    font-weight: 600;
+  background-color: #fd7e14;
+  border: none;
+  padding: 10px 25px;
+  color: #fff;
+  font-weight: 600;
 
-    &:hover {
-        background-color: #e47011;
-        transition: 0.2s ease-in-out;
-    }
+  &:hover {
+    background-color: #e47011;
+    transition: 0.2s ease-in-out;
+  }
 }
 
 #id_image_course {
-    color: #fd7e14;
+  color: #fd7e14;
 }
 
 .input-image-formats {
-    font-size: 12px;
-    padding: 5px;
+  font-size: 12px;
+  padding: 5px;
 }
 
 /* LISTAGEM DE CURSOS PAINEL ADM */
 
 .tag {
-   padding: 3px 6px;
-   color: #ffffff;
-   border-radius: 5px;
+  padding: 3px 6px;
+  color: #ffffff;
+  border-radius: 5px;
 
-   font-size: 12px;
-   font-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
 
-   &.open {
+  &.open {
     background-color: #004e98;
-   }
+  }
 
-   /*vagas encerradas*/
-   &.soldout {
+  /*vagas encerradas*/
+  &.soldout {
     background-color: #fd7e14;
-   }
+  }
 
-   /*fechado*/
-   &.close {
+  /*fechado*/
+  &.close {
     background-color: #e5383b;
-   }
+  }
 
-   /*fora do período*/
-   &.closed {
+  /*fora do período*/
+  &.closed {
     background-color: #6c757d;
-   }
-
+  }
 }
 
-.filter-group{
+.filter-group {
+  select {
+    border: none;
+    outline: none;
+    width: 143px;
+  }
 
-    select {
-        border: none;
-        outline: none;
-        width: 143px;
-    }
-
-    .form-select {
-        padding: 1rem 0.75rem;
-        border: 1px solid #dee2e6;
-    }
+  .form-select {
+    padding: 1rem 0.75rem;
+    border: 1px solid #dee2e6;
+  }
 }
 
 .input-search {
-    width: 40%;
+  width: 40%;
 }
 
 .edit-table {
-    td {
-        vertical-align: middle;
-    }
+  td {
+    vertical-align: middle;
+  }
 }
 
-.icon-list i{
-    color: #fd7e14;
-    padding: 5px;
-    border-radius: 5px;
+.icon-list i {
+  color: #fd7e14;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .trash {
-    border: none;
-    background-color: transparent;
-    padding: 0px;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
 }
 
-
-
 .header-buttons {
+  .header-export,
+  .header-add-course {
+    font-weight: 600;
+    padding: 7px 15px;
 
-    .header-export,
-    .header-add-course {
-        font-weight: 600;
-        padding: 7px 15px;
-
-        i {
-            font-size: 20px;
-        }
+    i {
+      font-size: 20px;
     }
+  }
 
-    .header-export {
-        color: #212519;
+  .header-export {
+    color: #212519;
 
-        &:hover {
-            transition: 0.2s ease-in-out;
-            background-color: #004e98;
-            border: 1px solid #004e98;
-            color: #ffffff;
-        }
+    &:hover {
+      transition: 0.2s ease-in-out;
+      background-color: #004e98;
+      border: 1px solid #004e98;
+      color: #ffffff;
     }
+  }
 
-    .header-add-course {
+  .header-add-course {
     background-color: #fd7e14;
     border: 1px solid #fd7e14;
 
     &:hover {
-        transition: 0.2s ease-in-out;
-        background-color: #e47011;
+      transition: 0.2s ease-in-out;
+      background-color: #e47011;
     }
-    }
+  }
 }
 
 .submenu-header {
-
-    .nav-item {
-         a {
-            color: #212519;
-            font-weight: 400;
-         }
-
-        span.text-bg-secondary {
-            background-color: #F0F1F5 !important;
-            color: #212519 !important;
-            font-weight: 500;
-        }
-
-        .active {
-            color: #e47011;
-            font-weight: 500;
-
-            border-top: 1px solid #e47011;
-            border-left: 1px solid #e47011;
-            border-right: 1px solid #e47011;
-
-            .text-bg-secondary {
-                background-color: #FFF9E1 !important;
-                color: #e47011 !important;
-            }
-        } 
+  .nav-item {
+    a {
+      color: #212519;
+      font-weight: 400;
     }
+
+    span.text-bg-secondary {
+      background-color: #f0f1f5 !important;
+      color: #212519 !important;
+      font-weight: 500;
+    }
+
+    .active {
+      color: #e47011;
+      font-weight: 500;
+
+      border-top: 1px solid #e47011;
+      border-left: 1px solid #e47011;
+      border-right: 1px solid #e47011;
+
+      .text-bg-secondary {
+        background-color: #fff9e1 !important;
+        color: #e47011 !important;
+      }
+    }
+  }
 }
 
 /* UPDATE CURSOS */
 
 .image-preview-course {
-    width: 250px;
-    object-fit: cover;
-    height: 150px;
+  width: 250px;
+  object-fit: cover;
+  height: 150px;
 }
 
 /* ADD ESTUDANTE */
 
 .container-enrollment {
-   min-height: 100vh;
+  min-height: 100vh;
 }
 
 .image-container-enrollment {
+  .img-header-enrollment {
+    height: 650px;
+    max-width: 500px;
+    min-width: 350px;
+  }
 
-    .img-header-enrollment {
-        height: 650px;
-        max-width: 500px;
-        min-width: 350px;
-    }
-
-    img {
-        object-fit: cover;
-        height: 100%;
-    }
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
 }
 
 .content-enrollment {
-    max-width: 750px;
+  max-width: 750px;
 
-    a {
-        color: #fd7e14;
+  a {
+    color: #fd7e14;
+  }
+
+  input {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #e4701179;
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 2px solid #fd7e14;
     }
+  }
 
-    input {
-        border: none;
-        border-radius: 0px;
-        border-bottom: 1px solid #e4701179;
+  h4 {
+    color: #fd7e14;
+  }
 
-        &:focus {
-            box-shadow: none;
-            border-bottom: 2px solid #fd7e14;
-        }
+  select {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #e4701179;
+    padding-left: 0px;
+
+    min-width: 190px;
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 2px solid #fd7e14;
     }
+  }
 
-    h4 {
-        color: #fd7e14;
+  .select-gender {
+    label {
+      position: relative;
+      bottom: -9px;
+
+      font-size: 14px;
     }
-
-    select {
-        border: none;
-        border-radius: 0px;
-        border-bottom: 1px solid #e4701179;
-        padding-left: 0px;
-
-        min-width: 190px;
-
-        &:focus {
-            box-shadow: none;
-            border-bottom: 2px solid #fd7e14;
-        }
-    }
-
-    .select-gender {
-        label {
-            position: relative;
-            bottom: -9px;
-
-            font-size: 14px;
-        }
-    }
+  }
 }
 
 .details-enrollment {
-    right: 8px;
-    bottom: 50px;
+  right: 8px;
+  bottom: 50px;
 
-    i {
-        color: #fd7e14;
-    }
+  i {
+    color: #fd7e14;
+  }
 }
 
 .btn-disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
+  background-color: #6c757d;
+  cursor: not-allowed;
 
-    &:hover {
-        background-color: #6c757d;
-    }
+  &:hover {
+    background-color: #6c757d;
+  }
+}
+
+// MENU
+
+.links-container {
+  a:hover i {
+    color: #fd7e14;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+.logo-header {
+  height: 65px;
+}
+
+.slider-img-1 {
+  background-image: url(../assets/img/header-2.jpg);
+}
+
+.slider-img-2 {
+  background-image: url(../assets/img/header-student.jpg);
+}
+
+// FAQ
+.bg-img2 {
+    background-image: url(../assets/img/img2.jpg);
+}
+
+// COURSES
+.text-detail-course {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: red;
+}
+
+.icon-detail-course {
+    color: #fd7e14;
 }
