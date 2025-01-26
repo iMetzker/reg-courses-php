@@ -34,13 +34,14 @@ $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
 $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 ?>
 
+<!-- AQUI COMEÇA -->
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscrever-se em Minicursos</title>
+    <title>Inscrição</title>
 
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -50,213 +51,201 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../styles/styles.scss">
+
+    <!-- TEMPLATE -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../template/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../template/css/animate.css">
+
+    <link rel="stylesheet" href="../template/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../template/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../template/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="../template/css/aos.css">
+
+    <link rel="stylesheet" href="../template/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="../template/css/flaticon.css">
+    <link rel="stylesheet" href="../template/css/icomoon.css">
+    <link rel="stylesheet" href="../template/css/style.css">
 </head>
 
 <body>
 
-    <div class="container-enrollment container-fluid d-flex align-items-center justify-content-center gap-5">
+    <div class="containe-fluid p-0">
+        <?php
+        require_once("../layout/header_reg.php");
+        ?>
 
-        <div class="p-5 content-enrollment">
-            <div>
-                <nav aria-label="breadcrumb" class="container p-0">
-                    <ol class="breadcrumb text-light">
-                        <li class="breadcrumb-item"><a href="http://localhost/php-sty/gitHub/reg-courses-php/?page=student">Voltar</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Inscrição</li>
-                    </ol>
-                </nav>
-                <span class="fs-6 fw-semibold">Minicurso Alfa</span>
-                <h2 class="fs-1"><?= $course->name ?></h2>
+        <section class="hero-wrap hero-wrap-2" style="background-image: url('../assets/img/heading-bg.jpg');">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-9 ftco-animate text-center">
+                        <h1 class="mb-2 bread"><?= $course->name ?></h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="http://localhost/projectsGT/reg-courses-php/?page=student">Voltar <i class="ion-ios-arrow-forward"></i></a></span>
+                            <span>Inscrição
+                                <i class="ion-ios-arrow-forward"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="mt-4 mb-4">
-                <h3 class="fs-5">O que você vai aprender?</h3>
-                <div><?= $course->description ?></div>
-            </div>
-
-            <form class="mt-3 form-floating" method="POST" action="../controller/contact_process.php?id_course=<?= $id ?>">
-
-                <input type="hidden" name="type" value="register">
-
-                <h4>Increver-se neste curso</h4>
-                <div class="form-floating mb-3">
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="id_student_name"
-                        placeholder="name@example.com"
-                        name="student_name"
-                        required>
-                    <label for="student_name">Nome Completo</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input
-                        class="form-control"
-                        type="email"
-                        id="id_student_email"
-                        placeholder="name@example.com"
-                        name="student_email"
-                        required>
-                    <label for="student_email">E-mail</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="id_student_cpf"
-                        placeholder="name@example.com"
-                        maxlength="14"
-                        name="student_cpf"
-                        required
-                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                    <label for="student_cpf">CPF</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="id_student_phone"
-                        placeholder="name@example.com"
-                        name="student_phone"
-                        maxlength="15"
-                        required
-                        pattern="\(\d{2}\) \d{5}-\d{4}">
-                    <label for="student_phone">Telefone de contato</label>
-                </div>
-
-                <div class="form-floating mb-3 d-flex gap-5  align-items-end">
-                    <input
-                        class="form-control date-btn-student"
-                        type="date"
-                        id="id_student_bth"
-                        placeholder="name@example.com"
-                        name="student_bth"
-                        required>
-                    <label for="student_bth">Data de Nascimento</label>
-                    <span id="birthdate-error" class="text-danger" style="display: none;">A idade deve ser entre 10 e 100 anos.</span>
-
-                    <div class="form-floating ">
-                        <div class="col select-gender">
-                            <label for="student_gender" class="form-label text-secondary m-0">Gênero</label>
-                            <select
-                                class="form-select"
-                                id="student_gender"
-                                name="student_gender"
-                                required>
-                                <option value="" selected disabled>Selecione</option>
-                                <option value="F">Feminino</option>
-                                <option value="M">Masculino</option>
-                            </select>
+        <section class="ftco-section contact-section">
+            <div class="container">
+                <div class="row d-flex contact-info">
+                    <div class="col-md-3 d-flex">
+                        <div class="bg-light align-self-stretch box p-4 text-center">
+                            <h3 class="mb-4">Realização</h3>
+                            <p><?= $dateFormat . ' às ' . $timeInitFormat ?></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex">
+                        <div class="bg-light align-self-stretch box p-4 text-center">
+                            <h3 class="mb-4">Duração</h3>
+                            <p><?= $durationFormat ?></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex">
+                        <div class="bg-light align-self-stretch box p-4 text-center">
+                            <h3 class="mb-4">Ministrante</h3>
+                            <p><?= $course->minister ?></p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex">
+                        <div class="align-self-stretch box p-4 text-center"
+                            style="
+                            background-color: <?= ($course->available_vacancies == 0) ? '#041c39' : '#fd7e14'; ?>;
+                            color: white;">
+                            <h3 class="mb-4"
+                                style="color: white;">Vagas</h3>
+                            <p>
+                                <?php
+                                if ($course->available_vacancies == 0) {
+                                    echo "Vagas esgotadas " .
+                                        '<i class="bi bi-exclamation-diamond"></i>';
+                                } else if ($course->available_vacancies == 1) {
+                                    echo $course->available_vacancies . " vaga restante";
+                                } else {
+                                    echo $course->available_vacancies . " vagas restantes";
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
-                
-                <button class="rounded-pill mt-3 btn-add-course fs-6
-                <?= ($course->available_vacancies == 0) ? 'btn-disabled' : '' ?>"
-                 type="submit"
-                  <?= ($course->available_vacancies == 0) ? 'disabled' : '' ?>>Inscrever-se</button>
-            </form>
-        </div>
-
-        <div class="image-container-enrollment position-relative">
-
-            <div class="card-img-top position-relative img-header-enrollment">
-                <img class="rounded-4 card-img-top" src="../assets/img/<?= $course->image ?>" alt="Imagem ilustrativa do curso">
             </div>
+        </section>
 
-            <div class="details-enrollment position-absolute p-4 rounded-4 bg-light-subtle">
-                <div class="d-flex gap-4 align-items-center">
-                    <div class="d-flex flex-column align-items-center">
-                        <div class="d-flex gap-2 align-items-center justify-content-center">
-                            <i class="bi bi-calendar3"></i>
-                            <h6 class="m-0">Data de Realização</h6>
+        <section class="ftco-section ftco-no-pt ftc-no-pb">
+            <div class="container">
+                <div class="row d-flex">
+                    <div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
+                        <div class="img" style="background-image: url(../assets/img/<?= $course->image ?>);"></div>
+                    </div>
+                    <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
+                        <h2 class="mb-4">O que você vai aprender?</h2>
+                        <div><?= $course->description ?></div>
+                        <div class="row">
+                            <form class="mt-3 form-floating content-enrollment" method="POST" action="../controller/contact_process.php?id_course=<?= $id ?>">
+
+                                <input type="hidden" name="type" value="register">
+
+                                <h4>Increver-se neste curso</h4>
+                                <div class="form-floating mb-3">
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        id="id_student_name"
+                                        placeholder="name@example.com"
+                                        name="student_name"
+                                        required>
+                                    <label for="student_name">Nome Completo</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input
+                                        class="form-control"
+                                        type="email"
+                                        id="id_student_email"
+                                        placeholder="name@example.com"
+                                        name="student_email"
+                                        required>
+                                    <label for="student_email">E-mail</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        id="id_student_cpf"
+                                        placeholder="name@example.com"
+                                        maxlength="14"
+                                        name="student_cpf"
+                                        required
+                                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                                    <label for="student_cpf">CPF</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        id="id_student_phone"
+                                        placeholder="name@example.com"
+                                        name="student_phone"
+                                        maxlength="15"
+                                        required
+                                        pattern="\(\d{2}\) \d{5}-\d{4}">
+                                    <label for="student_phone">Telefone de contato</label>
+                                </div>
+
+                                <div class="form-floating mb-3 d-flex gap-5  align-items-end">
+                                    <input
+                                        class="form-control date-btn-student"
+                                        type="date"
+                                        id="id_student_bth"
+                                        placeholder="name@example.com"
+                                        name="student_bth"
+                                        required>
+                                    <label for="student_bth">Data de Nascimento</label>
+                                    <span id="birthdate-error" class="text-danger" style="display: none;">A idade deve ser entre 10 e 100 anos.</span>
+
+                                    <div class="form-floating ">
+                                        <div class="col select-gender">
+                                            <label for="student_gender" class="form-label text-secondary m-0">Gênero</label>
+                                            <select
+                                                class="form-select"
+                                                id="student_gender"
+                                                name="student_gender"
+                                                required>
+                                                <option value="" selected disabled>Selecione</option>
+                                                <option value="F">Feminino</option>
+                                                <option value="M">Masculino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="btn btn-primary py-3 px-5
+                                    <?= ($course->available_vacancies == 0) ? 'btn-disabled' : '' ?>"
+                                    type="submit"
+                                    <?= ($course->available_vacancies == 0) ? 'disabled' : '' ?>>Inscrever-se</button>
+                            </form>
                         </div>
-                        <?= $dateFormat . ' às ' . $timeInitFormat ?>
                     </div>
-                    <div class="d-flex flex-column align-items-center">
-                        <div class="d-flex gap-2 align-items-center justify-content-center">
-                            <i class="bi bi-clock-history"></i>
-                            <h6 class="m-0">Duração</h6>
-                        </div>
-                        <?= $durationFormat ?>
-                    </div>
-                </div>
-
-                <div class="mt-3">
-                    <div class="d-flex gap-2 align-items-center justify-content-start">
-                        <i class="bi bi-file-person-fill"></i>
-                        <h6 class="m-0">Ministrante</h6>
-                    </div>
-                    <?= $course->minister ?>
-                </div>
-
-                <div class="mt-2">
-                    <p class="card-text m-0">
-                        <b class="fs-3">
-                            <?= $course->vacancies ?></b> Vagas
-                    </p>
-                    <footer class="blockquote-footer m-0">
-                        <?php
-                        if ($course->available_vacancies == 0) {
-                            echo "Vagas esgotadas";
-                        } else if ($course->available_vacancies == 1) {
-                            echo $course->available_vacancies . " vaga restante";
-                        } else {
-                            echo $course->available_vacancies . " vagas restantes";
-                        }
-                        ?>
-                    </footer>
                 </div>
             </div>
-        </div>
+        </section>
 
+        <?php
+        require_once("../layout/footer_reg.php");
+        ?>
     </div>
 
-    <footer class="footer-list-courses mt-5 p-5">
-        <div class="container">
-
-            <div class="row d-flex justify-content-between gap-3">
-                <div class="col-lg-2 logo-content">
-                    <img src="../assets/img/logo-white-orange.png" alt="logo Alfa Unipac">
-                    <p class="mt-3"> Rua Engenheiro Celso Murta, 600 <br>
-                        Dr. Laerte Laender, Teófilo Otoni <br>
-                        MG - 39803-087
-                    </p>
-
-                    <span>Direito Autoral © 2025 Alfaunipac, Todos os direitos reservados.</span>
-                </div>
-
-                <div class="col-lg-2 contact-us">
-                    <h5>Siga-nos nas nossas redes!</h5>
-                    <div class="d-flex gap-3 fs-4 links-container">
-                        <a href="https://www.linkedin.com/company/alfaunipac" target="_blank"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://www.instagram.com/alfaunipac.oficial/" target="_blank"><i class="bi bi-instagram"></i></a>
-                        <a href="https://www.youtube.com/c/FaculdadeAlfaUnipac" target="_blank"><i class="bi bi-youtube"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 regularidade footer-4">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <a target="_blank" href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTQxNTY">
-                                <figure>
-                                    <img src="https://alfaunipac.com.br/./site/images/emec.png" alt="AlfaUnipac Emec">
-                                </figure>
-                            </a>
-
-                        </div>
-                        <div class="col-lg-12 mt-2">
-                            <a href="https://alfaunipac.com.br/./site/file/portaria-758.pdf" target="_blank" class="text-white">PORTARIA Nº 758, DE 20 DE JUNHO DE 2017<br>
-                                Publicada em: 23 de junho de 2017</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </footer>
 
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -281,6 +270,30 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
         $message->clearMessage();
         ?>
     <?php endif; ?>
+
+    <!-- TEMPLATE -->
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+        </svg>
+    </div>
+
+    <script src="../template/js/jquery.min.js"></script>
+    <script src="../template/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../template/js/popper.min.js"></script>
+    <script src="../template/js/bootstrap.min.js"></script>
+    <script src="../template/js/jquery.easing.1.3.js"></script>
+    <script src="../template/js/jquery.waypoints.min.js"></script>
+    <script src="../template/js/jquery.stellar.min.js"></script>
+    <script src="../template/js/owl.carousel.min.js"></script>
+    <script src="../template/js/jquery.magnific-popup.min.js"></script>
+    <script src="../template/js/aos.js"></script>
+    <script src="../template/js/jquery.animateNumber.min.js"></script>
+    <script src="../template/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="../template/js/google-map.js"></script>
+    <script src="../template/js/main.js"></script>
 </body>
 
 </html>

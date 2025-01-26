@@ -24,12 +24,12 @@
 }
 
 .card-description {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .header-container {
   background: #041c39;
@@ -250,13 +250,8 @@
   }
 }
 
+/* FORMULÁRIO DE INSCRIÇÃO */
 .content-enrollment {
-  max-width: 750px;
-
-  a {
-    color: #fd7e14;
-  }
-
   input {
     border: none;
     border-radius: 0px;
@@ -268,11 +263,17 @@
     }
   }
 
+  input.date-btn-student {
+    font-size: 1rem !important;
+    color: #495057 !important;
+  }
+
   h4 {
     color: #fd7e14;
   }
 
   select {
+    color: #495057 !important;
     border: none;
     border-radius: 0px;
     border-bottom: 1px solid #e4701179;
@@ -328,45 +329,49 @@
 }
 
 .slider-img-1 {
-  background-image: url(../assets/img/header-2.jpg);
+  background-image: url(../assets/img/slide/header-2.jpg);
 }
 
 .slider-img-2 {
-  background-image: url(../assets/img/header-student.jpg);
+  background-image: url(../assets/img/slide/header-student.jpg);
 }
 
 // FAQ
 .bg-img2 {
-    background-image: url(../assets/img/img2.jpg);
+  background-image: url(../assets/img/img2.jpg);
 }
 
 //FOOTER
 .bg-img-footer1 {
-  background-image: url(../public/img/insta/turma_engc.jpg);
+  background-image: url(../assets/img/insta/turma_engc.jpg);
 }
 
 .bg-img-footer2 {
-  background-image: url(../public/img/insta/turma_farmacia.jpg);
+  background-image: url(../assets/img/insta/turma_farmacia.jpg);
 }
 
 .bg-img-footer3 {
-  background-image: url(../public/img/insta/biblioteca.jpg);
+  background-image: url(../assets/img/insta/biblioteca.jpg);
 }
 
 .bg-img-footer4 {
-  background-image: url(../public/img/insta/workshop.jpg);
+  background-image: url(../assets/img/insta/workshop.jpg);
 }
 
 .bg-img-footer5 {
-  background-image: url(../public/img/insta/turma_engc.jpg);
+  background-image: url(../assets/img/insta/turma_engc.jpg);
 }
 
-.logo-footer img{
-height: 65px;
-width: 252px;
-margin-top: -23px;
-}
-
-.logo-emec img{
+.logo-footer img {
   height: 65px;
+  width: 252px;
+  margin-top: -23px;
+}
+
+.logo-emec img {
+  height: 65px;
+}
+
+.hero-wrap .overlay {
+  background-color: #fd7e14 !important;
 }

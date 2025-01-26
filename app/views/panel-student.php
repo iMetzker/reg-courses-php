@@ -1,36 +1,7 @@
 <div class="container-fluid p-0">
-    <div class="navbar navbar-expand-lg navbar-dark ftco-navbar-light container-fluid header-container" id="ftco-navbar">
-        <div class="container d-flex justify-content-end align-items-center px-4 p-2">
-            <div class="d-flex gap-3 fs-6 links-container">
-                <a href="https://www.linkedin.com/company/alfaunipac" target="_blank" class="text-white">
-                    <i class="bi bi-linkedin"></i>
-                </a>
-                <a href="https://www.instagram.com/alfaunipac.oficial/" target="_blank" class="text-white">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/c/FaculdadeAlfaUnipac" target="_blank" class="text-white">
-                    <i class="bi bi-youtube"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-    <nav class="bg-top navbar-light">
-        <div class="container">
-            <div class="rows d-flex align-items-centers justify-content-between">
-                <div class="col-md-4 d-flex align-items-center py-4">
-                    <img class="logo-header" src="./app/assets/img/logo-color.png" alt="logo AlfaUnipac">
-                </div>
-
-                <div class="col-md-4 d-flex align-items-center justify-content-end p-0">
-                    <a href="#" class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center gap-2">
-                        <i class="bi bi-person fs-5"></i>
-                        <span>Entrar</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- END NAV -->
+    <?php 
+    require_once("./app/layout/header.php");
+    ?>
 
     <section class="home-slider owl-carousel">
         <div class="slider-item slider-img-1">
@@ -145,7 +116,7 @@
                     $dataAc = new DateTime();
 
                     $dateDayFormat = $dateCourse->format("d");
-                    $dateMonthFormat = strftime('%b', $dateCourse->getTimestamp());
+                    $dateMonthFormat = ucfirst(strtolower(strftime('%b', $dateCourse->getTimestamp())));
                     $dateYearFormat = $dateCourse->format("Y");
                     $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
                     $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
@@ -211,7 +182,7 @@
                                             <?php
                                             if ($course->available_vacancies === 0) {
                                                 echo
-                                                '<i class="bi bi-person-exclamation"
+                                                '<i class="bi bi-person-exclamation fs-5"
                                                  style="color: #fd7e14;"></i>' .
                                                     '<span>Vagas esgotadas</span>';
                                             } else if ($course->available_vacancies == 1) {
@@ -263,7 +234,7 @@
                 </div>
                 <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
                     <h2 class="mb-4">Dúvidas Frequêntes</h2>
-                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word.</p>
+                    <p>Sabemos que durante sua jornada podem surgir algumas dúvidas, e estamos aqui para ajudar. Aqui, você encontrará respostas rápidas e detalhadas para as perguntas mais comuns dos nossos alunos.</p>
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -292,7 +263,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                    Já fiz a minha inscrição. Posso editar a minha inscrição depois de ter sido enviada?
+                                    Já fiz a minha inscrição, posso editá-la depois de ter sido enviada?
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
@@ -333,7 +304,7 @@
                             </h2>
                             <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
                                 <div class="accordion-body">
-                                    <strong>Sim!</strong> Nossos mini cursos são uma iniciativa em prol da livre aducação para a comunidade, para realizá-los <b>não é necessário estar matriculado</b>.
+                                    <strong>Sim!</strong> Nossos mini cursos são uma iniciativa em prol da livre aducação para a comunidade, para realizá-los <b>não é necessário estar matriculado em nossa instituição</b>.
                                 </div>
                             </div>
                         </div>
@@ -480,79 +451,7 @@
         </div>
     </section>
 
-
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-        <div class="container">
-            <div class="row mb-5 d-flex justify-content-between">
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-4 logo-footer">
-                        <img src="./app/assets/img/logo-white-orange.png" alt="logo Alfa Unipac">
-                    </div>
-                    <div class="ftco-footer-widget mb-5">
-                        <h2 class="ftco-heading-2 mb-0">Siga-nos!</h2>
-                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                            <li class="ftco-animate"><a href="https://www.linkedin.com/company/alfaunipac" target="_blank"><span class="icon-linkedin"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.youtube.com/c/FaculdadeAlfaUnipac" target="_blank"><span class="icon-youtube"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.instagram.com/alfaunipac.oficial/" target="_blank"><span class="icon-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-5">
-                        <h2 class="ftco-heading-2">Como nos Encontrar?</h2>
-                        <div class="block-23 mb-3">
-                            <ul>
-                                <li>
-                                    <span class="icon icon-map-marker"></span>
-                                    <span class="text">
-                                        <a href="" target="_blank">
-                                            Rua Engenheiro Celso Murta, 600
-                                            Dr. Laerte Laender, Teófilo Otoni
-                                            MG - 39803-087
-                                        </a>
-                                    </span>
-                                </li>
-
-                                <li>
-                                    <span class="icon icon-phone"></span>
-                                    <span class="text">
-                                        (33) 3529-4750
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3">
-                    <div class="ftco-footer-widget mb-5 ml-md-4 ">
-                        <h2 class="ftco-heading-2">Situação e-Mec</h2>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <a target="_blank" href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTQxNTY">
-                                    <figure class="logo-emec">
-                                        <img src="https://alfaunipac.com.br/./site/images/emec.png" alt="AlfaUnipac Emec">
-                                    </figure>
-                                </a>
-
-                            </div>
-                            <div class="col-lg-12 mt-2">
-                                <a href="https://alfaunipac.com.br/./site/file/portaria-758.pdf" target="_blank" class="text-white">PORTARIA Nº 758, DE 20 DE JUNHO DE 2017<br>
-                                    Publicada em: 23 de junho de 2017</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>Copyright © 2025 Alfaunipac, Todos os direitos reservados</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <?php 
+    require_once("./app/layout/footer.php");
+    ?>
 </div>
