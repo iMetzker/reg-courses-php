@@ -61,6 +61,7 @@ if (empty($id)) {
                     type="text"
                     id="id_course_name"
                     name="course_name"
+                    maxlength="25"
                     value="<?= $course->name ?>">
             </div>
 

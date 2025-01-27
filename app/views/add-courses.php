@@ -43,7 +43,8 @@ $msg = $message->getMessage();
                     class="form-control bg-light rounded-pill border-0"
                     type="text"
                     id="id_course_name"
-                    name="course_name">
+                    name="course_name"
+                    maxlength="25">
             </div>
             <div class="mb-3">
                 <label for="course_minister" class="form-label"><span class="text-danger">*</span>Prof. Ministrante</label>
