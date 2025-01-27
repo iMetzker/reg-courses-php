@@ -331,7 +331,7 @@
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
-                                    <p>Diz o ditado chinês que uma longa caminhada começa com o primeiro passo. E a escolha de uma boa Faculdade para a graduação é uma ferramenta extremamente indispensável para uma boa atuação profissional. Foi pensando no exercício de minha futura profissão, que escolhi, a Faculdade Presidente Antônio Carlos como um caminho mais curto para se alcançar a aprovação na OAB e em Concursos Públicos.</p>
+                                    <p>Diz o ditado chinês que uma longa caminhada começa com o primeiro passo. E a escolha de uma boa Faculdade para a graduação.</p>
                                     <p class="name">Breno Gil de Carvalho</p>
                                     <span class="position">Ex-Aluno do Curso de Direito</span>
                                 </div>
@@ -367,7 +367,7 @@
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
-                                    <p>Estudar na AlfaUnipac foi muito importante para minha formação profissional, pois adquiri conhecimentos não só teóricos como também práticos. O curso tem um excelente corpo docente que estava sempre à disposição para me passar conhecimento. Através do curso consegui vaga de estagário o que me possibilitou colocar em prática o que estava aprendendo e assim podendo me aperfeiçoar mais ainda.</p>
+                                    <p>Estudar na AlfaUnipac foi muito importante para minha formação profissional, pois adquiri conhecimentos não só teóricos como também práticos.</p>
                                     <p class="name">Moisés Borges</p>
                                     <span class="position">Ex-Aluno do curso de Sistemas de Informação</span>
                                 </div>
@@ -379,7 +379,7 @@
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
-                                    <p>O Curso de Administração da Faculdade Presidente Antônio Carlos oferece realmente os elementos básicos necessários à formação de um bom profissional da área. Além dos conteúdos ministrados na grade curricular, são oferecidos sistematicamente cursos extracurriculares e palestras.</p>
+                                    <p>O Curso de Administração da Faculdade Presidente Antônio Carlos oferece realmente os elementos básicos necessários à formação de um bom profissional da área.</p>
                                     <p class="name">Bruna Doehler Santos</p>
                                     <span class="position">Ex-Aluna do Curso de Administração</span>
                                 </div>

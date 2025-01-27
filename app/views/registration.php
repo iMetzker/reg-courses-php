@@ -83,7 +83,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
                         <h1 class="mb-2 bread"><?= $course->name ?></h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="http://localhost/projectsGT/reg-courses-php/?page=student">Voltar <i class="ion-ios-arrow-forward"></i></a></span>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="http://localhost/php-sty/gitHub/reg-courses-php/?page=student">Voltar <i class="ion-ios-arrow-forward"></i></a></span>
                             <span>Inscrição
                                 <i class="ion-ios-arrow-forward"></i>
                             </span>

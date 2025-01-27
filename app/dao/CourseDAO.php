@@ -40,7 +40,6 @@ class CourseDAO implements CourseDAOInterface
 
     public function findByIdCourse($id)
     {
-
         $course = [];
 
         $con = $this->connect->prepare("

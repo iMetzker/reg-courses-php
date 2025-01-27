@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="col-md-12" id="all-courses">
+<div class="col-md-12 p-0" id="all-courses">
     <table class="table edit-table table-bordered">
         <thead>
             <th scope="col">Nome do Curso</th>

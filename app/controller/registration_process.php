@@ -28,9 +28,13 @@ if ($typeAdd == "register") {
 
         $courseRegister = $courseDAO->findByIdCourse($idCourse);
 
-        $registrationDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
+        if ($courseRegister->available_vacancies > 0) {
+            $registrationDAO->createCourseRegistration($idContact, $idCourse, $dateAcFormat);
 
-        $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
+            $registrationDAO->message->setMessage("Inscrição realizada com sucesso!", "success", "", "back");
+        } else {
+            $registrationDAO->message->setMessage("Oops...", "error", "Não foi possível realizar sua inscrição, vagas esgotadas.", "back");
+        }
     } else {
         $registrationDAO->message->setMessage("Dados inválidos. Não foi possível realizar a inscrição.", "error", "", "back");
     }

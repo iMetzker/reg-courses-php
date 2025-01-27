@@ -38,7 +38,7 @@
         </li>
     </ul>
 
-    <div class="container">
+    <div class="container p-0">
         <?php
         switch (@$_REQUEST["action"]) {
             case "courses":

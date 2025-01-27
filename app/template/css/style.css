@@ -4622,28 +4622,6 @@ input[type="button"].btn-block {
     background-color: #1b1e21;
     border-color: #1b1e21; }
 
-.close {
-  float: right;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: .5; }
-  .close:hover {
-    color: #000;
-    text-decoration: none; }
-  .close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
-    opacity: .75; }
-
-button.close {
-  padding: 0;
-  background-color: transparent;
-  border: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; }
-
 a.close.disabled {
   pointer-events: none; }
 
@@ -8234,7 +8212,7 @@ h1, h2, h3, h4, h5,
     width: 1110px; }
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
-      background: #0d1128 !important;
+      background: #041c39 !important;
       position: relative;
       top: 0;
       padding: 10px 15px; } }
