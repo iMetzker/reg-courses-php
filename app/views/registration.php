@@ -230,7 +230,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                                 </div>
 
                                 <button
-                                    class="btn btn-primary py-3 px-5
+                                    class="btn btn-primary py-3 px-5 mt-3
                                     <?= ($course->available_vacancies == 0) ? 'btn-disabled' : '' ?>"
                                     type="submit"
                                     <?= ($course->available_vacancies == 0) ? 'disabled' : '' ?>>Inscrever-se</button>
