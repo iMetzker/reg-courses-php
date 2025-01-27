@@ -64,8 +64,9 @@ $msg = $message->getMessage();
                     rows="5"></textarea>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 d-flex flex-column">
                 <label for="course_image" class="form-label"><span class="text-danger">*</span>Imagem para capa</label>
+                <img class="rounded card-img-top mb-2 image-preview-course" src="../assets/img/course/img_default.png" alt="preview da capa do curso" id="preview_img_course">
                 <input
                     class="form-control form-control-sm rounded"
                     type="file"
@@ -127,6 +128,7 @@ $msg = $message->getMessage();
     </div>
 
     <script src="../assets/js/validate_dateCourse.js"></script>
+    <script src="../assets/js/image_preview.js"></script>
 
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
