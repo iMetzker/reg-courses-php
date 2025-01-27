@@ -118,6 +118,7 @@
                     $dateDayFormat = $dateCourse->format("d");
                     $dateMonthFormat = ucfirst(strtolower(strftime('%b', $dateCourse->getTimestamp())));
                     $dateYearFormat = $dateCourse->format("Y");
+                    
                     $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
                     $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 

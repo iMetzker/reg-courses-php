@@ -146,12 +146,19 @@ if (empty($id)) {
                         name="student_course"
                         required>
                         <option value="" disabled>Selecione</option>
-                        <?php foreach ($allCourses as $course): ?>
-                            <option value="<?= $course->id ?>"
-                                <?= $register->course == $course->name ? 'selected' : '' ?>>
-                                <?= $course->name ?> (<?= $course->vacancies ?> vagas restantes)
-                            </option>
-                        <?php endforeach; ?>
+                        <?php foreach ($allCourses as $course):
+                            // FORMATANDO DATA
+                            $dataAc = new DateTime();
+                            $dateCourse = new DateTime($course->date);
+
+                            if ($course->open == 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d")) && ($course->available_vacancies > 0)) {
+                        ?>
+                                <option value="<?= $course->id ?>"
+                                    <?= $register->course == $course->name ? 'selected' : '' ?>>
+                                    <?= $course->name ?> (<?= $course->available_vacancies ?> vagas restantes)
+                                </option>
+                        <?php }
+                        endforeach; ?>
                     </select>
 
                 </div>
