@@ -147,7 +147,9 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
                     </div>
                     <div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
                         <h2 class="mb-4">O que você vai aprender?</h2>
-                        <div><?= $course->description ?></div>
+                        <div><?=
+                        nl2br(htmlspecialchars($course->description, ENT_QUOTES, 'UTF-8'))
+                             ?></div>
                         <div class="row">
                             <form class="mt-3 form-floating content-enrollment" method="POST" action="../controller/contact_process.php?id_course=<?= $id ?>">
 
