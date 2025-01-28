@@ -1,5 +1,5 @@
 <div class="container-fluid p-0">
-    <?php 
+    <?php
     require_once("./app/layout/header.php");
     ?>
 
@@ -92,8 +92,8 @@
 
             <div class="d-flex justify-content-between gap-3 mb-5">
                 <div class="form-floating input-search">
-                    <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></input>
-                    <label for="floatingTextarea"><i class="bi bi-search me-2"></i>Digite aqui o que você procura</label>
+                    <input type="text" class="form-control" placeholder="Digite aqui o que você procura..." id="searchInput"></input>
+                    <label for="searchInput"><i class="bi bi-search me-2"></i>Digite aqui o que você procura</label>
                 </div>
 
                 <div class="d-flex gap-2 align-items-center">
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="coursesContainer">
                 <?php foreach ($allCourses as $course):
                     // FORMATANDO DATAS
                     setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
@@ -118,16 +118,16 @@
                     $dateDayFormat = $dateCourse->format("d");
                     $dateMonthFormat = ucfirst(strtolower(strftime('%b', $dateCourse->getTimestamp())));
                     $dateYearFormat = $dateCourse->format("Y");
-                    
+
                     $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
                     $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 
 
                     if ($course->open == 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
                 ?>
-                        <div class="col-md-6 col-lg-4 ftco-animate">
+                        <div class="col-md-6 col-lg-4 ftco-animate course-card">
                             <div class="blog-entry">
-                                <a href="./app/views/registration.php?id=<?=$course->id?>" class="block-20 d-flex align-items-end" style="background-image: url(./app/assets/img/<?= $course->image ?>);">
+                                <a href="./app/views/registration.php?id=<?= $course->id ?>" class="block-20 d-flex align-items-end" style="background-image: url(./app/assets/img/<?= $course->image ?>);">
                                     <div class="meta-date text-center p-2 course-date">
                                         <span class="day"><?= $dateDayFormat ?></span>
                                         <span class="mos"><?= $dateMonthFormat ?></span>
@@ -163,7 +163,7 @@
 
                                 <div class="text bg-white px-4">
                                     <h3 class="heading">
-                                        <a href="./app/views/registration.php?id=<?=$course->id?>"><?= $course->name ?></a>
+                                        <a href="./app/views/registration.php?id=<?= $course->id ?>"><?= $course->name ?></a>
                                     </h3>
 
                                     <div class="card-text card-description mb-2"
@@ -204,8 +204,13 @@
                         </div>
                 <?php }
                 endforeach; ?>
+
             </div>
 
+            <div class="alert alert-warning no-result d-none" id="noResult" role="alert">
+                <i class="bi bi-x-circle me-2"></i>
+                Oops... Sinto muito, nenhum curso com este nome foi encontrado.
+            </div>
 
             <nav aria-label="Page navigation" class="pagination-courses mt-5 d-flex justify-content-center">
                 <ul class="pagination">
@@ -452,7 +457,7 @@
         </div>
     </section>
 
-    <?php 
+    <?php
     require_once("./app/layout/footer.php");
     ?>
 </div>
