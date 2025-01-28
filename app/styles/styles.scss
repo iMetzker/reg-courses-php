@@ -103,7 +103,7 @@
   color: #ffffff;
   border-radius: 5px;
 
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
 
   &.open {
@@ -144,9 +144,12 @@
 }
 
 .edit-table {
-  td {
-    vertical-align: middle;
+  td, th {
+    vertical-align: middle !important;
   }
+
+  min-width: 100%;
+  overflow-y: scroll;
 }
 
 .icon-list i {
@@ -165,7 +168,8 @@
   .header-export,
   .header-add-course {
     font-weight: 600;
-    padding: 7px 15px;
+    padding: 10px 15px;
+    border-radius: 5px !important;
 
     i {
       font-size: 20px;
@@ -208,12 +212,12 @@
     }
 
     .active {
-      color: #e47011;
-      font-weight: 500;
+      color: #e47011 !important;
+      font-weight: 500 !important;
 
-      border-top: 1px solid #e47011;
-      border-left: 1px solid #e47011;
-      border-right: 1px solid #e47011;
+      border-top: 1px solid #e47011 !important;
+      border-left: 1px solid #e47011 !important;
+      border-right: 1px solid #e47011 !important;
 
       .text-bg-secondary {
         background-color: #fff9e1 !important;
@@ -375,4 +379,27 @@
 
 .hero-wrap .overlay {
   background-color: #fd7e14 !important;
+}
+
+/* ADMIN */
+.bg-blue {
+background-color: #dee2e611;
+}
+
+.detail-log-user {
+  font-size: 12px;
+}
+
+.font-table {
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.view-table {
+  overflow-x: auto;
+  white-space: nowrap;
+  transform: rotate(180deg);
+
+  table {
+    transform: rotate(180deg);
+  }
 }

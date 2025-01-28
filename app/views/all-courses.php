@@ -26,12 +26,13 @@
     </div>
 </div>
 
-<div class="col-md-12 p-0" id="all-courses">
+<div class="col-md-12 p-0 view-table" id="all-courses">
     <table class="table edit-table table-bordered">
         <thead>
             <th scope="col">Nome do Curso</th>
             <th scope="col" class="text-center">Data de Realização</th>
             <th scope="col" class="text-center">Vagas</th>
+            <th scope="col" class="text-center">Inscrições</th>
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center"></th>
         </thead>
@@ -46,6 +47,7 @@
                     <td scope="row"><?= $course->name ?></td>
                     <td scope="row" class="text-center"><?= $dateFormat ?></td>
                     <td scope="row" class="text-center"><?= $course->vacancies ?></td>
+                    <td scope="row" class="text-center"><?= ($course->vacancies - $course->available_vacancies) ?></td>
                     <td scope="row" class="text-center">
                         <?php
                         if ($course->open == 1) {
@@ -61,7 +63,7 @@
                         }
                         ?>
                     </td>
-                    <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center">
+                    <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center border-0">
 
                         <?php
                         // CADASTRO DE ALUNO APENAS COM CURSO DISPONÍVEL

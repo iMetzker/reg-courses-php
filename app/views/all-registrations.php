@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<div class="col-md-12" id="all-courses">
+<div class="col-md-12 p-0 view-table" id="all-courses">
     <table class="table edit-table table-bordered">
         <thead>
             <th scope="col">Nome do Estudante</th>
@@ -28,10 +28,11 @@
                     <td scope="row"><?= $register->candidate ?></td>
                     <td scope="row" class="text-center"><?= $register->cpf ?></td>
                     <td scope="row" class="text-center"><?= $register->phone ?></td>
-                    <td scope="row" class="text-center"><?= $register->email ?></td>
+                    <td scope="row" class="text-center" style="text-transform: lowercase;"><?= $register->email ?></td>
                     <td scope="row" class="text-center"><?= $dateBthStudentFormat ?></td>
                     <td scope="row" class="text-center"><?= $register->course ?></td>
-                    <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center">
+                    <td scope="row" class="fs-5 icon-list text-center d-flex align-items-center mt-1 border-0">
+
                         <a href="<?= $BASE_URL ?>/app/views/update-registration.php?id=<?= $register->id ?>" title="Editar aluno">
                             <i class="bi bi-pencil-square"></i>
                         </a>
