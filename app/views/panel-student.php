@@ -106,7 +106,12 @@
                 </div>
             </div>
 
-            <div class="row" id="coursesContainer">
+            <div class="alert alert-warning no-result d-none mt-3" id="noResult" role="alert">
+                <i class="bi bi-x-circle me-2"></i>
+                Oops... Sinto muito, nenhum curso com este nome foi encontrado.
+            </div>
+
+            <div class="row border-none" id="coursesContainer">
                 <?php foreach ($allCourses as $course):
                     // FORMATANDO DATAS
                     setlocale(LC_TIME, 'pt_BR.UTF-8', 'pt_BR', 'Portuguese_Brazil.1252');
@@ -205,11 +210,6 @@
                 <?php }
                 endforeach; ?>
 
-            </div>
-
-            <div class="alert alert-warning no-result d-none" id="noResult" role="alert">
-                <i class="bi bi-x-circle me-2"></i>
-                Oops... Sinto muito, nenhum curso com este nome foi encontrado.
             </div>
 
             <nav aria-label="Page navigation" class="pagination-courses mt-5 d-flex justify-content-center">

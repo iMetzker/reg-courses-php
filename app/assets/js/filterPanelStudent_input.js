@@ -17,19 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // RESETANDO O CARD E ADICIONANDO APENAS OS CURSOS FILTRADOS
     coursesContainer.innerHTML = "";
-    
+
     // VERIFICANDO SE NAO HÁ CURSOS
+    const noResultsMessage = document.getElementById("noResult");
+
     if (!filteredCourses.length) {
-      const noResultsMessage = document.getElementById("noResult");
       noResultsMessage.classList.remove("d-none");
-      // coursesContainer.appendChild(noResultsMessage);
+    } else {
+      noResultsMessage.classList.add("d-none");
+
+      filteredCourses.forEach((course) => {
+        coursesContainer.appendChild(course);
+      });
     }
-      else {
-       filteredCourses.forEach((course) => {
-         coursesContainer.appendChild(course);
-       });
-        noResultsMessage.classList.add("d-none");
-     }
   }
 
   searchInput.addEventListener("input", applyFilters);

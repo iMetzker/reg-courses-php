@@ -150,7 +150,8 @@ $msg = $message->getMessage();
 
     <!-- SCRIPTS -->
 
-    <script src="./app/assets/js/filter_input.js"></script>
+    <script src="./app/assets/js/filterPanelStudent_input.js"></script>
+    <script src="./app/assets/js/filterPanelAdmin.js"></script>
 </body>
 
 </html>
