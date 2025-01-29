@@ -349,9 +349,9 @@
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <p>O workshop foi uma experiência muito divertida! A abordagem didática e envolvente facilitou o aprendizado e aprofundou minha compreensão sobre esse universo.</p>
                                     <p class="name">Ivny Metzker</p>
-                                    <span class="position">Aluna do Curso de Sistemas de Informação</span>
+                                    <span class="position">Ex-Aluno do workshop de Robótica</span>
                                 </div>
                             </div>
                         </div>

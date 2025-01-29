@@ -1,13 +1,18 @@
 <div class="mb-3 d-flex justify-content-between align-items-end gap-3">
 
     <div class="form-floating input-search">
-        <input type="text" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></input>
-        <label for="floatingTextarea"><i class="bi bi-search me-2"></i>Buscar Aluno</label>
+        <input type="text" class="form-control" placeholder="Buscar aluno" id="searchInputCourses"></input>
+        <label for="searchInputCourses"><i class="bi bi-search me-2"></i>Buscar Aluno</label>
     </div>
 </div>
 
+<div class="alert alert-warning no-result d-none mt-3" id="noResult" role="alert">
+    <i class="bi bi-x-circle me-2"></i>
+    Oops... Sinto muito, nenhum curso com este nome foi encontrado.
+</div>
+
 <div class="col-md-12 p-0 view-table" id="all-courses">
-    <table class="table edit-table table-bordered">
+    <table class="table edit-table table-bordered course-card">
         <thead>
             <th scope="col">Nome do Estudante</th>
             <th scope="col" class="text-center">CPF</th>
@@ -25,7 +30,7 @@
             ?>
 
                 <tr>
-                    <td scope="row"><?= $register->candidate ?></td>
+                    <td scope="row" class="heading"><?= $register->candidate ?></td>
                     <td scope="row" class="text-center"><?= $register->cpf ?></td>
                     <td scope="row" class="text-center"><?= $register->phone ?></td>
                     <td scope="row" class="text-center" style="text-transform: lowercase;"><?= $register->email ?></td>
