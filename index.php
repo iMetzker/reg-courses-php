@@ -53,11 +53,15 @@ $msg = $message->getMessage();
     <link rel="stylesheet" href="./app/template/css/icomoon.css">
     <link rel="stylesheet" href="./app/template/css/style.css">
 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/css/libs/animate.min.css" rel="stylesheet"> -->
+
 </head>
 
 
 <body>
     <div class="d-flex justify-content-center align-items-center flex-column">
+
         <?php
         switch (@$_REQUEST["page"]) {
             case "student":
@@ -112,6 +116,7 @@ $msg = $message->getMessage();
         }
     </script>
 
+    <!-- MESSAGE ALERT -->
     <?php if ($msg): ?>
         <script>
             Swal.fire({
@@ -125,6 +130,12 @@ $msg = $message->getMessage();
         $message->clearMessage();
         ?>
     <?php endif; ?>
+
+    <!-- WOW JS -->
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 
     <!-- TEMPLATE -->
 
@@ -148,9 +159,9 @@ $msg = $message->getMessage();
     <script src="./app/template/js/scrollax.min.js"></script>
     <script src="./app/template/js/main.js"></script>
 
-    <!-- SCRIPTS -->
-
+    <!-- FILTROS -->
     <script src="./app/assets/js/filterPanelStudent_input.js"></script>
+    <script src="./app/assets/js/filterPanelStudent_select.js"></script>
     <script src="./app/assets/js/filterPanelAdmin.js"></script>
 </body>
 

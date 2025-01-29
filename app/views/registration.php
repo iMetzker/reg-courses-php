@@ -22,7 +22,6 @@ if (empty($id)) {
     }
 }
 
-
 // FORMATANDO DATAS
 $dateCourse = new DateTime($course->date);
 $timeInit = new DateTime($course->time);
@@ -34,7 +33,6 @@ $timeInitFormat = str_replace("00", "", $timeInit->format("H\hi"));
 $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
 ?>
 
-<!-- AQUI COMEÇA -->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,6 +66,7 @@ $durationFormat = str_replace("00", "", $durationCourse->format("h\hi"));
     <link rel="stylesheet" href="../template/css/flaticon.css">
     <link rel="stylesheet" href="../template/css/icomoon.css">
     <link rel="stylesheet" href="../template/css/style.css">
+    
 </head>
 
 <body>

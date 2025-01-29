@@ -98,10 +98,10 @@
 
                 <div class="d-flex gap-2 align-items-center">
                     <p class="m-0">Ordenar por: </p>
-                    <select class="form-select filter-course" aria-label="filtrar curso">
+                    <select class="form-select filter-course" aria-label="filtrar curso" id="orderSelect">
                         <option selected>Mais recentes</option>
-                        <option value="2">Cursos abertos</option>
-                        <option value="2">Cursos encerrados</option>
+                        <option value="date">Data de realização</option>
+                        <option value="open">Cursos abertos</option>
                     </select>
                 </div>
             </div>
@@ -130,9 +130,17 @@
 
                     if ($course->open == 1 && !($dateCourse < $dataAc && $dateCourse->format("Y-m-d") !== $dataAc->format("Y-m-d"))) {
                 ?>
-                        <div class="col-md-6 col-lg-4 ftco-animate course-card">
+                        <input class="d-none" id="orderby-date" value="<?= $dateCourse->format("d/m/Y") ?>">
+                        <div 
+                        class="col-md-6 col-lg-4 ftco-animate course-card"
+                        data-date="<?= $dateCourse->format('Y-m-d') ?>" 
+                        data-vacancies="<?= $course->available_vacancies ?>"
+                        >
                             <div class="blog-entry">
-                                <a href="./app/views/registration.php?id=<?= $course->id ?>" class="block-20 d-flex align-items-end" style="background-image: url(./app/assets/img/<?= $course->image ?>);">
+                                <a 
+                                href="./app/views/registration.php?id=<?= $course->id ?>"
+                                class="block-20 d-flex align-items-end" 
+                                style="background-image: url(./app/assets/img/<?= $course->image ?>);">
                                     <div class="meta-date text-center p-2 course-date">
                                         <span class="day"><?= $dateDayFormat ?></span>
                                         <span class="mos"><?= $dateMonthFormat ?></span>
