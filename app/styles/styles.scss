@@ -127,15 +127,23 @@
 }
 
 .filter-group {
-  select {
+  button {
     border: none;
     outline: none;
-    width: 143px;
+    height: 58px;
+    font-weight: 500;
   }
 
-  .form-select {
-    padding: 1rem 0.75rem;
+  .form-button {
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
     border: 1px solid #dee2e6;
+
+    &:hover,
+    &.active {
+    background-color: #004e98;
+    color: #fff;
+        }
   }
 }
 
@@ -403,4 +411,18 @@ background-color: #dee2e611;
   table {
     transform: rotate(180deg);
   }
+}
+
+/* AJUSTE DATA TABLES */
+
+.dt-buttons,
+.dt-info {
+  display: none;
+}
+
+.block-click {
+  .dt-column-order {
+    display: none;
+  }
+  pointer-events: none;
 }

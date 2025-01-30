@@ -4,25 +4,17 @@
         <label for="searchInputCourses"><i class="bi bi-search me-2"></i>Buscar curso</label>
     </div>
     <div class="d-flex align-items-center gap-3 fs-5 filter-group">
-        <div class="d-flex align-items-center form-select">
-            <i class="bi bi-calendar-week me-2"></i>
-            <select aria-label="Seleção de mês">
-                <option selected>Mês</option>
-                <option value="1">Janeiro</option>
-                <option value="2">Fevereiro</option>
-            </select>
-        </div>
+        <button class="d-flex align-items-center btn form-button" id="orderCourseBtn">
+            <i class="bi bi-arrow-down-up me-2"></i> Curso
+        </button>
 
-        <div class="d-flex align-items-center form-select">
-            <i class="bi bi-filter me-2"></i>
-            <select aria-label="Seleção de status">
-                <option selected>Status</option>
-                <option value="1">Aberto</option>
-                <option value="2">Fechado</option>
-                <option value="2">Vagas Esgotadas</option>
-                <option value="2">Encerrado</option>
-            </select>
-        </div>
+        <button class="d-flex align-items-center btn form-button" id="orderDateBtn">
+            <i class="bi bi-calendar-week me-2"></i> Data
+        </button>
+
+        <button class="d-flex align-items-center btn form-button" id="orderStatusBtn">
+            <i class="bi bi-filter me-2"></i> Status
+        </button>
     </div>
 </div>
 
@@ -32,14 +24,14 @@
 </div>
 
 <div class="col-md-12 p-0 view-table" id="all-courses">
-    <table class="table edit-table table-bordered course-card">
+    <table class="table edit-table table-bordered course-card" id="example">
         <thead>
-            <th scope="col">Nome do Curso</th>
-            <th scope="col" class="text-center">Data de Realização</th>
-            <th scope="col" class="text-center">Vagas</th>
-            <th scope="col" class="text-center">Inscrições</th>
-            <th scope="col" class="text-center">Status</th>
-            <th scope="col" class="text-center"></th>
+            <th scope="col" class="block-click">Nome do Curso</th>
+            <th scope="col" class="text-center dt-type-date block-click">Data de Realização</th>
+            <th scope="col" class="text-center block-click">Vagas</th>
+            <th scope="col" class="text-center block-click">Inscrições</th>
+            <th scope="col" class="text-center status-course block-click">Status</th>
+            <th scope="col" class="text-center block-click"></th>
         </thead>
 
         <tbody>
@@ -47,10 +39,13 @@
                 $dateCourse = new DateTime($course->date);
                 $dataAc = new DateTime();
                 $dateFormat = $dateCourse->format("d/m/Y");
+
             ?>
                 <tr>
                     <td scope="row" class="heading"><?= $course->name ?></td>
-                    <td scope="row" class="text-center"><?= $dateFormat ?></td>
+                    <td scope="row" class="text-center">
+                        <?= $dateFormat ?>
+                    </td>
                     <td scope="row" class="text-center"><?= $course->vacancies ?></td>
                     <td scope="row" class="text-center"><?= ($course->vacancies - $course->available_vacancies) ?></td>
                     <td scope="row" class="text-center">

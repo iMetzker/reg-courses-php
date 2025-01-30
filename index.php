@@ -1,4 +1,5 @@
 <?php
+
 require_once("./db.php");
 require_once("./app/dao/CourseDAO.php");
 require_once("./app/dao/RegistrationDAO.php");
@@ -55,6 +56,10 @@ $msg = $message->getMessage();
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/css/libs/animate.min.css" rel="stylesheet"> -->
+
+    <!-- DATA TABLES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.css">
 
 </head>
 
@@ -131,19 +136,12 @@ $msg = $message->getMessage();
         ?>
     <?php endif; ?>
 
-    <!-- WOW JS -->
-    <script src="js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-
     <!-- TEMPLATE -->
 
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
             <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
         </svg></div>
-
 
     <script src="./app/template/js/jquery.min.js"></script>
     <script src="./app/template/js/jquery-migrate-3.0.1.min.js"></script>
@@ -163,6 +161,18 @@ $msg = $message->getMessage();
     <script src="./app/assets/js/filterPanelStudent_input.js"></script>
     <script src="./app/assets/js/filterPanelStudent_select.js"></script>
     <script src="./app/assets/js/filterPanelAdmin.js"></script>
+
+    <!-- DATA TABLE -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js"></script>
+
+    <script src="./app/assets/js/dataTables.js"></script>
 </body>
 
 </html>

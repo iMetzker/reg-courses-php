@@ -1,0 +1,6 @@
+{
+    "require": {
+        "datatables.net/datatables.net-dt": "^2.2",
+        "datatables/datatables": "^1.10"
+    }
+}

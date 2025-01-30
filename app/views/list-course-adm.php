@@ -20,9 +20,20 @@
             </div>
 
             <div class="d-flex gap-3 header-buttons">
-                <button class="btn btn-outline-secondary d-flex align-items-center header-export" type="submit">
-                    <i class="bi bi-folder-check me-2"></i>Exportar
-                </button>
+                <div class="dropdown">
+                    <button
+                        class="dropdown-toggle btn btn-outline-secondary d-flex align-items-center header-export"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-folder-check me-2"></i>Exportar
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" id="btnExcel">Excel</button></li>
+                        <li><button class="dropdown-item" id="btnPdf">PDF</button></li>
+                        <li><button class="dropdown-item" id="btnPrint">Imprimir</button></li>
+                    </ul>
+                </div>
                 <a class="btn btn-primary d-flex align-items-center header-add-course" href="<?= $BASE_URL ?>app/views/add-courses.php" role="button">
                     <i class="bi bi-plus-lg me-2"></i>Novo Curso
                 </a>
